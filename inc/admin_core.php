@@ -244,7 +244,7 @@ function igit_rpwt_admin_options()
 			</tbody>
 		</table>
 		</div>
-		<input type="submit" name="sb_submit" id="sb_submit" value="Update Options" />&nbsp;<span id="loading_img" style="display:none;"><img src="' . WP_PLUGIN_URL . '/igit-rpwt/images/loader.gif"></span>
+		<input type="submit" name="sb_submit" id="sb_submit" value="Update Options" />&nbsp;<span id="loading_img" style="display:none;"><img src="' . WP_PLUGIN_URL . '/igit-related-posts-with-thumb-images-after-posts/images/loader.gif"></span>
 	</form>
 </div>';
 }
