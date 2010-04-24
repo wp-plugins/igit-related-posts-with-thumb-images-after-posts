@@ -55,6 +55,10 @@ Installation process is a easy 4 step procedure.<br />
 possibility of many bugs.<br />
 
 
+= 1.1. =
+Image Not showing problem and also related posts width problem solved.
+
+
 == Upgrade Notice ==
 * Users will be informed every time the plugin upgrades.<br />
 
