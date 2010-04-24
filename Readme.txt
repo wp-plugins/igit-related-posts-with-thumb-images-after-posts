@@ -5,7 +5,7 @@ Plugin link: http://www.hackingethics.com/blog/wordpress-plugins/igit-related-po
 Tags: Posts,Related Posts,SEO,Post.
 Requires at least: 2.3
 Tested up to: 2.9.2
-Stable tag: trunk
+Stable tag: 1.1
 
 
 == Description ==
@@ -53,6 +53,9 @@ Installation process is a easy 4 step procedure.<br />
 
 - This is the very first release of the IGIT Related Posts With Thumb After Posts plugin. The code base isn’t all that pretty hence the 
 possibility of many bugs.<br />
+
+= 1.1. =
+Image Not showing problem and also related posts width problem solved.
 
 
 == Upgrade Notice ==
