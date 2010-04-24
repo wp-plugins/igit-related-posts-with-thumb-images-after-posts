@@ -203,7 +203,7 @@ function igit_show_rel_post()
             if (isset($matches))
                 $image = $matches[1][0];
             if (strlen(trim($image)) == 0) {
-                $image = WP_PLUGIN_URL . '/igit-rpwt/images/noimage.gif'; // when no image found in post 
+                $image = WP_PLUGIN_URL . '/igit-related-posts-with-thumb-images-after-posts/images/noimage.gif'; // when no image found in post 
             }
             $image = parse_url($image, PHP_URL_PATH);
             // Condition for Horizontal Related Posts
@@ -211,7 +211,7 @@ function igit_show_rel_post()
                 $output .= '<div class="igit_relpost">';
 				if($igit_rpwt['display_thumb'] == '1')
 				{
-					$output .=  '<div id="igit_rpwt_main_image"><a href="' . get_permalink($result->ID) . '" target="_top"><img id="igit_rpwt_thumb" src="' . WP_PLUGIN_URL . '/igit-rpwt/timthumb.php?src=' . $image . '&w=' . $igit_rpwt['thumb_width'] . '&h=' . $igit_rpwt['thumb_height'] . '&zc=1"/></a></div>';
+					$output .=  '<div id="igit_rpwt_main_image"><a href="' . get_permalink($result->ID) . '" target="_top"><img id="igit_rpwt_thumb" src="' . WP_PLUGIN_URL . '/igit-related-posts-with-thumb-images-after-posts/timthumb.php?src=' . $image . '&w=' . $igit_rpwt['thumb_width'] . '&h=' . $igit_rpwt['thumb_height'] . '&zc=1"/></a></div>';
 				}
 				
 				$output .= '<div id="igit_title"><a href="' . get_permalink($result->ID) . '" target="_top">' . substr($title, 0, 45) . '...</a></div></div> ';
@@ -221,7 +221,7 @@ function igit_show_rel_post()
                 $output .= '<li id="igit_rpwt_li" style="height:' . $height . 'px;">';
 				if($igit_rpwt['display_thumb'] == '1')
 				{
-					$output .= '<div id="igit_rpwt_main_image"><a href="' . get_permalink($result->ID) . '" target="_top"><img id="igit_rpwt_thumb" src="' . WP_PLUGIN_URL . '/igit-rpwt/timthumb.php?src=' . $image . '&w=' . $igit_rpwt['thumb_width'] . '&h=' . $igit_rpwt['thumb_height'] . '&zc=1"/></a></div>';
+					$output .= '<div id="igit_rpwt_main_image"><a href="' . get_permalink($result->ID) . '" target="_top"><img id="igit_rpwt_thumb" src="' . WP_PLUGIN_URL . '/igit-related-posts-with-thumb-images-after-posts/timthumb.php?src=' . $image . '&w=' . $igit_rpwt['thumb_width'] . '&h=' . $igit_rpwt['thumb_height'] . '&zc=1"/></a></div>';
 				}
 				$output .= '<div id="igit_title"><a href="' . get_permalink($result->ID) . '" target="_top">' . $title . '</a></div></li>';
             }
