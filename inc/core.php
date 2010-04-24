@@ -55,7 +55,7 @@ border-right-width-value:1px;
 float:left;
 height:80%;
 width:<?php
-        echo ceil(100 / $igit_rpwt['related_post_num']) . "%";
+        echo floor(100 / $igit_rpwt['related_post_num']) . "%";
 ?>;
 }
 #igit_rpwt_main_image {
