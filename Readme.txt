@@ -5,7 +5,7 @@ Plugin link: http://www.hackingethics.com/blog/wordpress-plugins/igit-related-po
 Tags: Posts,Related Posts,SEO,Post.
 Requires at least: 2.3
 Tested up to: 2.9.2
-Stable tag: 1.1
+Stable tag: 1.2
 
 
 == Description ==
@@ -57,6 +57,9 @@ possibility of many bugs.<br />
 
 = 1.1. =
 Image Not showing problem and also related posts width problem solved.
+
+= 1.2. =
+Heading text added in admin and also first time plugin not working problem solved.
 
 
 == Upgrade Notice ==
