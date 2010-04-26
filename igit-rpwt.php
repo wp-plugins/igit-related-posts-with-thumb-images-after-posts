@@ -31,7 +31,11 @@ if(is_admin())
 }
 else
 {
-	$igit_rpwt = get_option('igit_rpwt');
+	$igit_rpwt_lat = get_option('igit_rpwt');
+	if($igit_rpwt_lat)
+	{
+		$igit_rpwt = $igit_rpwt_lat;
+	}
 	add_action('wp_head', 'igit_add_css_style');
 	if($igit_rpwt['auto_show'] == "1")
 	{

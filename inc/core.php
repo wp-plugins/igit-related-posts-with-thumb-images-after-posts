@@ -189,7 +189,15 @@ function igit_show_rel_post()
     if ($results) {
         //Setting css part for Image size
         $height = $igit_rpwt['thumb_height'] + 4;
-        $output .= '<h4>Related Posts :</h4>';
+		
+		if($igit_rpwt['text_show'])
+		{
+			$output .= $igit_rpwt['text_show'];
+		}
+		else{
+			$output .= '<h4>Related Posts :</h4>';
+		}
+        
         if ($igit_rpwt['related_post_style'] == '2') {
             $output .= '<ul class="wp_thumbie_ul_list" style="list-style-type: none;">';
         }
