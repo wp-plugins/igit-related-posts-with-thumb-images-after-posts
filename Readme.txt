@@ -5,11 +5,12 @@ Plugin link: http://www.hackingethics.com/blog/wordpress-plugins/igit-related-po
 Tags: Posts,Related Posts,SEO,Post.
 Requires at least: 2.3
 Tested up to: 2.9.2
-Stable tag: 1.2
+Stable tag: 1.3
 
 
 == Description ==
 - The IGIT Related Posts With Thumb After Posts Plugin Automatically inserts one widget after posts having related posts.<br />
+- Related Posts showing by title and content matching, If it not show related posts by title content matching it will search related posts by matching tags and title and if still it is not showing any related posts then it will show random posts.<br />
 - This plugin also empowers the Blog administrator to place manually related posts widget, Also having options to give related posts number,Display Thumb or not,Set Thumb Width and Height and Main thing it is giving three options to select related posts style - Horizontal, Vertical, Simple Style.<br />
 - By using this plugin on your blog you can attract your visitors to other related articles of your blog.<br />
 - This plugin is also SEO friendly.<br />
@@ -60,6 +61,9 @@ Image Not showing problem and also related posts width problem solved.
 
 = 1.2. =
 Heading text added in admin and also first time plugin not working problem solved.
+
+= 1.3. =
+I got so many mail from users that it is always showing No related posts, So I have chnaged related posts algorithm So now if it not find related posts by content and title then it will try to find related posts by tags and if it will not find related posts by tags then it will show posts randomly.
 
 
 == Upgrade Notice ==

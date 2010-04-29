@@ -103,7 +103,7 @@ function igit_action_callback()
 				</tr>
 				<tr valign="top">
 				<th scope="row"><label for="blogname">How Many Related Posts Want to Show?</label></th>
-					<td><input type="text" class="code" value="' . $igit_rpwt['related_post_num'] . '" id="related_post_num" name="related_post_num" maxlength="2" size="4"/></td>
+					<td><input type="text" class="code" value="' . $igit_rpwt['related_post_num'] . '" id="related_post_num" name="related_post_num" maxlength="2" size="4"/><code>Dont\'t Enter Greater Then 4 to Get Good Results.</code></td>
 				</tr>';
     $chckd        = ($igit_rpwt['display_thumb'] == "1") ? "checked=checked" : "";
     //echo $text; 
@@ -215,7 +215,7 @@ function igit_rpwt_admin_options()
 				</tr>
 				<tr valign="top">
 				<th scope="row"><label for="blogname">How Many Related Posts Want to Show?</label></th>
-					<td><input type="text" class="code" value="' . $igit_rpwt['related_post_num'] . '" id="related_post_num" name="related_post_num" maxlength="2" size="4"/></td>
+					<td><input type="text" class="code" value="' . $igit_rpwt['related_post_num'] . '" id="related_post_num" name="related_post_num" maxlength="2" size="4"/><code>Dont\'t Enter Greater Then 4 to Get Good Results.</code></td>
 				</tr>';
     $chckd = ($igit_rpwt['display_thumb'] == "1") ? "checked=checked" : "";
     //echo $text; 
