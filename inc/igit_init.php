@@ -1,6 +1,7 @@
 <?php
 
-$igit_rpwt = array( "auto_show" => "1",
+$igit_rpwt = array( "text_show" => "<h4>Related Posts :</h4>",
+					"auto_show" => "1",
 					"related_post_num" => "4",
 					"display_thumb" => "1",
 					"thumb_width" => "100",

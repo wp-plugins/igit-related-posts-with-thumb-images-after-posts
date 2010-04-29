@@ -14,6 +14,7 @@ function igit_action_javascript()
 <script type="text/javascript" >
 jQuery(document).ready(function ($) {
     jQuery('#options_form').submit(function () {
+		tex_show = jQuery('#text_show').attr('value');
 		aut_show = jQuery('#auto_show:checked').val();
         rel_post_num = jQuery('#related_post_num').attr('value');
         dis_thumb = jQuery('#display_thumb:checked').val();
@@ -29,6 +30,7 @@ jQuery(document).ready(function ($) {
         jQuery('#loading_img').show();
         var data = {
             action: 'igit_save_ajax',
+			text_show: tex_show,
 			auto_show: aut_show,
             related_post_num: rel_post_num,
             display_thumb: dis_thumb,
@@ -52,7 +54,7 @@ function igit_action_callback()
 {
     global $wpdb; // this is how you get access to the database
     global $igit_rpwt;
-	
+	$text_show   = ($_POST['text_show'] == "") ? $igit_rpwt['text_show'] : $_POST['text_show'];
 	$auto_show   = ($_POST['auto_show'] == "") ? $igit_rpwt['auto_show'] : $_POST['auto_show'];
 	
     $related_post_num   = ($_POST['related_post_num'] == "") ? $igit_rpwt['related_post_num'] : $_POST['related_post_num'];
@@ -62,6 +64,7 @@ function igit_action_callback()
     $related_post_style = ($_POST['related_post_style'] == "") ? $igit_rpwt['related_post_style'] : $_POST['related_post_style'];
     $igit_credit        = ($_POST['igit_credit'] == "") ? $igit_rpwt['igit_credit'] : $_POST['igit_credit'];
     $igit_rpwt          = array(
+		"text_show" => $text_show,
 		"auto_show" => $auto_show,
         "related_post_num" => $related_post_num,
         "display_thumb" => $display_thumb,
@@ -95,8 +98,12 @@ function igit_action_callback()
 					<td><code>&lt;?php if(function_exists(&#39;igit_rpwt_posts&#39;)) igit_rpwt_posts(); ?&gt;</code></td>
 				</tr>
 				<tr valign="top">
+				<th scope="row"><label for="blogname">Heading Text :</label></th>
+					<td><input type="text" class="code" value="' . $igit_rpwt['text_show'] . '" id="text_show" name="text_show" maxlength="60" size="30"/></td>
+				</tr>
+				<tr valign="top">
 				<th scope="row"><label for="blogname">How Many Related Posts Want to Show?</label></th>
-					<td><input type="text" class="code" value="' . $igit_rpwt['related_post_num'] . '" id="related_post_num" name="related_post_num" maxlength="2" size="4"/></td>
+					<td><input type="text" class="code" value="' . $igit_rpwt['related_post_num'] . '" id="related_post_num" name="related_post_num" maxlength="2" size="4"/><code>Dont\'t Enter Greater Then 4 to Get Good Results.</code></td>
 				</tr>';
     $chckd        = ($igit_rpwt['display_thumb'] == "1") ? "checked=checked" : "";
     //echo $text; 
@@ -145,6 +152,7 @@ function igit_rpwt_admin_options()
     global $igit_rpwt, $plgin_dir;
     if ($_POST['sb_submit']) {
         $igit_rpwt = array(
+			"text_show" => $_POST['text_show'],
 			"auto_show" => $_POST['auto_show'],
             "num_posts" => $_POST['related_post_num'],
             "dis_thumb" => $_POST['display_thumb'],
@@ -157,6 +165,7 @@ function igit_rpwt_admin_options()
     } else {
         $message_succ       = "";
         $igit_rpwt_new      = get_option('igit_rpwt');
+		$text_show   = ($igit_rpwt_new['text_show'] == "") ? $igit_rpwt['text_show'] : $igit_rpwt_new['text_show'];
 		$auto_show   = ($igit_rpwt_new['auto_show'] == "") ? $igit_rpwt['auto_show'] : $igit_rpwt_new['auto_show'];
         $related_post_num   = ($igit_rpwt_new['related_post_num'] == "") ? $igit_rpwt['related_post_num'] : $igit_rpwt_new['related_post_num'];
         $display_thumb      = ($igit_rpwt_new['display_thumb'] == "") ? $igit_rpwt['display_thumb'] : $igit_rpwt_new['display_thumb'];
@@ -165,6 +174,7 @@ function igit_rpwt_admin_options()
         $related_post_style = ($igit_rpwt_new['related_post_style'] == "") ? $igit_rpwt['related_post_style'] : $igit_rpwt_new['related_post_style'];
         $igit_credit        = ($igit_rpwt_new['igit_credit'] == "") ? $igit_rpwt['igit_credit'] : $igit_rpwt_new['igit_credit'];
         $igit_rpwt          = array(
+		"text_show" => $text_show,
 			"auto_show" => $auto_show,
             "related_post_num" => $related_post_num,
             "display_thumb" => $display_thumb,
@@ -200,8 +210,12 @@ function igit_rpwt_admin_options()
 					<td><code>&lt;?php if(function_exists(&#39;igit_rpwt_posts&#39;)) igit_rpwt_posts(); ?&gt;</code></td>
 				</tr>
 				<tr valign="top">
+				<th scope="row"><label for="blogname">Heading Text :</label></th>
+					<td><input type="text" class="code" value="' . $igit_rpwt['text_show'] . '" id="text_show" name="text_show" maxlength="60" size="30"/></td>
+				</tr>
+				<tr valign="top">
 				<th scope="row"><label for="blogname">How Many Related Posts Want to Show?</label></th>
-					<td><input type="text" class="code" value="' . $igit_rpwt['related_post_num'] . '" id="related_post_num" name="related_post_num" maxlength="2" size="4"/></td>
+					<td><input type="text" class="code" value="' . $igit_rpwt['related_post_num'] . '" id="related_post_num" name="related_post_num" maxlength="2" size="4"/><code>Dont\'t Enter Greater Then 4 to Get Good Results.</code></td>
 				</tr>';
     $chckd = ($igit_rpwt['display_thumb'] == "1") ? "checked=checked" : "";
     //echo $text; 
