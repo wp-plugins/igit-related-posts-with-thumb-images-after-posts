@@ -242,7 +242,13 @@ function igit_show_rel_post()
         if ($igit_rpwt['related_post_style'] == '3') {
             $output .= '<ul>';
         } //start of raw format tag
+		$nodatacnt=0;	
         foreach ($results as $result) {
+			
+			$categories = get_the_category($result->ID);	
+				
+		
+			$pstincat = false;	
             $title = trim(stripslashes($result->post_title));
             $image = ""; // Null Variable to verify for no impage found case
             preg_match_all('|<img.*?src=[\'"](.*?)[\'"].*?>|i', $result->post_content, $matches);
@@ -252,8 +258,18 @@ function igit_show_rel_post()
                 $image = WP_PLUGIN_URL . '/igit-related-posts-with-thumb-images-after-posts/images/noimage.gif'; // when no image found in post 
             }
             $image = parse_url($image, PHP_URL_PATH);
+			
+			foreach ($categories as $cat) {	// Loop to check if post exists in excluded category
+
+				$pstincat = (in_array($cat->cat_ID, $igit_rpwt['exclude_cat_arr'])) ? true : false;
+
+				if ($pstincat) break;	// End loop if post found in category
+
+			}
+			if (!$pstincat) {
             // Condition for Horizontal Related Posts
             if ($igit_rpwt['related_post_style'] == '1') {
+			
                 $output .= '<div class="igit_relpost">';
 				if($igit_rpwt['display_thumb'] == '1')
 				{
@@ -261,7 +277,9 @@ function igit_show_rel_post()
 				}
 				
 				$output .= '<div id="igit_title"><a href="' . get_permalink($result->ID) . '" target="_top">' . substr($title, 0, 45) . '...</a></div></div> ';
+				$nodatacnt = 1;
             }
+			
             // Condition for Verticle Related Posts
             if ($igit_rpwt['related_post_style'] == '2') {
                 $output .= '<li id="igit_rpwt_li" style="height:' . $height . 'px;">';
@@ -270,15 +288,24 @@ function igit_show_rel_post()
 					$output .= '<div id="igit_rpwt_main_image"><a href="' . get_permalink($result->ID) . '" target="_top"><img id="igit_rpwt_thumb" src="' . WP_PLUGIN_URL . '/igit-related-posts-with-thumb-images-after-posts/timthumb.php?src=' . $image . '&w=' . $igit_rpwt['thumb_width'] . '&h=' . $igit_rpwt['thumb_height'] . '&zc=1"/></a></div>';
 				}
 				$output .= '<div id="igit_title"><a href="' . get_permalink($result->ID) . '" target="_top">' . $title . '</a></div></li>';
+				$nodatacnt = 1;
             }
             // Condition for simple Related Posts
             if ($igit_rpwt['related_post_style'] == '3') {
                 $output .= '<li id="igit_rpwt_li"><div id="igit_rpwt_main_image"><a href="' . get_permalink($result->ID) . '" rel="bookmark" target="_top"></div><div id="igit_title">' . $title . '</div></a><div id="description">' . $post_text . '</div></li>';
+				$nodatacnt = 1;
             }
-            $result_counter++;
-            if ($result_counter == $limit)
-                break; // End loop when related posts limit is reached
+            	$result_counter++;
+           		 if ($result_counter == $limit)
+           		     break; // End loop when related posts limit is reached
+			} // End of $pstincat if condition
+			
         } //end of foreach loop
+		if($nodatacnt == 0)
+		{
+			$output = '<div id="crp_related">';
+        $output .= ($crp_settings['blank_output']) ? ' ' : '<p>' . __('No related posts found', CRP_LOCAL_NAME) . '</p>';
+		}
         if ($igit_rpwt['related_post_style'] == '2') {
             $output .= '</ul>';
         } //end of Verticle ul
@@ -289,6 +316,7 @@ function igit_show_rel_post()
         $output = '<div id="crp_related">';
         $output .= ($crp_settings['blank_output']) ? ' ' : '<p>' . __('No related posts found', CRP_LOCAL_NAME) . '</p>';
     }
+	
     $output .= '</div>';
     if ($igit_rpwt['igit_credit'] == "1")
         $output .= '<div style="font-size: 8px;"><a href="http://www.hackingethics.com/">By HackingEthics</a></div>';
