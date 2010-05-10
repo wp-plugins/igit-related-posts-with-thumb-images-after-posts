@@ -5,7 +5,7 @@ Plugin link: http://www.hackingethics.com/blog/wordpress-plugins/igit-related-po
 Tags: Posts,Related Posts,SEO,Post.
 Requires at least: 2.3
 Tested up to: 2.9.2
-Stable tag: 1.3
+Stable tag: 1.4
 
 
 == Description ==
@@ -65,8 +65,10 @@ Heading text added in admin and also first time plugin not working problem solve
 = 1.3. =
 I got so many mail from users that it is always showing No related posts, So I have chnaged related posts algorithm So now if it not find related posts by content and title then it will try to find related posts by tags and if it will not find related posts by tags then it will show posts randomly.
 
+= 1.4. =
+Exclude Categories Feature added.
 
-== Upgrade Notice ==
+=
 * Users will be informed every time the plugin upgrades.<br />
 
 == Screenshots ==
