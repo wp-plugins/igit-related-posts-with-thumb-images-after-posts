@@ -15,6 +15,7 @@ Stable tag: 1.5
 - By using this plugin on your blog you can attract your visitors to other related articles of your blog.<br />
 - This plugin is also SEO friendly.<br />
 - Ajax Based Admin Options.<br />
+- Exclude Categories from Related Posts.<br />
 
 = Major Features =
 1. Automatically inserts one widget of Related Posts after post.<br />
@@ -23,6 +24,7 @@ Stable tag: 1.5
 4. Option to enter Thumb Width and Height.<br />
 5. Three options to select related posts style - Horizontal, Vertical, Simple Style.<br />
 6. Ajax Based Admin Options.<br />
+7. Exclude Categories from Related Posts.<br />
 
 = Included Files =
 
