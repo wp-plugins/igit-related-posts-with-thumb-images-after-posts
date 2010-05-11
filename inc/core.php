@@ -261,7 +261,7 @@ function igit_show_rel_post()
 			
 			foreach ($categories as $cat) {	// Loop to check if post exists in excluded category
 
-				$pstincat = (in_array($cat->cat_ID, $igit_rpwt['exclude_cat_arr'])) ? true : false;
+				$pstincat = (in_array($cat->cat_ID, (array) $igit_rpwt['exclude_cat_arr'])) ? true : false;
 
 				if ($pstincat) break;	// End loop if post found in category
 

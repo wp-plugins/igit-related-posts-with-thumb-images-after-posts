@@ -5,7 +5,7 @@ Plugin link: http://www.hackingethics.com/blog/wordpress-plugins/igit-related-po
 Tags: Posts,Related Posts,SEO,Post.
 Requires at least: 2.3
 Tested up to: 2.9.2
-Stable tag: 1.4
+Stable tag: 1.5
 
 
 == Description ==
@@ -67,6 +67,9 @@ I got so many mail from users that it is always showing No related posts, So I h
 
 = 1.4. =
 Exclude Categories Feature added.
+
+= 1.5. =
+in_array argument bug resolved.
 
 =
 * Users will be informed every time the plugin upgrades.<br />
