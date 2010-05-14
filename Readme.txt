@@ -16,6 +16,7 @@ Stable tag: 1.5
 - This plugin is also SEO friendly.<br />
 - Ajax Based Admin Options.<br />
 - Exclude Categories from Related Posts.<br />
+- <b>Note : This plugin is showing thumb images which is exists in post and also exists on same server, Images from remote server are not showing to prevent bandwidth theft.</b><br />
 
 = Major Features =
 1. Automatically inserts one widget of Related Posts after post.<br />
