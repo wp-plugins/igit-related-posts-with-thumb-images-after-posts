@@ -53,32 +53,29 @@ Installation process is a easy 4 step procedure.<br />
 
 == Changelog ==
 
-= 1.0. =
-
-- This is the very first release of the IGIT Related Posts With Thumb After Posts plugin. The code base isn’t all that pretty hence the 
-possibility of many bugs.<br />
-
-
-= 1.1. =
-Image Not showing problem and also related posts width problem solved.
-
-= 1.2. =
-Heading text added in admin and also first time plugin not working problem solved.
-
-= 1.3. =
-I got so many mail from users that it is always showing No related posts, So I have chnaged related posts algorithm So now if it not find related posts by content and title then it will try to find related posts by tags and if it will not find related posts by tags then it will show posts randomly.
-
-= 1.4. =
-Exclude Categories Feature added.
+= 1.6. =
+If image in posts are remote hosted images than it will be replaced by no image. We can't show remote hosted images to prevent bandwidth theft.
 
 = 1.5. =
 in_array argument bug resolved.
 
-= 1.6. =
-If image in posts are remote hosted images than it will be replaced by no image. We can't show remote hosted images to prevent bandwidth theft.
+= 1.4. =
+Exclude Categories Feature added.
 
-=
-* Users will be informed every time the plugin upgrades.<br />
+= 1.3. =
+I got so many mail from users that it is always showing No related posts, So I have chnaged related posts algorithm So now if it not find related posts by content and title then it will try to find related posts by tags and if it will not find related posts by tags then it will show posts randomly.
+
+= 1.2. =
+Heading text added in admin and also first time plugin not working problem solved.
+
+= 1.1. =
+Image Not showing problem and also related posts width problem solved.
+
+= 1.0. =
+- This is the very first release of the IGIT Related Posts With Thumb After Posts plugin. The code base isn’t all that pretty hence the 
+possibility of many bugs.<br />
+
+- Users will be informed every time the plugin upgrades.<br />
 
 == Screenshots ==
 You can Check Screen Shots from Here :<br />
