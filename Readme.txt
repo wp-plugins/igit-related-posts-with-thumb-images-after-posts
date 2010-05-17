@@ -5,7 +5,7 @@ Plugin link: http://www.hackingethics.com/blog/wordpress-plugins/igit-related-po
 Tags: Posts,Related Posts,SEO,Post.
 Requires at least: 2.3
 Tested up to: 2.9.2
-Stable tag: 1.5
+Stable tag: 1.6
 
 
 == Description ==
@@ -73,6 +73,9 @@ Exclude Categories Feature added.
 
 = 1.5. =
 in_array argument bug resolved.
+
+= 1.6. =
+If image in posts are remote hosted images than it will be replaced by no image. We can't show remote hosted images to prevent bandwidth theft.
 
 =
 * Users will be informed every time the plugin upgrades.<br />

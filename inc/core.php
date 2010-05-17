@@ -253,7 +253,13 @@ function igit_show_rel_post()
             $image = ""; // Null Variable to verify for no impage found case
             preg_match_all('|<img.*?src=[\'"](.*?)[\'"].*?>|i', $result->post_content, $matches);
             if (isset($matches))
+			{
                 $image = $matches[1][0];
+				$bgurl = get_bloginfo('url');
+				if(!strpos($image,$bgurl)){
+					$image = WP_PLUGIN_URL . '/igit-related-posts-with-thumb-images-after-posts/images/noimage.gif'; // when no image found in post 
+				}
+			}
             if (strlen(trim($image)) == 0) {
                 $image = WP_PLUGIN_URL . '/igit-related-posts-with-thumb-images-after-posts/images/noimage.gif'; // when no image found in post 
             }
