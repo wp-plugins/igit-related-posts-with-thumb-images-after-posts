@@ -256,7 +256,7 @@ function igit_show_rel_post()
 			{
                 $image = $matches[1][0];
 				$bgurl = get_bloginfo('url');
-				if(!strpos($image,$bgurl)){
+				if(!strstr($image,$bgurl)){
 					$image = WP_PLUGIN_URL . '/igit-related-posts-with-thumb-images-after-posts/images/noimage.gif'; // when no image found in post 
 				}
 			}
