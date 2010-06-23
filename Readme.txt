@@ -5,7 +5,7 @@ Plugin link: http://www.hackingethics.com/blog/wordpress-plugins/igit-related-po
 Tags: Posts,Related Posts,SEO,Post.
 Requires at least: 2.3
 Tested up to: 2.9.2
-Stable tag: 1.7
+Stable tag: 1.8
 
 
 == Description ==
@@ -52,6 +52,9 @@ Installation process is a easy 4 step procedure.<br />
 
 
 == Changelog ==
+
+= 1.8. =
+Change algo for searching related posts and also noimage bug removed.
 
 = 1.7. =
 More efficient for showing no images for remote server images and also little bit change in related posts algorithm and exclude categories.

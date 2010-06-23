@@ -15,6 +15,7 @@ function igit_add_css_style()
     }*/
     //echo "<link rel='stylesheet' href='".IGIT_RPWT_CSS_URL."/".$cssfile."' type='text/css' media='screen' />";
     if ($igit_rpwt['related_post_style'] == '1') {
+	//CSS for styles
 ?>
 <style type="text/css">
 #igit_rpwt_css {
