@@ -125,7 +125,7 @@ function igit_action_callback()
 				</tr>
 				<tr valign="top">
 				<th scope="row"><label for="blogname">Heading Text :</label></th>
-					<td><input type="text" class="code" value="' . $igit_rpwt['text_show'] . '" id="text_show" name="text_show" maxlength="60" size="30"/></td>
+					<td><input type="text" class="code" value="' . $igit_rpwt['text_show'] . '" id="text_show" name="text_show" maxlength="100" size="30"/></td>
 				</tr>
 				<tr valign="top">
 				<th scope="row"><label for="blogname">Select Categories To Exclude From Related Postsssds :</label> </th><td>
@@ -255,7 +255,7 @@ function igit_rpwt_admin_options()
 				</tr>
 				<tr valign="top">
 				<th scope="row"><label for="blogname">Heading Text :</label></th>
-					<td><input type="text" class="code" value="' . $igit_rpwt['text_show'] . '" id="text_show" name="text_show" maxlength="60" size="30"/></td>
+					<td><input type="text" class="code" value="' . $igit_rpwt['text_show'] . '" id="text_show" name="text_show" maxlength="100" size="30"/></td>
 				</tr><tr valign="top">
 				<th scope="row"><label for="blogname">Select Categories To Exclude From Related Posts :</label> </th><td>
 				
