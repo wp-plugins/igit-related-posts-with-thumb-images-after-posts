@@ -17,7 +17,7 @@ jQuery(document).ready(function ($) {
 		var i = parseInt(0);
 		var exclude_category = [];
 		jQuery(':checkbox:checked').each(function(i){
-		i = parseInt(i) - 1;
+		i = parseInt(i);
 		if(jQuery(this).attr('name') == "post_category[]")
 		{	
 			
@@ -79,14 +79,14 @@ function igit_action_callback()
 	$exclude_cat_arr = explode(",",$_POST['exclude_category']);
 	
 	$text_show   = ($_POST['text_show'] == "") ? $igit_rpwt['text_show'] : $_POST['text_show'];
-	$auto_show   = ($_POST['auto_show'] == "") ? $igit_rpwt['auto_show'] : $_POST['auto_show'];
+	$auto_show   = ($_POST['auto_show'] == "") ? 2 : $_POST['auto_show'];
 	
     $related_post_num   = ($_POST['related_post_num'] == "") ? $igit_rpwt['related_post_num'] : $_POST['related_post_num'];
-    $display_thumb      = ($_POST['display_thumb'] == "") ? $igit_rpwt['display_thumb'] : $_POST['display_thumb'];
+    $display_thumb      = ($_POST['display_thumb'] == "") ? 2 : $_POST['display_thumb'];
     $thumb_width        = ($_POST['thumb_width'] == "") ? $igit_rpwt['thumb_width'] : $_POST['thumb_width'];
     $thumb_height       = ($_POST['thumb_height'] == "") ? $igit_rpwt['thumb_height'] : $_POST['thumb_height'];
     $related_post_style = ($_POST['related_post_style'] == "") ? $igit_rpwt['related_post_style'] : $_POST['related_post_style'];
-    $igit_credit        = ($_POST['igit_credit'] == "") ? $igit_rpwt['igit_credit'] : $_POST['igit_credit'];
+    $igit_credit        = ($_POST['igit_credit'] == "") ? 2 : $_POST['igit_credit'];
     $igit_rpwt          = array(
 		"text_show" => $text_show,
 		"auto_show" => $auto_show,
