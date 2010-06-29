@@ -107,7 +107,7 @@ text-align:center;
 #igit_rpwt_main_image {
 float:left;
 height:<?php
-        echo ($igit_rpwt['thumb_height'] + 10) . "px";
+        echo ($igit_rpwt['thumb_height'] + 5) . "px";
 ?>;
 line-height:15;
 padding-bottom:10px;
