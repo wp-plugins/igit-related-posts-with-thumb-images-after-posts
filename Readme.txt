@@ -5,7 +5,7 @@ Plugin link: http://www.hackingethics.com/blog/wordpress-plugins/igit-related-po
 Tags: Posts,Related Posts,SEO,Post.
 Requires at least: 2.3
 Tested up to: 3.0
-Stable tag: 1.9
+Stable tag: 2.0
 
 
 == Description ==
@@ -52,6 +52,8 @@ Installation process is a easy 4 step procedure.<br />
 
 
 == Changelog ==
+= 2.0. =
+Color Customization option added.
 
 = 1.9. =
 Checkbox data not saving error removed.
