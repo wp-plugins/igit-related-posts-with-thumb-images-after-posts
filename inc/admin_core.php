@@ -36,6 +36,13 @@ jQuery(document).ready(function ($) {
         thu_height = jQuery('#thumb_height').attr('value');
         rel_post_style = jQuery('#related_post_style').attr('value');
         igit_cre = jQuery('#igit_credit:checked').val();
+		
+		
+		bk_color_temp = jQuery('#bk_color').attr('value');
+		bk_hover_color_temp = jQuery('#bk_hover_color').attr('value');
+		fonts_color_temp = jQuery('#fonts_color').attr('value');
+		img_border_color_temp = jQuery('#img_border_color').attr('value');
+		
 		exl_cat = exclude_category;
         if ((rel_post_style == 1) && rel_post_num > 5) {
             alert("if you select post style Horizontal then Related post number should be less then or equal to 5.");
@@ -57,13 +64,20 @@ jQuery(document).ready(function ($) {
             thumb_height: thu_height,
             related_post_style: rel_post_style,
             igit_credit: igit_cre,
-            exclude_category: document.options_form.hid_exl_cat.value
+            exclude_category: document.options_form.hid_exl_cat.value,
+            bk_color: bk_color_temp,
+            bk_hover_color: bk_hover_color_temp,
+            fonts_color: fonts_color_temp,
+            img_border_color: img_border_color_temp
         };
         // since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
         jQuery.post(ajaxurl, data, function (response) {
             jQuery('#loading_img').hide();
 			
             $("#frm_fields").html(response);
+			if(jscolor.binding) {
+			jscolor.bind();
+		}
         });
         return false;
     });
@@ -87,6 +101,10 @@ function igit_action_callback()
     $thumb_height       = ($_POST['thumb_height'] == "") ? $igit_rpwt['thumb_height'] : $_POST['thumb_height'];
     $related_post_style = ($_POST['related_post_style'] == "") ? $igit_rpwt['related_post_style'] : $_POST['related_post_style'];
     $igit_credit        = ($_POST['igit_credit'] == "") ? 2 : $_POST['igit_credit'];
+	$bk_color = ($_POST['bk_color'] == "") ? $igit_rpwt['bk_color'] : $_POST['bk_color'];
+	$bk_hover_color = ($_POST['bk_hover_color'] == "") ? $igit_rpwt['bk_hover_color'] : $_POST['bk_hover_color'];
+	$fonts_color = ($_POST['fonts_color'] == "") ? $igit_rpwt['fonts_color'] : $_POST['fonts_color'];
+	$img_border_color = ($_POST['img_border_color'] == "") ? $igit_rpwt['img_border_color'] : $_POST['img_border_color'];
     $igit_rpwt          = array(
 		"text_show" => $text_show,
 		"auto_show" => $auto_show,
@@ -96,12 +114,17 @@ function igit_action_callback()
         "thumb_height" => $thumb_height,
         "related_post_style" => $related_post_style,
         "igit_credit" => $igit_credit,
-        "exclude_cat_arr" => $exclude_cat_arr
+        "exclude_cat_arr" => $exclude_cat_arr,
+		"bk_color" => $bk_color,
+		"bk_hover_color" => $bk_hover_color,
+		"fonts_color" => $fonts_color,
+		"img_border_color" => $img_border_color
     );
 	
     update_option('igit_rpwt', $igit_rpwt);
     $igit_rpwt    = get_option('igit_rpwt');
 	$exclude_cat_arr = $igit_rpwt['exclude_cat_arr'];
+	
     $result       = $result . '<div class="updated fade below-h2" id="message"><p>Options updated.</p></div><table class="form-table">
 			<tbody>';
 			$auto_chckd_ajax = ($igit_rpwt['auto_show'] == "1") ? "checked=checked" : "";
@@ -125,7 +148,7 @@ function igit_action_callback()
 				</tr>
 				<tr valign="top">
 				<th scope="row"><label for="blogname">Heading Text :</label></th>
-					<td><input type="text" class="code" value="' . $igit_rpwt['text_show'] . '" id="text_show" name="text_show" maxlength="60" size="30"/></td>
+					<td><input type="text" class="code" value="' . $igit_rpwt['text_show'] . '" id="text_show" name="text_show" maxlength="100" size="30"/></td>
 				</tr>
 				<tr valign="top">
 				<th scope="row"><label for="blogname">Select Categories To Exclude From Related Postsssds :</label> </th><td>
@@ -148,6 +171,21 @@ function igit_action_callback()
     $result1      = $result1 . '<tr valign="top">
 				<th scope="row"><label for="blogname">Display Thumb?</label></th>
 					<td><input type="checkbox" id="display_thumb" name="display_thumb" value="1" ' . $chckd . '/></td>
+				</tr>
+				<th scope="row"><label for="blogname">Select Background Color </label></th>
+					<td><input class="color" value="' . $igit_rpwt['bk_color'] . '"  id="bk_color" name="bk_color" ></td>
+				</tr>
+				<tr valign="top">
+				<th scope="row"><label for="blogname">Select On Hover Background Color: </label></th>
+					<td><input class="color" value="' . $igit_rpwt['bk_hover_color'] . '"  id="bk_hover_color" name="bk_hover_color" ></td>
+				</tr>
+				<tr valign="top">
+				<th scope="row"><label for="blogname">Select Fonts Color: </label></th>
+					<td><input class="color" value="' . $igit_rpwt['fonts_color'] . '"  id="fonts_color" name="fonts_color" ></td>
+				</tr>
+				<tr valign="top">
+				<th scope="row"><label for="blogname">Select Image Border Color: </label></th>
+					<td><input class="color" value="' . $igit_rpwt['img_border_color'] . '"  id="img_border_color" name="img_border_color" ></td>
 				</tr>
                 <tr valign="top">
 				<th scope="row"><label for="blogname">Thumb Width :</label></th>
@@ -199,7 +237,11 @@ function igit_rpwt_admin_options()
             "dis_thumb" => $_POST['display_thumb'],
             "thumb_width" => $_POST['thumb_width'],
             "thumb_height" => $_POST['thumb_height'],
-            "rel_post_style" => $_POST['related_post_style']
+            "rel_post_style" => $_POST['related_post_style'],
+            "bk_color" => $_POST['bk_color'],
+            "bk_hover_color" => $_POST['bk_hover_color'],
+            "fonts_color" => $_POST['fonts_color'],
+            "img_border_color" => $_POST['img_border_color']
         );
         update_option('igit_rpwt', $igit_rpwt);
         $message_succ = '<div id="message" class="updated fade"><p>Option Saved!</p></div>';
@@ -214,6 +256,13 @@ function igit_rpwt_admin_options()
         $thumb_height       = ($igit_rpwt_new['thumb_height'] == "") ? $igit_rpwt['thumb_height'] : $igit_rpwt_new['thumb_height'];
         $related_post_style = ($igit_rpwt_new['related_post_style'] == "") ? $igit_rpwt['related_post_style'] : $igit_rpwt_new['related_post_style'];
         $igit_credit        = ($igit_rpwt_new['igit_credit'] == "") ? $igit_rpwt['igit_credit'] : $igit_rpwt_new['igit_credit'];
+		
+		$bk_color        = ($igit_rpwt_new['bk_color'] == "") ? $igit_rpwt['bk_color'] : $igit_rpwt_new['bk_color'];
+		$bk_hover_color        = ($igit_rpwt_new['bk_hover_color'] == "") ? $igit_rpwt['bk_hover_color'] : $igit_rpwt_new['bk_hover_color'];
+		$fonts_color        = ($igit_rpwt_new['fonts_color'] == "") ? $igit_rpwt['fonts_color'] : $igit_rpwt_new['fonts_color'];
+		$img_border_color        = ($igit_rpwt_new['img_border_color'] == "") ? $igit_rpwt['img_border_color'] : $igit_rpwt_new['img_border_color'];
+		
+		
 		$exclude_cat_arr    = $igit_rpwt_new['exclude_cat_arr'];
 		
         $igit_rpwt          = array(
@@ -224,9 +273,14 @@ function igit_rpwt_admin_options()
             "thumb_width" => $thumb_width,
             "thumb_height" => $thumb_height,
             "related_post_style" => $related_post_style,
-            "igit_credit" => $igit_credit
+            "igit_credit" => $igit_credit,
+            "bk_color" => $bk_color,
+            "bk_hover_color" => $bk_hover_color,
+            "fonts_color" => $fonts_color,
+            "img_border_color" => $img_border_color
         );
     }
+	
     echo $message_succ . '<div class="wrap"><div id="icon-options-general" class="icon32"><br/></div>
  	<form id="options_form" name="options_form" method="post" action="">
 	<input type="hidden" id="hid_exl_cat" name="hid_exl_cat" value="">
@@ -237,7 +291,7 @@ function igit_rpwt_admin_options()
 			$auto_chckd = ($igit_rpwt['auto_show'] == "1") ? "checked=checked" : "";
 				 echo $message_succ . '<tr valign="top">
 				<th scope="row"><label for="blogname">Automatically Show related Posts After Post :<strong>(Tick If Yes)</strong></label></th>
-					<td style="vertical-align:middle;"><input type="checkbox" id="auto_show" name="auto_show" value="1" ' . $auto_chckd . '/>&nbsp;&nbsp;<strong>(Do not tick if you want to place related posts Manually.)</strong></td>
+					<td style="vertical-align:middle;"><input type="checkbox" id="auto_show" name="auto_show" value="1" ' . $auto_chckd . '/>&nbsp;&nbsp;<strong>(Do not tick if you want to place related posts Manually.)</strong> </td>
 					<td><form action="https://www.paypal.com/cgi-bin/webscr" method="post">
 <input type="hidden" name="cmd" value="_donations">
 <input type="hidden" name="business" value="kin.gandhi@yahoo.com">
@@ -255,7 +309,7 @@ function igit_rpwt_admin_options()
 				</tr>
 				<tr valign="top">
 				<th scope="row"><label for="blogname">Heading Text :</label></th>
-					<td><input type="text" class="code" value="' . $igit_rpwt['text_show'] . '" id="text_show" name="text_show" maxlength="60" size="30"/></td>
+					<td><input type="text" class="code" value="' . $igit_rpwt['text_show'] . '" id="text_show" name="text_show" maxlength="100" size="30"/></td>
 				</tr><tr valign="top">
 				<th scope="row"><label for="blogname">Select Categories To Exclude From Related Posts :</label> </th><td>
 				
@@ -276,6 +330,22 @@ function igit_rpwt_admin_options()
     echo $message_succ . '<tr valign="top">
 				<th scope="row"><label for="blogname">Display Thumb?</label></th>
 					<td><input type="checkbox" id="display_thumb" name="display_thumb" value="1" ' . $chckd . '/></td>
+				</tr>
+				<tr valign="top">
+				<th scope="row"><label for="blogname">Select Background Color </label></th>
+					<td><input class="color" value="' . $igit_rpwt['bk_color'] . '"  id="bk_color" name="bk_color" ></td>
+				</tr>
+				<tr valign="top">
+				<th scope="row"><label for="blogname">Select On Hover Background Color: </label></th>
+					<td><input class="color" value="' . $igit_rpwt['bk_hover_color'] . '"  id="bk_hover_color" name="bk_hover_color" ></td>
+				</tr>
+				<tr valign="top">
+				<th scope="row"><label for="blogname">Select Fonts Color: </label></th>
+					<td><input class="color" value="' . $igit_rpwt['fonts_color'] . '"  id="fonts_color" name="fonts_color" ></td>
+				</tr>
+				<tr valign="top">
+				<th scope="row"><label for="blogname">Select Image Border Color: </label></th>
+					<td><input class="color" value="' . $igit_rpwt['img_border_color'] . '"  id="img_border_color" name="img_border_color" ></td>
 				</tr>
                 <tr valign="top">
 				<th scope="row"><label for="blogname">Thumb Width :</label></th>

@@ -19,11 +19,11 @@ function igit_add_css_style()
 ?>
 <style type="text/css">
 #igit_rpwt_css {
-background:#ffffff; 
+background:<?php echo "#".$igit_rpwt['bk_color'].";"; ?>
 font-family:verdana,arila,serif; 
 font-size:12px; 
 font-style:normal; 
-color:#4E4848;
+color:<?php echo "#".$igit_rpwt['fonts_color']; ?> !important;
 margin-top:10px;
 margin-bottom:10px; 
 height:230px;
@@ -33,15 +33,22 @@ height:230px;
 	padding:2px 2px 2px 8px;
 	text-align:left;
 }
+#igit_rpwt_css h4{
+color:<?php echo "#".$igit_rpwt['fonts_color'].";"; ?>
+}
+#igit_title a
+{
+	color:<?php echo "#".$igit_rpwt['fonts_color'].";"; ?>
+}
 #igit_rpwt_thumb, #description 
 {
 	margin-left:0px; 
-	border:1px solid #EBDDE2; 
-	padding:0px;
+	border:1px solid <?php echo "#".$igit_rpwt['img_border_color'].";"; ?> 
+	padding: 0px;
 }
 .igit_relpost:hover
 {
-	background-color:#DDDDDD;
+	background-color:<?php echo "#".$igit_rpwt['bk_hover_color'].";"; ?>
 }
 .igit_relpost {
 border-right-color-ltr-source:physical;
@@ -78,11 +85,11 @@ text-align:center;
 <style type="text/css">
 #igit_rpwt_css 
 {
-	background:#ffffff; 
+	background:<?php echo "#".$igit_rpwt['bk_color'].";"; ?> 
 	font-family:verdana,arila,serif; 
 	font-size:12px; 
 	font-style:normal; 
-	color:#4E4848;
+	color:<?php echo "#".$igit_rpwt['fonts_color']; ?> !important;
 	margin-top:10px;margin-bottom:10px;
 }
 #wp_thumbie_image 
@@ -92,9 +99,16 @@ text-align:center;
 	padding: 2px 2px 2px 2px; 
 	border:1px solid #EBDDE2;
 }
+#igit_rpwt_css h4{
+color:<?php echo "#".$igit_rpwt['fonts_color'].";"; ?>
+}
 #igit_title {
 	padding:2px 2px 2px 0px;
 	
+}
+#igit_title a
+{
+	color:<?php echo "#".$igit_rpwt['fonts_color'].";"; ?>
 }
 #igit_rpwt_thumb, #description 
 {
@@ -102,12 +116,12 @@ text-align:center;
 }
 .igit_relpost:hover
 {
-	background-color:#DDDDDD;
+	background-color:<?php echo "#".$igit_rpwt['bk_hover_color'].";"; ?>
 }
 #igit_rpwt_main_image {
 float:left;
 height:<?php
-        echo ($igit_rpwt['thumb_height'] + 10) . "px";
+        echo ($igit_rpwt['thumb_height'] + 5) . "px";
 ?>;
 line-height:15;
 padding-bottom:10px;
@@ -118,36 +132,47 @@ width:<?php
         echo ($igit_rpwt['thumb_width'] + 20) . "px";
 ?>;
 }
+#igit_rpwt_css ul
+{
+	margin:0;
+}
 #igit_rpwt_li 
 { 
 	cursor:pointer; 
 	list-style:none;
 	border-bottom:1px solid #EBDDE2; 
-	padding: 5px 5px 10px 0px !important;
+	padding: 5px 5px 10px 10px !important;
 }
 
-#igit_rpwt_li:hover{background:#DDDDDD;}
+#igit_rpwt_li:hover{background:<?php echo "#".$igit_rpwt['bk_hover_color'].";"; ?>}
 </style>
 <?php
     }
     if ($igit_rpwt['related_post_style'] == '3') {
 ?>
  <style type="text/css">
-#igit_rpwt_css {background:#ffffff; font-family:verdana,arila,serif; font-size:12px; font-style:normal; color:#4E4848;margin-top:10px;margin-bottom:10px;}
+#igit_rpwt_css {background:<?php echo "#".$igit_rpwt['bk_color'].";"; ?> font-family:verdana,arila,serif; font-size:12px; font-style:normal; color:<?php echo "#".$igit_rpwt['fonts_color']; ?> !important; margin-top:10px;margin-bottom:10px;}
 #wp_thumbie_image { float:left; margin: 2px 10px 5px 7px; padding: 2px 2px 2px 2px; border:1px solid #EBDDE2;}
+#igit_rpwt_css h4{
+color:<?php echo "#".$igit_rpwt['fonts_color'].";"; ?>
+}
 #igit_title {
 	padding:2px 2px 2px 0px;
 	
 }
+#igit_title a
+{
+	color:<?php echo "#".$igit_rpwt['fonts_color'].";"; ?>
+}
 #igit_rpwt_thumb, #description {margin-left:0px;}
 .igit_relpost:hover
 {
-	background-color:#DDDDDD;
+	background-color:<?php echo "#".$igit_rpwt['bk_hover_color'].";"; ?>;
 }
 #igit_rpwt_li { padding: 0px 5px 0px 5px !important;
 margin-bottom:1.0em;
 }
-#igit_rpwt_li:hover{background:#DDDDDD;}
+#igit_rpwt_li:hover{background:<?php echo "#".$igit_rpwt['bk_hover_color'].";"; ?>;}
 </style>
 <?php
     }
@@ -326,7 +351,7 @@ function igit_show_rel_post()
 	
     $output .= '</div>';
     if ($igit_rpwt['igit_credit'] == "1")
-        $output .= '<div style="font-size: 8px;"><a href="http://www.hackingethics.com/">By HackingEthics</a></div>';
+        $output .= '<div style="font-size: 8px; float: left;width:100%;"><a href="http://www.hackingethics.com/">By HackingEthics</a></div>';
     return $output;
 }
 function igit_rpwt_posts()
