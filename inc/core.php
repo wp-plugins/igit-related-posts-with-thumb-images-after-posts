@@ -92,13 +92,7 @@ text-align:center;
 	color:<?php echo "#".$igit_rpwt['fonts_color']; ?> !important;
 	margin-top:10px;margin-bottom:10px;
 }
-#wp_thumbie_image 
-{ 
-	float:left; 
-	margin: 2px 10px 5px 7px; 
-	padding: 2px 2px 2px 2px; 
-	border:1px solid #EBDDE2;
-}
+
 #igit_rpwt_css h4{
 color:<?php echo "#".$igit_rpwt['fonts_color'].";"; ?>
 }
@@ -152,7 +146,7 @@ width:<?php
 ?>
  <style type="text/css">
 #igit_rpwt_css {background:<?php echo "#".$igit_rpwt['bk_color'].";"; ?> font-family:verdana,arila,serif; font-size:12px; font-style:normal; color:<?php echo "#".$igit_rpwt['fonts_color']; ?> !important; margin-top:10px;margin-bottom:10px;}
-#wp_thumbie_image { float:left; margin: 2px 10px 5px 7px; padding: 2px 2px 2px 2px; border:1px solid #EBDDE2;}
+
 #igit_rpwt_css h4{
 color:<?php echo "#".$igit_rpwt['fonts_color'].";"; ?>
 }
@@ -210,7 +204,7 @@ function igit_show_rel_post()
    // $igit_search_str = addslashes($post->post_title . ' ' . $post->post_content);
     if (($post->ID != '') || ($igit_search_str != '')) {
         $sql = "SELECT DISTINCT ID,post_title,post_date,post_content," . "MATCH(post_title,post_content) AGAINST ('" . $igit_search_str . "' WITH QUERY EXPANSION) AS score " . "FROM " . $wpdb->posts . " WHERE " . "MATCH (post_title,post_content) AGAINST ('" . $igit_search_str . "'  WITH QUERY EXPANSION) " . "AND post_date <= '" . $now . "' " . "AND post_status = 'publish' " . "AND id != " . $post->ID . " AND post_type = 'post' ";
-        $sql .= "ORDER BY score DESC LIMIT 0,".$limit;
+        $sql .= "ORDER BY RAND() LIMIT 0,".$limit;
 		
         $result_counter = 0;
         $results        = $wpdb->get_results($sql);
@@ -233,7 +227,7 @@ function igit_show_rel_post()
 					$i++;
 				}
 				$tags_sql = "SELECT DISTINCT ID,post_title,post_date,post_content FROM " . $wpdb->posts . " WHERE (" .$cstr. ") AND (post_date <= '" . $now . "' " . "AND post_status = 'publish' " . "AND ID != " . $post->ID . " AND post_type = 'post' )";
-				$tags_sql .= "ORDER BY post_title ASC LIMIT 0,".$limit;
+				$tags_sql .= "ORDER BY RAND() LIMIT 0,".$limit;
 				$result_counter = 0;
 				$results        = $wpdb->get_results($tags_sql);
 			}
