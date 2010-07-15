@@ -5,7 +5,7 @@ Plugin link: http://www.hackingethics.com/blog/wordpress-plugins/igit-related-po
 Tags: Posts,Related Posts,SEO,Post.
 Requires at least: 2.3
 Tested up to: 3.0
-Stable tag: 2.1.1
+Stable tag: 2.1.2
 
 
 == Description ==
@@ -52,6 +52,9 @@ Installation process is a easy 4 step procedure.<br />
 
 
 == Changelog ==
+
+= 2.1.2 =
+- Bug removed in which Related Posts Showing password protected posts.
 
 = 2.1.1 =
 - Related post logic chnaged, Now related posts will show different everytime.

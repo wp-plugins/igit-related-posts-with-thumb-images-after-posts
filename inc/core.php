@@ -203,7 +203,7 @@ function igit_show_rel_post()
     $igit_search_str = addslashes($post->post_title . ' ' . $pcont);
    // $igit_search_str = addslashes($post->post_title . ' ' . $post->post_content);
     if (($post->ID != '') || ($igit_search_str != '')) {
-        $sql = "SELECT DISTINCT ID,post_title,post_date,post_content," . "MATCH(post_title,post_content) AGAINST ('" . $igit_search_str . "' WITH QUERY EXPANSION) AS score " . "FROM " . $wpdb->posts . " WHERE " . "MATCH (post_title,post_content) AGAINST ('" . $igit_search_str . "'  WITH QUERY EXPANSION) " . "AND post_date <= '" . $now . "' " . "AND post_status = 'publish' " . "AND id != " . $post->ID . " AND post_type = 'post' ";
+        $sql = "SELECT DISTINCT ID,post_title,post_date,post_content," . "MATCH(post_title,post_content) AGAINST ('" . $igit_search_str . "' WITH QUERY EXPANSION) AS score " . "FROM " . $wpdb->posts . " WHERE " . "MATCH (post_title,post_content) AGAINST ('" . $igit_search_str . "'  WITH QUERY EXPANSION) " . "AND post_date <= '" . $now . "' " . "AND post_status = 'publish' AND post_password = '' " . "AND id != " . $post->ID . " AND post_type = 'post' ";
         $sql .= "ORDER BY RAND() LIMIT 0,".$limit;
 		
         $result_counter = 0;
@@ -226,7 +226,7 @@ function igit_show_rel_post()
 						
 					$i++;
 				}
-				$tags_sql = "SELECT DISTINCT ID,post_title,post_date,post_content FROM " . $wpdb->posts . " WHERE (" .$cstr. ") AND (post_date <= '" . $now . "' " . "AND post_status = 'publish' " . "AND ID != " . $post->ID . " AND post_type = 'post' )";
+				$tags_sql = "SELECT DISTINCT ID,post_title,post_date,post_content FROM " . $wpdb->posts . " WHERE (" .$cstr. ") AND (post_date <= '" . $now . "' " . "AND post_status = 'publish'  AND post_password = '' " . "AND ID != " . $post->ID . " AND post_type = 'post' )";
 				$tags_sql .= "ORDER BY RAND() LIMIT 0,".$limit;
 				$result_counter = 0;
 				$results        = $wpdb->get_results($tags_sql);
@@ -234,7 +234,7 @@ function igit_show_rel_post()
 		
 			if(!$result)
 			{
-				$random_sql = "SELECT DISTINCT ID, post_title, post_content, post_date,comment_count FROM " . $wpdb->posts . " WHERE post_status = 'publish' AND post_type = 'post' AND ID != $post->ID ORDER BY RAND() LIMIT 0,".$limit;
+				$random_sql = "SELECT DISTINCT ID, post_title, post_content, post_date,comment_count FROM " . $wpdb->posts . " WHERE post_status = 'publish' AND post_type = 'post' AND post_password = '' AND ID != $post->ID ORDER BY RAND() LIMIT 0,".$limit;
 				$result_counter = 0;
 				$results        = $wpdb->get_results($random_sql);
 			}
