@@ -5,7 +5,7 @@ Plugin link: http://www.hackingethics.com/blog/wordpress-plugins/igit-related-po
 Tags: Posts,Related Posts,SEO,Post.
 Requires at least: 2.3
 Tested up to: 3.0
-Stable tag: 2.1.2
+Stable tag: 2.1.3
 
 
 == Description ==
@@ -52,6 +52,8 @@ Installation process is a easy 4 step procedure.<br />
 
 
 == Changelog ==
+= 2.1.3 =
+- Make Related post section clickable. First it was clickable only on image and link but now it is clickable anywhere.
 
 = 2.1.2 =
 - Bug removed in which Related Posts Showing password protected posts.
