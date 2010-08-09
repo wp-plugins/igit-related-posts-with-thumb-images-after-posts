@@ -302,8 +302,15 @@ function igit_show_rel_post()
 					$divlnk =  "onclick=location.href='".get_permalink($result->ID)."'; style=cursor:pointer;";
 					$output .=  '<div id="igit_rpwt_main_image" '.$divlnk.'><a href="' . get_permalink($result->ID) . '" target="_top"><img id="igit_rpwt_thumb" src="' . WP_PLUGIN_URL . '/igit-related-posts-with-thumb-images-after-posts/timthumb.php?src=' . $image . '&w=' . $igit_rpwt['thumb_width'] . '&h=' . $igit_rpwt['thumb_height'] . '&zc=1"/></a></div>';
 				}
-				
-				$output .= '<div id="igit_title"><a href="' . get_permalink($result->ID) . '" target="_top">' . substr($title, 0, 45) . '...</a></div></div> ';
+				if(strlen($title) > 45)
+				{
+					$newtitle = substr($title, 0, 45) .'...';
+				}
+				else
+				{	
+					$newtitle = $title;
+				}
+				$output .= '<div id="igit_title"><a href="' . get_permalink($result->ID) . '" target="_top">' . $newtitle . '</a></div></div> ';
 				$nodatacnt = 1;
             }
 			
