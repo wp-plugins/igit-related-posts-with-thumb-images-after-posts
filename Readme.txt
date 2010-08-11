@@ -5,7 +5,7 @@ Plugin link: http://www.hackingethics.com/blog/wordpress-plugins/igit-related-po
 Tags: Posts,Related Posts,SEO,Post.
 Requires at least: 2.3
 Tested up to: 3.0
-Stable tag: 2.1.4
+Stable tag: 2.1.5
 
 
 == Description ==

@@ -61,7 +61,7 @@ border-right-width-ltr-source:physical;
 border-right-width-rtl-source:physical;
 border-right-width-value:1px;
 float:left;
-height:80%;
+height:85%;
 width:<?php
         echo floor(100 / $igit_rpwt['related_post_num']) . "%";
 ?>;
