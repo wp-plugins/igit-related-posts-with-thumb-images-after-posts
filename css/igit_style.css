@@ -49,4 +49,36 @@ padding-right:15px;
 padding-top:2px;
 
 }
+.form_table_igit_tooltip
+{
+border-collapse:collapse;
+clear:both;
+margin-bottom:-8px;
+margin-top:0.5em;
+width:100%;border-collapse:collapse;
+clear:both;
+margin-bottom:-8px;
+margin-top:0.5em;
+width:100%;
+}
+.form_table_igit_tooltip th
+{
+	width:28% !important;
+}
+.form_table_igit_tooltip th {
+color:#222222;
+text-shadow:0 1px 0 #FFFFFF;
+}
+.form_table_igit_tooltip th {
+padding:10px;
+text-align:left;
+vertical-align:top;
+width:200px;
+}
 
+.form_table_igit_tooltip td {
+font-size:11px;
+line-height:20px;
+margin-bottom:9px;
+padding:8px 10px;
+}
