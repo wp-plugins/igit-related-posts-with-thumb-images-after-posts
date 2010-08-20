@@ -2,16 +2,15 @@
 Contributors: Ankur Gandhi
 Donate link: http://www.hackingethics.com/
 Plugin link: http://www.hackingethics.com/blog/wordpress-plugins/igit-related-posts-with-thumb-image-after-posts/
-Tags: Posts,Related Posts,SEO,Post.
+Tags: Posts,Related Posts,Related Posts plugin with Thumb image, Thumb Image,SEO,Post.
 Requires at least: 2.3
-Tested up to: 3.0
-Stable tag: 3.0
+Tested up to: 3.1
+Stable tag: 2.1.5
 
 
 == Description ==
 - The IGIT Related Posts With Thumb After Posts Plugin Automatically inserts one widget after posts having related posts.<br />
 - Related Posts showing by title and content matching, If it not show related posts by title content matching it will search related posts by matching tags and title and if still it is not showing any related posts then it will show random posts.<br />
-- This plugin gives facility to particular characters of content in qtip/tooltip. You can select so many options for tooltip/qtip like position, 6 colors,show effect, Show Speed lenght, Hide effect, Show and hide events, set qtip/tooltip width and height,set qtip/tooltip border width and radius etc..<br />
 - This plugin also empowers the Blog administrator to place manually related posts widget, Also having options to give related posts number,Display Thumb or not,Set Thumb Width and Height and Main thing it is giving three options to select related posts style - Horizontal, Vertical, Simple Style.<br />
 - By using this plugin on your blog you can attract your visitors to other related articles of your blog.<br />
 - This plugin is also SEO friendly.<br />
@@ -25,9 +24,8 @@ Stable tag: 3.0
 3. Option for Display Thumb or not.<br />
 4. Option to enter Thumb Width and Height.<br />
 5. Three options to select related posts style - Horizontal, Vertical, Simple Style.<br />
-6. Facility to particular characters of content in qtip/tooltip. You can select so many options for tooltip/qtip like position, 6 colors,show effect, Show Speed lenght, Hide effect, Show and hide events, set qtip/tooltip width and height,set qtip/tooltip border width and radius etc..<br />
-7. Ajax Based Admin Options.<br />
-8. Exclude Categories from Related Posts.<br />
+6. Ajax Based Admin Options.<br />
+7. Exclude Categories from Related Posts.<br />
 
 = Included Files =
 
@@ -39,7 +37,7 @@ Stable tag: 3.0
 
 == Installation ==
 Installation process is a easy 4 step procedure.<br />
-1. Download the zip folder named igit-related-posts-with-thumb-images-after-posts.zip<br />
+1. Download the zip folder named igit-rpwt.zip<br />
 2. Unzip the folder and put it in the plugins directory of your wordpress installation.  (wp-content/plugins).<br />
 3. Activate the plugin through the plugin window in the admin panel.<br />
 4. Go to setting->IGIT Rel Post With Thumb to configure settings.<br />
@@ -54,8 +52,12 @@ Installation process is a easy 4 step procedure.<br />
 
 
 == Changelog ==
-= 3.0 =
-- Facility to particular characters of content in qtip/tooltip. You can select so many options for tooltip/qtip like position, 6 colors,show effect, Show Speed lenght, Hide effect, Show and hide events, set qtip/tooltip width and height,set qtip/tooltip border width and radius etc
+= 2.1.4 =
+- Some function changes.
+
+= 2.1.3 =
+- Make Related post section clickable. First it was clickable only on image and link but now it is clickable anywhere.
+
 = 2.1.2 =
 - Bug removed in which Related Posts Showing password protected posts.
 
