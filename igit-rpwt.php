@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: IGIT Related Post With Thumb
-Version:     3.0
+Version:     3.1
 Plugin URI:  http://www.hackingethics.com/blog/wordpress-plugins/igit-related-posts-with-thumb-image-after-posts/
 Description: Show related posts with thumb image after Posts. Ajax Base Admin options.Options for dynamic height and width of Thumb.Plugin By <a href="http://www.hackingethics.com"><strong>Hacking Ethics</strong></a>.You can <a href="options-general.php?page=igit-rpwt">Configure...</a> it from <a href="options-general.php?page=igit-rpwt">Here.
 Author:      Ankur Gandhi
@@ -25,50 +25,23 @@ if(is_admin())
 	global $igit_rpwt;
 	add_action('init', create_function('', 'wp_enqueue_script("jquery");')); // Make sure jQuery is always loaded
 	wp_enqueue_script('jquery-form');   
-	
-	wp_enqueue_script('jquery-ui.min','/wp-content/plugins/igit-related-posts-with-thumb-images-after-posts/jsscripts/jquery-ui.min.js'); 
 	wp_enqueue_script('jscolor','/wp-content/plugins/igit-related-posts-with-thumb-images-after-posts/jsscripts/jscolor.js'); 
-	wp_enqueue_style('igit_style', '/wp-content/plugins/igit-related-posts-with-thumb-images-after-posts/css/igit_style.css');
-	wp_enqueue_style('jquery-ui', '/wp-content/plugins/igit-related-posts-with-thumb-images-after-posts/css/jquery-ui.css');
-	wp_enqueue_script('igit_rpwt_tabs','/wp-content/plugins/igit-related-posts-with-thumb-images-after-posts/jsscripts/igit_rpwt_tabs.js'); 
+	wp_enqueue_style('my-style', '/wp-content/plugins/igit-related-posts-with-thumb-images-after-posts/css/igit_style.css');
 	add_action('admin_head', 'igit_action_javascript');
 	add_action('wp_ajax_igit_save_ajax', 'igit_action_callback');
-	add_action('wp_ajax_igit_tooltip_save_ajax', 'igit_tooltip_action_callback');
 	add_action('admin_menu', 'igit_plugin_menu'); // for admin menu inside this after clicking on plugin file function will be called.
-	
 }
 else
 {
 	$igit_rpwt_lat = get_option('igit_rpwt');
-	$igit_rpwt_qtip_lat = get_option('igit_rpwt_qtip');
-	
 	if($igit_rpwt_lat)
 	{
 		$igit_rpwt = $igit_rpwt_lat;
 	}
-	
-	if($igit_rpwt_qtip_lat)
-	{
-		$igit_rpwt_qtip = $igit_rpwt_qtip_lat;
-	}
-	
 	add_action('wp_head', 'igit_add_css_style');
-	
 	if($igit_rpwt['auto_show'] == "1")
 	{
-		if($igit_rpwt_qtip['igit_show_qtip'] == "Yes")
-		{
-			add_action('init', create_function('', 'wp_enqueue_script("jquery");')); // Make sure jQuery is always loaded
-			wp_enqueue_script('jquery-ui.min','/wp-content/plugins/igit-related-posts-with-thumb-images-after-posts/jsscripts/jquery-ui.min.js');
-			wp_enqueue_style('igit_style', '/wp-content/plugins/igit-related-posts-with-thumb-images-after-posts/css/igit_style.css');
-	wp_enqueue_style('jquery-ui', '/wp-content/plugins/igit-related-posts-with-thumb-images-after-posts/css/jquery-ui.css');
-			
-		}
 		add_filter('the_content', 'igit_total_content');
-	}
-	if ($igit_rpwt['igit_credit'] == "1")
-	{
-		add_action('wp_footer', 'igit_rpwt_footer_links');
 	}
 }
 ?>
