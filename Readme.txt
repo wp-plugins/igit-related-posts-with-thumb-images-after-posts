@@ -4,8 +4,8 @@ Donate link: http://www.hackingethics.com/
 Plugin link: http://www.hackingethics.com/blog/wordpress-plugins/igit-related-posts-with-thumb-image-after-posts/
 Tags: Posts,Related Posts,Related Posts plugin with Thumb image, Thumb Image,SEO,Post.
 Requires at least: 2.3
-Tested up to: 3.1
-Stable tag: 2.1.5
+Tested up to: 3.0.1
+Stable tag: 3.1
 
 
 == Description ==
