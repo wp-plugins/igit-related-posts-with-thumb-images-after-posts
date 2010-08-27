@@ -10,8 +10,8 @@ Stable tag: 3.1
 
 == Description ==
 <br />
-[Plugin Home Page](http://www.hackingethics.com/blog/wordpress-plugins/igit-related-posts-with-thumb-image-after-posts/)
-[Author Site](http://www.hackingethics.com/)
+[Plugin Home Page](http://www.hackingethics.com/blog/wordpress-plugins/igit-related-posts-with-thumb-image-after-posts/) | 
+[Author Site](http://www.hackingethics.com/) | 
 [Support](http://www.hackingethics.com/blog/wordpress-plugins/igit-related-posts-with-thumb-image-after-posts/)
 <br />
 - The IGIT Related Posts With Thumb After Posts Plugin Automatically inserts one widget after posts having related posts.<br />
