@@ -26,7 +26,14 @@ font-style:normal;
 color:<?php echo "#".$igit_rpwt['fonts_color']; ?> !important;
 margin-top:10px;
 margin-bottom:10px; 
+<?php
+if($igit_rpwt['display_thumb'] == '1')
+				{
+			?>
 height:230px;
+<?php
+}
+?>
 }
 #igit_title 
 {
@@ -61,7 +68,15 @@ border-right-width-ltr-source:physical;
 border-right-width-rtl-source:physical;
 border-right-width-value:1px;
 float:left;
-height:85%;
+<?php
+if($igit_rpwt['display_thumb'] == '1')
+				{
+			?>
+			height:85%;
+			<?php
+			}
+			?>
+
 width:<?php
         echo floor(100 / $igit_rpwt['related_post_num']) . "%";
 ?>;
