@@ -10,9 +10,10 @@ Stable tag: 3.2
 
 == Description ==
 <br />
-[Plugin Home Page](http://www.hackingethics.com/blog/wordpress-plugins/igit-related-posts-with-thumb-image-after-posts/) | 
+                  [Plugin Home Page](http://www.hackingethics.com/blog/wordpress-plugins/igit-related-posts-with-thumb-image-after-posts/) | 
 [Author Site](http://www.hackingethics.com/) | 
 [Support](http://www.hackingethics.com/blog/wordpress-plugins/igit-related-posts-with-thumb-image-after-posts/)
+<br />
 <br />
 - The IGIT Related Posts With Thumb After Posts Plugin Automatically inserts one widget after posts having related posts.<br />
 - Related Posts showing by title and content matching, If it not show related posts by title content matching it will search related posts by matching tags and title and if still it is not showing any related posts then it will show random posts.<br />
@@ -57,6 +58,15 @@ Installation process is a easy 4 step procedure.<br />
 
 
 == Changelog ==
+= 3.2 =
+- Fix : When thumb not shows then height of related posts auto adjusted.
+
+= 3.1 =
+- After release version 3.0 with tooltip I found that It have some major problems So instantly I again release other version without tooltip.
+
+= 3.0 =
+- Added new tooltip which shows content of post.
+
 = 2.1.4 =
 - Some function changes.
 
