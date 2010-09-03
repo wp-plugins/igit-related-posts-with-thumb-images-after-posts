@@ -32,6 +32,12 @@ jQuery(document).ready(function ($) {
 		aut_show = jQuery('#auto_show:checked').val();
         rel_post_num = jQuery('#related_post_num').attr('value');
         dis_thumb = jQuery('#display_thumb:checked').val();
+		dis_title = jQuery('#display_title:checked').val();
+		if(!dis_thumb && !dis_title)
+		{
+			alert("Display Thumb and Display Title both can't be unchecked to show related posts.So at least select one from both.");
+			return false;
+		}
         thu_width = jQuery('#thumb_width').attr('value');
         thu_height = jQuery('#thumb_height').attr('value');
         rel_post_style = jQuery('#related_post_style').attr('value');
@@ -60,6 +66,7 @@ jQuery(document).ready(function ($) {
 			auto_show: aut_show,
             related_post_num: rel_post_num,
             display_thumb: dis_thumb,
+			display_title: dis_title,
             thumb_width: thu_width,
             thumb_height: thu_height,
             related_post_style: rel_post_style,
@@ -99,6 +106,7 @@ function igit_action_callback()
 	
     $related_post_num   = ($_POST['related_post_num'] == "") ? $igit_rpwt['related_post_num'] : $_POST['related_post_num'];
     $display_thumb      = ($_POST['display_thumb'] == "") ? 2 : $_POST['display_thumb'];
+	$display_title      = ($_POST['display_title'] == "") ? 2 : $_POST['display_title'];
     $thumb_width        = ($_POST['thumb_width'] == "") ? $igit_rpwt['thumb_width'] : $_POST['thumb_width'];
     $thumb_height       = ($_POST['thumb_height'] == "") ? $igit_rpwt['thumb_height'] : $_POST['thumb_height'];
     $related_post_style = ($_POST['related_post_style'] == "") ? $igit_rpwt['related_post_style'] : $_POST['related_post_style'];
@@ -112,6 +120,7 @@ function igit_action_callback()
 		"auto_show" => $auto_show,
         "related_post_num" => $related_post_num,
         "display_thumb" => $display_thumb,
+		"display_title" => $display_title,
         "thumb_width" => $thumb_width,
         "thumb_height" => $thumb_height,
         "related_post_style" => $related_post_style,
@@ -164,6 +173,12 @@ function igit_action_callback()
     $result1      = $result1 . '<tr valign="top">
 				<th scope="row"><label for="blogname">Display Thumb?</label></th>
 					<td><input type="checkbox" id="display_thumb" name="display_thumb" value="1" ' . $chckd . '/></td>
+				</tr>';
+    $chckdtc        = ($igit_rpwt['display_title'] == "1") ? "checked=checked" : "";
+    //echo $text; 
+    $result1      = $result1 . '<tr valign="top">
+				<th scope="row"><label for="blogname">Display Title?</label></th>
+					<td><input type="checkbox" id="display_title" name="display_title" value="1" ' . $chckdtc . '/><code>This setting will only work for Horizontal Style of related posts.</code></td>
 				</tr>
 				<th scope="row"><label for="blogname">Select Background Color </label></th>
 					<td><input class="color" value="' . $igit_rpwt['bk_color'] . '"  id="bk_color" name="bk_color" ></td>
@@ -240,6 +255,7 @@ function igit_rpwt_admin_options()
 			"auto_show" => $_POST['auto_show'],
             "num_posts" => $_POST['related_post_num'],
             "dis_thumb" => $_POST['display_thumb'],
+			"dis_title" => $_POST['display_title'],
             "thumb_width" => $_POST['thumb_width'],
             "thumb_height" => $_POST['thumb_height'],
             "rel_post_style" => $_POST['related_post_style'],
@@ -257,6 +273,7 @@ function igit_rpwt_admin_options()
 		$auto_show   = ($igit_rpwt_new['auto_show'] == "") ? $igit_rpwt['auto_show'] : $igit_rpwt_new['auto_show'];
         $related_post_num   = ($igit_rpwt_new['related_post_num'] == "") ? $igit_rpwt['related_post_num'] : $igit_rpwt_new['related_post_num'];
         $display_thumb      = ($igit_rpwt_new['display_thumb'] == "") ? $igit_rpwt['display_thumb'] : $igit_rpwt_new['display_thumb'];
+		$display_title      = ($igit_rpwt_new['display_title'] == "") ? $igit_rpwt['display_title'] : $igit_rpwt_new['display_title'];
         $thumb_width        = ($igit_rpwt_new['thumb_width'] == "") ? $igit_rpwt['thumb_width'] : $igit_rpwt_new['thumb_width'];
         $thumb_height       = ($igit_rpwt_new['thumb_height'] == "") ? $igit_rpwt['thumb_height'] : $igit_rpwt_new['thumb_height'];
         $related_post_style = ($igit_rpwt_new['related_post_style'] == "") ? $igit_rpwt['related_post_style'] : $igit_rpwt_new['related_post_style'];
@@ -275,6 +292,7 @@ function igit_rpwt_admin_options()
 			"auto_show" => $auto_show,
             "related_post_num" => $related_post_num,
             "display_thumb" => $display_thumb,
+			"display_title" => $display_title,
             "thumb_width" => $thumb_width,
             "thumb_height" => $thumb_height,
             "related_post_style" => $related_post_style,
@@ -327,7 +345,14 @@ function igit_rpwt_admin_options()
     echo $message_succ . '<tr valign="top">
 				<th scope="row"><label for="blogname">Display Thumb?</label></th>
 					<td><input type="checkbox" id="display_thumb" name="display_thumb" value="1" ' . $chckd . '/></td>
+				</tr>';
+    $chckdt = ($igit_rpwt['display_title'] == "1") ? "checked=checked" : "";
+    //echo $text; 
+    echo $message_succ . '<tr valign="top">
+				<th scope="row"><label for="blogname">Display Title?</label></th>
+					<td><input type="checkbox" id="display_title" name="display_title" value="1" ' . $chckdt . '/><code>This setting will only work for Horizontal Style of related posts.</code></td>
 				</tr>
+				
 				<tr valign="top">
 				<th scope="row"><label for="blogname">Select Background Color </label></th>
 					<td><input class="color" value="' . $igit_rpwt['bk_color'] . '"  id="bk_color" name="bk_color" ></td>
