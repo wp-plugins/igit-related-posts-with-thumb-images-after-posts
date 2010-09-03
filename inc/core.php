@@ -69,7 +69,7 @@ border-right-width-rtl-source:physical;
 border-right-width-value:1px;
 float:left;
 <?php
-if($igit_rpwt['display_thumb'] == '1')
+if($igit_rpwt['display_thumb'] == '1' && $igit_rpwt['display_title'] == '1')
 				{
 			?>
 			height:85%;
@@ -317,15 +317,19 @@ function igit_show_rel_post()
 					$divlnk =  "onclick=location.href='".get_permalink($result->ID)."'; style=cursor:pointer;";
 					$output .=  '<div id="igit_rpwt_main_image" '.$divlnk.'><a href="' . get_permalink($result->ID) . '" target="_top"><img id="igit_rpwt_thumb" src="' . WP_PLUGIN_URL . '/igit-related-posts-with-thumb-images-after-posts/timthumb.php?src=' . $image . '&w=' . $igit_rpwt['thumb_width'] . '&h=' . $igit_rpwt['thumb_height'] . '&zc=1"/></a></div>';
 				}
-				if(strlen($title) > 45)
+				if($igit_rpwt['display_title'] == '1')
 				{
-					$newtitle = substr($title, 0, 45) .'...';
+					if(strlen($title) > 45)
+					{
+						$newtitle = substr($title, 0, 45) .'...';
+					}
+					else
+					{	
+						$newtitle = $title;
+					}
+					$output .= '<div id="igit_title"><a href="' . get_permalink($result->ID) . '" target="_top">' . $newtitle . '</a></div> ';
 				}
-				else
-				{	
-					$newtitle = $title;
-				}
-				$output .= '<div id="igit_title"><a href="' . get_permalink($result->ID) . '" target="_top">' . $newtitle . '</a></div></div> ';
+				$output .= '</div>';
 				$nodatacnt = 1;
             }
 			
