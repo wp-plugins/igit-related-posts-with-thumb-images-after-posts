@@ -206,7 +206,16 @@ function igit_show_rel_post()
         define('WP_PLUGIN_URL', WP_CONTENT_URL . '/plugins');
     $pluginDir = WP_PLUGIN_URL . '/' . str_replace(basename(__FILE__), "", plugin_basename(__FILE__));
     if (get_option('igit_rpwt')) {
-        $igit_rpwt = get_option('igit_rpwt');
+        $igit_rpwt_temp = get_option('igit_rpwt');
+		if(!$igit_rpwt_temp['display_title'])
+		{
+			$igit_rpwt_temp['display_title'] = $igit_rpwt['display_title'];
+			$igit_rpwt = $igit_rpwt_temp;
+		}
+		else
+		{
+			$igit_rpwt = $igit_rpwt_temp;
+		}
     }
     $limit           = (stripslashes($igit_rpwt['related_post_num']));
 	if(!$limit)
