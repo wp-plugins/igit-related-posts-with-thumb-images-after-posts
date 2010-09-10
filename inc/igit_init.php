@@ -11,6 +11,9 @@ $igit_rpwt = array( "text_show" => "<h4>Related Posts :</h4>",
 					"igit_credit" => "1",
 					"bk_color" => "FFFFFF",
 					"bk_hover_color" => "DDDDDD",
+					"bk_hover_color" => "DDDDDD",
+					"fonts_family" => "Geneva",
+					"fonts_size" => "12",
 					"fonts_color" => "000000",
 					"img_border_color" => "DDDDDD");
 ?>

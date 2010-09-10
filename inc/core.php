@@ -20,7 +20,7 @@ function igit_add_css_style()
 <style type="text/css">
 #igit_rpwt_css {
 background:<?php echo "#".$igit_rpwt['bk_color'].";"; ?>
-font-family:verdana,arila,serif; 
+
 font-size:12px; 
 font-style:normal; 
 color:<?php echo "#".$igit_rpwt['fonts_color']; ?> !important;
@@ -39,6 +39,9 @@ height:230px;
 {
 	padding:2px 2px 2px 8px;
 	text-align:left;
+	font-size:<?php echo $igit_rpwt['fonts_size']."px;"; ?>
+	font-family:<?php echo $igit_rpwt['fonts_family'].";"; ?>
+	
 }
 #igit_rpwt_css h4{
 color:<?php echo "#".$igit_rpwt['fonts_color'].";"; ?>
@@ -46,6 +49,8 @@ color:<?php echo "#".$igit_rpwt['fonts_color'].";"; ?>
 #igit_title a
 {
 	color:<?php echo "#".$igit_rpwt['fonts_color'].";"; ?>
+	font-size:<?php echo $igit_rpwt['fonts_size']."px;"; ?>
+	font-family:<?php echo $igit_rpwt['fonts_family'].";"; ?>
 }
 #igit_rpwt_thumb, #description 
 {
@@ -110,14 +115,18 @@ text-align:center;
 
 #igit_rpwt_css h4{
 color:<?php echo "#".$igit_rpwt['fonts_color'].";"; ?>
+font-family:<?php echo $igit_rpwt['fonts_family'].";"; ?>
 }
 #igit_title {
 	padding:2px 2px 2px 0px;
-	
+	font-family:<?php echo $igit_rpwt['fonts_family'].";"; ?>
+	font-size:<?php echo $igit_rpwt['fonts_size']."px;"; ?>
 }
 #igit_title a
 {
 	color:<?php echo "#".$igit_rpwt['fonts_color'].";"; ?>
+	font-family:<?php echo $igit_rpwt['fonts_family'].";"; ?>
+	font-size:<?php echo $igit_rpwt['fonts_size']."px;"; ?>
 }
 #igit_rpwt_thumb, #description 
 {
@@ -167,11 +176,15 @@ color:<?php echo "#".$igit_rpwt['fonts_color'].";"; ?>
 }
 #igit_title {
 	padding:2px 2px 2px 0px;
+	font-family:<?php echo $igit_rpwt['fonts_family'].";"; ?>
+	font-size:<?php echo $igit_rpwt['fonts_size']."px;"; ?>
 	
 }
 #igit_title a
 {
 	color:<?php echo "#".$igit_rpwt['fonts_color'].";"; ?>
+	font-family:<?php echo $igit_rpwt['fonts_family'].";"; ?>
+	font-size:<?php echo $igit_rpwt['fonts_size']."px;"; ?>
 }
 #igit_rpwt_thumb, #description {margin-left:0px;}
 .igit_relpost:hover
@@ -383,7 +396,7 @@ function igit_show_rel_post()
 	
     $output .= '</div>';
     if ($igit_rpwt['igit_credit'] == "1")
-        $output .= '<div style="font-size: 8px; float: left;width:100%;"><a href="http://www.hackingethics.com/">By HackingEthics</a></div>';
+        $output .= '<div style="font-size: 8px; float: left;width:100%;"><a style="color:#DDDDDD;" href="http://www.hackingethics.com/">By Wordpress Developer</a></div>';
     return $output;
 }
 function igit_rpwt_posts()
