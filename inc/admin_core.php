@@ -46,7 +46,9 @@ jQuery(document).ready(function ($) {
 		
 		bk_color_temp = jQuery('#bk_color').attr('value');
 		bk_hover_color_temp = jQuery('#bk_hover_color').attr('value');
+		fonts_family_temp = jQuery('#fonts_family').attr('value');
 		fonts_color_temp = jQuery('#fonts_color').attr('value');
+		fonts_size_temp = jQuery('#fonts_size').attr('value');
 		img_border_color_temp = jQuery('#img_border_color').attr('value');
 		
 		exl_cat = exclude_category;
@@ -74,6 +76,8 @@ jQuery(document).ready(function ($) {
             exclude_category: document.options_form.hid_exl_cat.value,
             bk_color: bk_color_temp,
             bk_hover_color: bk_hover_color_temp,
+			fonts_family: fonts_family_temp,
+			fonts_size: fonts_size_temp,
             fonts_color: fonts_color_temp,
             img_border_color: img_border_color_temp
         };
@@ -113,6 +117,8 @@ function igit_action_callback()
     $igit_credit        = ($_POST['igit_credit'] == "") ? 2 : $_POST['igit_credit'];
 	$bk_color = ($_POST['bk_color'] == "") ? $igit_rpwt['bk_color'] : $_POST['bk_color'];
 	$bk_hover_color = ($_POST['bk_hover_color'] == "") ? $igit_rpwt['bk_hover_color'] : $_POST['bk_hover_color'];
+	$fonts_family = ($_POST['fonts_family'] == "") ? $igit_rpwt['fonts_family'] : $_POST['fonts_family'];
+	$fonts_size = ($_POST['fonts_size'] == "") ? $igit_rpwt['fonts_size'] : $_POST['fonts_size'];
 	$fonts_color = ($_POST['fonts_color'] == "") ? $igit_rpwt['fonts_color'] : $_POST['fonts_color'];
 	$img_border_color = ($_POST['img_border_color'] == "") ? $igit_rpwt['img_border_color'] : $_POST['img_border_color'];
     $igit_rpwt          = array(
@@ -128,6 +134,8 @@ function igit_action_callback()
         "exclude_cat_arr" => $exclude_cat_arr,
 		"bk_color" => $bk_color,
 		"bk_hover_color" => $bk_hover_color,
+		"fonts_family" => $fonts_family,
+		"fonts_size" => $fonts_size,
 		"fonts_color" => $fonts_color,
 		"img_border_color" => $img_border_color
     );
@@ -186,6 +194,43 @@ function igit_action_callback()
 				<tr valign="top">
 				<th scope="row"><label for="blogname">Select On Hover Background Color: </label></th>
 					<td><input class="color" value="' . $igit_rpwt['bk_hover_color'] . '"  id="bk_hover_color" name="bk_hover_color" ></td>
+				</tr>';
+   	    $chkfont1 = igit_checked_post_style('Arial', $igit_rpwt['fonts_family']);
+	$chkfont2 = igit_checked_post_style('Book Antiqua', $igit_rpwt['fonts_family']);
+	$chkfont3 = igit_checked_post_style('Bookman Old Style', $igit_rpwt['fonts_family']);
+	$chkfont4 = igit_checked_post_style('Calibri', $igit_rpwt['fonts_family']);
+	$chkfont5 = igit_checked_post_style('Century Schoolbook', $igit_rpwt['fonts_family']);
+	$chkfont6 = igit_checked_post_style('Courier New', $igit_rpwt['fonts_family']);
+	$chkfont7 = igit_checked_post_style('Geneva', $igit_rpwt['fonts_family']);
+	$chkfont8 = igit_checked_post_style('Georgia', $igit_rpwt['fonts_family']);
+	$chkfont9 = igit_checked_post_style('Helvetica', $igit_rpwt['fonts_family']);
+	$chkfont10 = igit_checked_post_style('Monotype Corsiva', $igit_rpwt['fonts_family']);
+	$chkfont11 = igit_checked_post_style('Times New Roman', $igit_rpwt['fonts_family']);
+	$chkfont12 = igit_checked_post_style('Trebuchet MS', $igit_rpwt['fonts_family']);
+	$chkfont13 = igit_checked_post_style('Verdana', $igit_rpwt['fonts_family']);
+
+    $result1       = $result1 . '
+				<tr valign="top">
+				<th scope="row"><label for="blogname">Select Fonts : </label></th>
+					<td><select id="fonts_family" name="fonts_family">
+<option value="Arial" ' . $chkfont1 . '>Arial</option>
+<option value="Book Antiqua" ' . $chkfont2 . '>Book Antiqua</option>
+<option value="Bookman Old Style" ' . $chkfont3 . '>Bookman Old Style</option>
+<option value="Calibri" ' . $chkfont4 . '>Calibri</option>
+<option value="Century Schoolbook" ' . $chkfont5 . '>Century Schoolbook</option>
+<option value="Courier New" ' . $chkfont6 . '>Courier New</option>
+<option value="Geneva" ' . $chkfont7 . '>Geneva</option>
+<option value="Georgia" ' . $chkfont8 . '>Georgia</option>
+<option value="Helvetica" ' . $chkfont9 . '>Helvetica</option>
+<option value="Monotype Corsiva" ' . $chkfont10 . '>Monotype Corsiva</option>
+<option value="Times New Roman" ' . $chkfont11 . '>Times New Roman</option>
+<option value="Trebuchet MS" ' . $chkfont12 . '>Trebuchet MS</option>
+<option value="Verdana" ' . $chkfont13 . '>Verdana</option>
+</select></td>
+				</tr>
+				<tr valign="top">
+				<th scope="row"><label for="blogname">Fonts Size: </label></th>
+					<td><input type="text" class="code"  value="' . $igit_rpwt['fonts_size'] . '"  id="fonts_size" name="fonts_size"  maxlength="2" size="4"><code>px</code></td>
 				</tr>
 				<tr valign="top">
 				<th scope="row"><label for="blogname">Select Fonts Color: </label></th>
@@ -261,6 +306,8 @@ function igit_rpwt_admin_options()
             "rel_post_style" => $_POST['related_post_style'],
             "bk_color" => $_POST['bk_color'],
             "bk_hover_color" => $_POST['bk_hover_color'],
+			"fonts_family" => $_POST['fonts_family'],
+			"fonts_size" => $_POST['fonts_size'],
             "fonts_color" => $_POST['fonts_color'],
             "img_border_color" => $_POST['img_border_color']
         );
@@ -281,6 +328,8 @@ function igit_rpwt_admin_options()
 		
 		$bk_color        = ($igit_rpwt_new['bk_color'] == "") ? $igit_rpwt['bk_color'] : $igit_rpwt_new['bk_color'];
 		$bk_hover_color        = ($igit_rpwt_new['bk_hover_color'] == "") ? $igit_rpwt['bk_hover_color'] : $igit_rpwt_new['bk_hover_color'];
+		$fonts_family        = ($igit_rpwt_new['fonts_family'] == "") ? $igit_rpwt['fonts_family'] : $igit_rpwt_new['fonts_family'];
+		$fonts_size        = ($igit_rpwt_new['fonts_size'] == "") ? $igit_rpwt['fonts_size'] : $igit_rpwt_new['fonts_size'];
 		$fonts_color        = ($igit_rpwt_new['fonts_color'] == "") ? $igit_rpwt['fonts_color'] : $igit_rpwt_new['fonts_color'];
 		$img_border_color        = ($igit_rpwt_new['img_border_color'] == "") ? $igit_rpwt['img_border_color'] : $igit_rpwt_new['img_border_color'];
 		
@@ -299,6 +348,8 @@ function igit_rpwt_admin_options()
             "igit_credit" => $igit_credit,
             "bk_color" => $bk_color,
             "bk_hover_color" => $bk_hover_color,
+			"fonts_family" => $fonts_family,
+			"fonts_size" => $fonts_size,
             "fonts_color" => $fonts_color,
             "img_border_color" => $img_border_color
         );
@@ -360,6 +411,43 @@ function igit_rpwt_admin_options()
 				<tr valign="top">
 				<th scope="row"><label for="blogname">Select On Hover Background Color: </label></th>
 					<td><input class="color" value="' . $igit_rpwt['bk_hover_color'] . '"  id="bk_hover_color" name="bk_hover_color" ></td>
+				</tr>';
+				
+    $chkfont1 = igit_checked_post_style('Arial', $igit_rpwt['fonts_family']);
+	$chkfont2 = igit_checked_post_style('Book Antiqua', $igit_rpwt['fonts_family']);
+	$chkfont3 = igit_checked_post_style('Bookman Old Style', $igit_rpwt['fonts_family']);
+	$chkfont4 = igit_checked_post_style('Calibri', $igit_rpwt['fonts_family']);
+	$chkfont5 = igit_checked_post_style('Century Schoolbook', $igit_rpwt['fonts_family']);
+	$chkfont6 = igit_checked_post_style('Courier New', $igit_rpwt['fonts_family']);
+	$chkfont7 = igit_checked_post_style('Geneva', $igit_rpwt['fonts_family']);
+	$chkfont8 = igit_checked_post_style('Georgia', $igit_rpwt['fonts_family']);
+	$chkfont9 = igit_checked_post_style('Helvetica', $igit_rpwt['fonts_family']);
+	$chkfont10 = igit_checked_post_style('Monotype Corsiva', $igit_rpwt['fonts_family']);
+	$chkfont11 = igit_checked_post_style('Times New Roman', $igit_rpwt['fonts_family']);
+	$chkfont12 = igit_checked_post_style('Trebuchet MS', $igit_rpwt['fonts_family']);
+	$chkfont13 = igit_checked_post_style('Verdana', $igit_rpwt['fonts_family']);
+	
+    echo $message_succ . '<tr valign="top">
+				<th scope="row"><label for="blogname">Select Fonts : </label></th>
+					<td><select id="fonts_family" name="fonts_family">
+<option value="Arial" ' . $chkfont1 . '>Arial</option>
+<option value="Book Antiqua" ' . $chkfont2 . '>Book Antiqua</option>
+<option value="Bookman Old Style" ' . $chkfont3 . '>Bookman Old Style</option>
+<option value="Calibri" ' . $chkfont4 . '>Calibri</option>
+<option value="Century Schoolbook" ' . $chkfont5 . '>Century Schoolbook</option>
+<option value="Courier New" ' . $chkfont6 . '>Courier New</option>
+<option value="Geneva" ' . $chkfont7 . '>Geneva</option>
+<option value="Georgia" ' . $chkfont8 . '>Georgia</option>
+<option value="Helvetica" ' . $chkfont9 . '>Helvetica</option>
+<option value="Monotype Corsiva" ' . $chkfont10 . '>Monotype Corsiva</option>
+<option value="Times New Roman" ' . $chkfont11 . '>Times New Roman</option>
+<option value="Trebuchet MS" ' . $chkfont12 . '>Trebuchet MS</option>
+<option value="Verdana" ' . $chkfont13 . '>Verdana</option>
+</select></td>
+				</tr>
+				<tr valign="top">
+				<th scope="row"><label for="blogname">Fonts Size: </label></th>
+					<td><input type="text" class="code"  value="' . $igit_rpwt['fonts_size'] . '"  id="fonts_size" name="fonts_size"  maxlength="2" size="4"><code>px</code></td>
 				</tr>
 				<tr valign="top">
 				<th scope="row"><label for="blogname">Select Fonts Color: </label></th>

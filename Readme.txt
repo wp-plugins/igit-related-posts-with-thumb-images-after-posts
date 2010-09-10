@@ -5,7 +5,7 @@ Plugin link: http://www.hackingethics.com/blog/wordpress-plugins/igit-related-po
 Tags: Posts,Related Posts,Related Posts plugin with Thumb image, Thumb Image,SEO,Post.
 Requires at least: 2.3
 Tested up to: 3.0.1
-Stable tag: 3.3
+Stable tag: 3.4
 
 
 == Description ==
@@ -58,6 +58,9 @@ Installation process is a easy 4 step procedure.<br />
 
 
 == Changelog ==
+= 3.4 =
+- Add new feature Font-Family and Font Size.
+
 = 3.3 =
 - Add new feature to display title or not for horizontal style.
 
