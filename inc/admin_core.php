@@ -29,6 +29,7 @@ jQuery(document).ready(function ($) {
 		/*alert(val);
 		return false;*/
 		tex_show = jQuery('#text_show').attr('value');
+		no_related_post_tex = jQuery('#no_related_post_text').attr('value');
 		aut_show = jQuery('#auto_show:checked').val();
         rel_post_num = jQuery('#related_post_num').attr('value');
         dis_thumb = jQuery('#display_thumb:checked').val();
@@ -65,6 +66,7 @@ jQuery(document).ready(function ($) {
         var data = {
             action: 'igit_save_ajax',
 			text_show: tex_show,
+			no_related_post_text: no_related_post_tex,
 			auto_show: aut_show,
             related_post_num: rel_post_num,
             display_thumb: dis_thumb,
@@ -106,6 +108,7 @@ function igit_action_callback()
 	$exclude_cat_arr = explode(",",$_POST['exclude_category']);
 	
 	$text_show   = ($_POST['text_show'] == "") ? $igit_rpwt['text_show'] : $_POST['text_show'];
+	$no_related_post_text   = ($_POST['no_related_post_text'] == "") ? $igit_rpwt['no_related_post_text'] : $_POST['no_related_post_text'];
 	$auto_show   = ($_POST['auto_show'] == "") ? 2 : $_POST['auto_show'];
 	
     $related_post_num   = ($_POST['related_post_num'] == "") ? $igit_rpwt['related_post_num'] : $_POST['related_post_num'];
@@ -123,6 +126,7 @@ function igit_action_callback()
 	$img_border_color = ($_POST['img_border_color'] == "") ? $igit_rpwt['img_border_color'] : $_POST['img_border_color'];
     $igit_rpwt          = array(
 		"text_show" => $text_show,
+		"no_related_post_text" => $no_related_post_text,
 		"auto_show" => $auto_show,
         "related_post_num" => $related_post_num,
         "display_thumb" => $display_thumb,
@@ -159,6 +163,10 @@ function igit_action_callback()
 				<tr valign="top">
 				<th scope="row"><label for="blogname">Heading Text :</label></th>
 					<td><input type="text" class="code" value="' . $igit_rpwt['text_show'] . '" id="text_show" name="text_show" maxlength="100" size="30"/></td>
+				</tr>
+				<tr valign="top">
+				<th scope="row"><label for="blogname">No Related Posts Text :</label></th>
+					<td><input type="text" class="code" value="' . $igit_rpwt['no_related_post_text'] . '" id="no_related_post_text" name="no_related_post_text" maxlength="100" size="30"/></td>
 				</tr>
 				<tr valign="top">
 				<th scope="row"><label for="blogname">Select Categories To Exclude From Related Postsssds :</label> </th><td>
@@ -292,11 +300,12 @@ function igit_action_callback()
 }
 function igit_rpwt_admin_options()
 {
-    global $igit_rpwt, $plgin_dir;
+    global $igit_rpwt,$igit_rpwt_default, $plgin_dir;
     if ($_POST['sb_submit']) {
 	
         $igit_rpwt = array(
 			"text_show" => $_POST['text_show'],
+			"no_related_post_text" => $_POST['no_related_post_text'],
 			"auto_show" => $_POST['auto_show'],
             "num_posts" => $_POST['related_post_num'],
             "dis_thumb" => $_POST['display_thumb'],
@@ -316,7 +325,25 @@ function igit_rpwt_admin_options()
     } else {
         $message_succ       = "";
         $igit_rpwt_new      = get_option('igit_rpwt');
+		if (!array_key_exists('no_related_post_text', $igit_rpwt_new)) {
+			$igit_rpwt_new['no_related_post_text'] = $igit_rpwt_default['no_related_post_text'];
+		
+		}
+		if (!array_key_exists('display_title', $igit_rpwt_new)) {
+			$igit_rpwt_new['display_title'] = $igit_rpwt_default['display_title'];
+		
+		}
+		if (!array_key_exists('fonts_family', $igit_rpwt_new)) {
+			$igit_rpwt_new['fonts_family'] = $igit_rpwt_default['fonts_family'];
+		
+		}
+		if (!array_key_exists('fonts_size', $igit_rpwt_new)) {
+			$igit_rpwt_new['fonts_size'] = $igit_rpwt_default['fonts_size'];
+		
+		}
+		
 		$text_show   = ($igit_rpwt_new['text_show'] == "") ? $igit_rpwt['text_show'] : $igit_rpwt_new['text_show'];
+		$no_related_post_text   = ($igit_rpwt_new['no_related_post_text'] == "") ? $igit_rpwt['no_related_post_text'] : $igit_rpwt_new['no_related_post_text'];
 		$auto_show   = ($igit_rpwt_new['auto_show'] == "") ? $igit_rpwt['auto_show'] : $igit_rpwt_new['auto_show'];
         $related_post_num   = ($igit_rpwt_new['related_post_num'] == "") ? $igit_rpwt['related_post_num'] : $igit_rpwt_new['related_post_num'];
         $display_thumb      = ($igit_rpwt_new['display_thumb'] == "") ? $igit_rpwt['display_thumb'] : $igit_rpwt_new['display_thumb'];
@@ -338,6 +365,7 @@ function igit_rpwt_admin_options()
 		
         $igit_rpwt          = array(
 		"text_show" => $text_show,
+		"no_related_post_text" => $no_related_post_text,
 			"auto_show" => $auto_show,
             "related_post_num" => $related_post_num,
             "display_thumb" => $display_thumb,
@@ -376,6 +404,9 @@ function igit_rpwt_admin_options()
 				<tr valign="top">
 				<th scope="row"><label for="blogname">Heading Text :</label></th>
 					<td><input type="text" class="code" value="' . $igit_rpwt['text_show'] . '" id="text_show" name="text_show" maxlength="100" size="30"/></td>
+				</tr><tr valign="top">
+				<th scope="row"><label for="blogname">No Related Posts Text :</label></th>
+					<td><input type="text" class="code" value="' . $igit_rpwt['no_related_post_text'] . '" id="no_related_post_text" name="no_related_post_text" maxlength="100" size="30"/></td>
 				</tr><tr valign="top">
 				<th scope="row"><label for="blogname">Select Categories To Exclude From Related Posts :</label> </th><td>
 				

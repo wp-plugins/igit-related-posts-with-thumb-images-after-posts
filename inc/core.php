@@ -1,4 +1,5 @@
 <?php
+require_once('get-the-image.php');
 function igit_add_css_style()
 {
     global $igit_rpwt, $wpdb, $post, $single, $WP_PLUGIN_URL;
@@ -205,6 +206,7 @@ function igit_total_content($content)
     if (get_option('igit_rpwt')) {
         $igit_rpwt = get_option('igit_rpwt');
     }
+	
     $output = igit_show_rel_post();
     if (is_single()) {
         return $content . $output;
@@ -214,12 +216,30 @@ function igit_total_content($content)
 }
 function igit_show_rel_post()
 {
-    global $igit_rpwt, $wpdb, $post, $single, $WP_PLUGIN_URL;
+    global $igit_rpwt,$igit_rpwt_default, $wpdb, $post, $single, $WP_PLUGIN_URL;
     if (!defined('WP_PLUGIN_URL'))
         define('WP_PLUGIN_URL', WP_CONTENT_URL . '/plugins');
     $pluginDir = WP_PLUGIN_URL . '/' . str_replace(basename(__FILE__), "", plugin_basename(__FILE__));
     if (get_option('igit_rpwt')) {
         $igit_rpwt_temp = get_option('igit_rpwt');
+		
+		if (!array_key_exists('no_related_post_text', $igit_rpwt_temp)) {
+			$igit_rpwt_temp['no_related_post_text'] = $igit_rpwt_default['no_related_post_text'];
+		
+		}
+		if (!array_key_exists('display_title', $igit_rpwt_temp)) {
+			$igit_rpwt_temp['display_title'] = $igit_rpwt_default['display_title'];
+		
+		}
+		if (!array_key_exists('fonts_family', $igit_rpwt_temp)) {
+			$igit_rpwt_temp['fonts_family'] = $igit_rpwt_default['fonts_family'];
+		
+		}
+		if (!array_key_exists('fonts_size', $igit_rpwt_temp)) {
+			$igit_rpwt_temp['fonts_size'] = $igit_rpwt_default['fonts_size'];
+		
+		}
+			
 		if(!$igit_rpwt_temp['display_title'])
 		{
 			$igit_rpwt_temp['display_title'] = $igit_rpwt['display_title'];
@@ -294,7 +314,7 @@ function igit_show_rel_post()
 		}
         
         if ($igit_rpwt['related_post_style'] == '2') {
-            $output .= '<ul class="wp_thumbie_ul_list" style="list-style-type: none;">';
+            $output .= '<ul class="igit_thumb_ul_list" style="list-style-type: none;">';
         }
         if ($igit_rpwt['related_post_style'] == '3') {
             $output .= '<ul>';
@@ -307,6 +327,7 @@ function igit_show_rel_post()
 		
 			$pstincat = false;	
             $title = trim(stripslashes($result->post_title));
+			
             $image = ""; // Null Variable to verify for no impage found case
             preg_match_all('|<img.*?src=[\'"](.*?)[\'"].*?>|i', $result->post_content, $matches);
             if (isset($matches))
@@ -337,7 +358,7 @@ function igit_show_rel_post()
 				if($igit_rpwt['display_thumb'] == '1')
 				{
 					$divlnk =  "onclick=location.href='".get_permalink($result->ID)."'; style=cursor:pointer;";
-					$output .=  '<div id="igit_rpwt_main_image" '.$divlnk.'><a href="' . get_permalink($result->ID) . '" target="_top"><img id="igit_rpwt_thumb" src="' . WP_PLUGIN_URL . '/igit-related-posts-with-thumb-images-after-posts/timthumb.php?src=' . $image . '&w=' . $igit_rpwt['thumb_width'] . '&h=' . $igit_rpwt['thumb_height'] . '&zc=1"/></a></div>';
+					$output .=  '<div id="igit_rpwt_main_image" '.$divlnk.'><a href="' . get_permalink($result->ID) . '" target="_top"><img id="igit_rpwt_thumb" src="' . WP_PLUGIN_URL . '/igit-related-posts-with-thumb-images-after-posts/timthumb.php?src=' . IGIT_get_the_image(array( 'post_id' => $result->ID )) . '&w=' . $igit_rpwt['thumb_width'] . '&h=' . $igit_rpwt['thumb_height'] . '&zc=1"/></a></div>';
 				}
 				if($igit_rpwt['display_title'] == '1')
 				{
@@ -361,7 +382,7 @@ function igit_show_rel_post()
                 $output .= '<li id="igit_rpwt_li" style="height:' . $height . 'px;" '.$divlnk.'>';
 				if($igit_rpwt['display_thumb'] == '1')
 				{
-					$output .= '<div id="igit_rpwt_main_image" ><a href="' . get_permalink($result->ID) . '" target="_top"><img id="igit_rpwt_thumb" src="' . WP_PLUGIN_URL . '/igit-related-posts-with-thumb-images-after-posts/timthumb.php?src=' . $image . '&w=' . $igit_rpwt['thumb_width'] . '&h=' . $igit_rpwt['thumb_height'] . '&zc=1"/></a></div>';
+					$output .= '<div id="igit_rpwt_main_image" ><a href="' . get_permalink($result->ID) . '" target="_top"><img id="igit_rpwt_thumb" src="' . WP_PLUGIN_URL . '/igit-related-posts-with-thumb-images-after-posts/timthumb.php?src=' . IGIT_get_the_image(array( 'post_id' => $result->ID )) . '&w=' . $igit_rpwt['thumb_width'] . '&h=' . $igit_rpwt['thumb_height'] . '&zc=1"/></a></div>';
 				}
 				$output .= '<div id="igit_title"><a href="' . get_permalink($result->ID) . '" target="_top">' . $title . '</a></div></li>';
 				$nodatacnt = 1;
@@ -378,10 +399,11 @@ function igit_show_rel_post()
 			} // End of $pstincat if condition
 			
         } //end of foreach loop
+		
 		if($nodatacnt == 0)
 		{
 			$output = '<div id="crp_related">';
-        $output .= ($crp_settings['blank_output']) ? ' ' : '<p>' . __('No related posts found', CRP_LOCAL_NAME) . '</p>';
+        $output .= ($crp_settings['blank_output']) ? ' ' : '<p>' . __($igit_rpwt['no_related_post_text'], CRP_LOCAL_NAME) . '</p>';
 		}
         if ($igit_rpwt['related_post_style'] == '2') {
             $output .= '</ul>';
@@ -391,12 +413,12 @@ function igit_show_rel_post()
         } //end of raw format tag
     } else {
         $output = '<div id="crp_related">';
-        $output .= ($crp_settings['blank_output']) ? ' ' : '<p>' . __('No related posts found', CRP_LOCAL_NAME) . '</p>';
+        $output .= ($crp_settings['blank_output']) ? ' ' : '<p>' . __($igit_rpwt['no_related_post_text'], CRP_LOCAL_NAME) . '</p>';
     }
 	
     $output .= '</div>';
     if ($igit_rpwt['igit_credit'] == "1")
-        $output .= '<div style="font-size: 8px; float: left;width:100%;"><a style="color:#DDDDDD;" href="http://www.hackingethics.com/">By Wordpress Developer</a></div>';
+        $output .= '<div style="font-size: 8px; float: left;width:100%;"><a href="http://www.hackingethics.com/">By Wordpress Developer</a></div>';
     return $output;
 }
 function igit_rpwt_posts()

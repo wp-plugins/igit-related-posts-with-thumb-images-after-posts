@@ -5,14 +5,15 @@ Plugin link: http://www.hackingethics.com/blog/wordpress-plugins/igit-related-po
 Tags: Posts,Related Posts,Related Posts plugin with Thumb image, Thumb Image,SEO,Post.
 Requires at least: 2.3
 Tested up to: 3.0.1
-Stable tag: 3.4
+Stable tag: 3.5
 
 
 == Description ==
 <br />
                   [Plugin Home Page](http://www.hackingethics.com/blog/wordpress-plugins/igit-related-posts-with-thumb-image-after-posts/) | 
 [Author Site](http://www.hackingethics.com/) | 
-[Support](http://www.hackingethics.com/blog/wordpress-plugins/igit-related-posts-with-thumb-image-after-posts/)
+[Support](http://www.hackingethics.com/blog/wordpress-plugins/igit-related-posts-with-thumb-image-after-posts/)| 
+[Hire Me](http://www.hackingethics.com/blog/contact-me/)
 <br />
 <br />
 - The IGIT Related Posts With Thumb After Posts Plugin Automatically inserts one widget after posts having related posts.<br />
@@ -58,6 +59,9 @@ Installation process is a easy 4 step procedure.<br />
 
 
 == Changelog ==
+= 3.5 =
+- Added new functionality to find images by first check custom field , if not found check featured image , if not found scan content , if not found check for an image by attachment and lastly no image found then show default image, it means this plugin searching all things in a post for image and if image found it shows images and if not found then it shows default image.Also added new field to enter custom message for no related posts found.
+
 = 3.4 =
 - Add new feature Font-Family and Font Size.
 
