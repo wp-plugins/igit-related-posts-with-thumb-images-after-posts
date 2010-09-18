@@ -122,7 +122,8 @@ function IGIT_image_by_custom_field( $args = array() ) {
  * @return array|bool
  */
 function IGIT_image_by_the_post_thumbnail( $args = array() ) {
-
+if ( function_exists( 'get_post_thumbnail_id' ) )
+	{
 	/* Check for a post image ID (set by WP as a custom field). */
 	$post_thumbnail_id = get_post_thumbnail_id( $args['post_id'] );
 
@@ -141,6 +142,7 @@ function IGIT_image_by_the_post_thumbnail( $args = array() ) {
 
 	/* Return both the image URL and the post thumbnail ID. */
 	return array( 'url' => $image[0], 'post_thumbnail_id' => $post_thumbnail_id, 'alt' => $alt );
+	}
 }
 
 /**

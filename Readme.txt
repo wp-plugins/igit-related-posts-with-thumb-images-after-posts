@@ -5,7 +5,7 @@ Plugin link: http://www.hackingethics.com/blog/wordpress-plugins/igit-related-po
 Tags: Posts,Related Posts,Related Posts plugin with Thumb image, Thumb Image,SEO,Post.
 Requires at least: 2.3
 Tested up to: 3.0.1
-Stable tag: 3.5
+Stable tag: 3.6
 
 
 == Description ==
@@ -59,6 +59,9 @@ Installation process is a easy 4 step procedure.<br />
 
 
 == Changelog ==
+= 3.6 =
+- One Critical Bug Solved.If theme doesn't support featured image then it is giving fatal error, So solved it.
+
 = 3.5 =
 - Added new functionality to find images by first check custom field , if not found check featured image , if not found scan content , if not found check for an image by attachment and lastly no image found then show default image, it means this plugin searching all things in a post for image and if image found it shows images and if not found then it shows default image.Also added new field to enter custom message for no related posts found.
 
