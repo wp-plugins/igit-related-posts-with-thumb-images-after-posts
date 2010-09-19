@@ -325,6 +325,8 @@ function igit_rpwt_admin_options()
     } else {
         $message_succ       = "";
         $igit_rpwt_new      = get_option('igit_rpwt');
+		if($igit_rpwt_new)
+		{
 		if (!array_key_exists('no_related_post_text', $igit_rpwt_new)) {
 			$igit_rpwt_new['no_related_post_text'] = $igit_rpwt_default['no_related_post_text'];
 		
@@ -340,6 +342,7 @@ function igit_rpwt_admin_options()
 		if (!array_key_exists('fonts_size', $igit_rpwt_new)) {
 			$igit_rpwt_new['fonts_size'] = $igit_rpwt_default['fonts_size'];
 		
+		}
 		}
 		
 		$text_show   = ($igit_rpwt_new['text_show'] == "") ? $igit_rpwt['text_show'] : $igit_rpwt_new['text_show'];
