@@ -5,7 +5,7 @@ Plugin link: http://www.hackingethics.com/blog/wordpress-plugins/igit-related-po
 Tags: Posts,Related Posts,Related Posts plugin with Thumb image, Thumb Image,SEO,Post.
 Requires at least: 2.3
 Tested up to: 3.0.1
-Stable tag: 3.8
+Stable tag: 3.9
 
 
 == Description ==
@@ -59,6 +59,9 @@ Installation process is a easy 4 step procedure.<br />
 
 
 == Changelog ==
+= 3.9 =
+- Change Logic tats why images from other domains not showing and breaking structure. So get default image if images are from other domain.
+
 = 3.8 =
 - Look and feel change of related posts and also scan of post content for image logic change.
 
