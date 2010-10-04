@@ -28,7 +28,7 @@ function IGIT_get_the_image( $args = array() ) {
 		'order_of_image' => 1,
 		'link_to_post' => true,
 		'image_class' => false,
-		'image_scan' => false,
+		'image_scan' => true,
 		'width' => false,
 		'height' => false,
 		'format' => 'img',
@@ -73,9 +73,21 @@ function IGIT_get_the_image( $args = array() ) {
 		{	
 			$image = IGIT_image_by_default( $args );
 		}
+			$imageurl = $image['url'];
+		
+            if (strlen(trim($imageurl)) == 0) {
+                $imageurl = WP_PLUGIN_URL . '/igit-related-posts-with-thumb-images-after-posts/images/noimage.gif'; // when no image found in post 
+            }
+			else
+			{
+				$bgurl = get_bloginfo('url');
+				if(!strstr($imageurl,$bgurl)){
+					$imageurl = WP_PLUGIN_URL . '/igit-related-posts-with-thumb-images-after-posts/images/noimage.gif'; // when no image found in post 
+				}
+			}
+            $imageurl = parse_url($imageurl, PHP_URL_PATH);	
 			
-			
-		$imageurl = $image['url'];
+		
 		return $imageurl;
 }
 
