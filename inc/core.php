@@ -45,6 +45,8 @@ height:230px;
 	
 }
 #igit_rpwt_css h4{
+padding-bottom:10px;
+border-bottom:1px dashed #585858;
 color:<?php echo "#".$igit_rpwt['fonts_color'].";"; ?>
 }
 #igit_title a
@@ -53,17 +55,27 @@ color:<?php echo "#".$igit_rpwt['fonts_color'].";"; ?>
 	font-size:<?php echo $igit_rpwt['fonts_size']."px;"; ?>
 	font-family:<?php echo $igit_rpwt['fonts_family'].";"; ?>
 }
+#igit_title a:hover
+{
+	border-bottom:1px dashed #000000;
+	text-decoration:none;
+}
 #igit_rpwt_thumb, #description 
 {
 	margin-left:0px; 
 	border:1px solid <?php echo "#".$igit_rpwt['img_border_color'].";"; ?> 
-	padding: 0px;
+	padding: 3px;
 }
 .igit_relpost:hover
 {
+	border-bottom:4px solid #808080;
+	
+	
 	background-color:<?php echo "#".$igit_rpwt['bk_hover_color'].";"; ?>
+	
 }
 .igit_relpost {
+padding-top:7px;
 border-right-color-ltr-source:physical;
 border-right-color-rtl-source:physical;
 border-right-color-value:#DDDDDD;
@@ -88,7 +100,9 @@ width:<?php
 ?>;
 }
 #igit_rpwt_main_image {
-height:100px;
+height:<?php
+        echo ($igit_rpwt['thumb_height'] + 5) . "px";
+?>;
 line-height:15;
 padding-bottom:10px;
 padding-left:2px;
@@ -418,7 +432,7 @@ function igit_show_rel_post()
 	
     $output .= '</div>';
     if ($igit_rpwt['igit_credit'] == "1")
-        $output .= '<div style="font-size: 8px; float: left;width:100%;" style="color:#D2D2D2" title="PHP Freelancer , PHP Freelancer India , Hire PHP Freelancer" title="PHP Freelancer , PHP Freelancer India , Hire PHP Freelancer"><a href="http://www.hackingethics.com/">PHP Freelancer</a></div>';
+        $output .= '<div style="font-size: 8px; float: left;width:100%;" ><a style="color:#D2D2D2" href="http://www.hackingethics.com/"  title="PHP Freelancer , PHP Freelancer India , Hire PHP Freelancer" title="PHP Freelancer , PHP Freelancer India , Hire PHP Freelancer">PHP Freelancer</a></div>';
     return $output;
 }
 function igit_rpwt_posts()
