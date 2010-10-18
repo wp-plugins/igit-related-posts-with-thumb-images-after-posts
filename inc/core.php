@@ -21,7 +21,6 @@ function igit_add_css_style()
 <style type="text/css">
 #igit_rpwt_css {
 background:<?php echo "#".$igit_rpwt['bk_color'].";"; ?>
-
 font-size:12px; 
 font-style:normal; 
 color:<?php echo "#".$igit_rpwt['fonts_color']; ?> !important;
@@ -69,21 +68,13 @@ color:<?php echo "#".$igit_rpwt['fonts_color'].";"; ?>
 .igit_relpost:hover
 {
 	border-bottom:4px solid #808080;
-	
-	
 	background-color:<?php echo "#".$igit_rpwt['bk_hover_color'].";"; ?>
 	
 }
 .igit_relpost {
 padding-top:7px;
-border-right-color-ltr-source:physical;
-border-right-color-rtl-source:physical;
 border-right-color-value:#DDDDDD;
-border-right-style-ltr-source:physical;
-border-right-style-rtl-source:physical;
 border-right-style-value:solid;
-border-right-width-ltr-source:physical;
-border-right-width-rtl-source:physical;
 border-right-width-value:1px;
 float:left;
 <?php
