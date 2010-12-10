@@ -423,7 +423,7 @@ function igit_show_rel_post()
 	
     $output .= '</div>';
     if ($igit_rpwt['igit_credit'] == "1")
-        $output .= '<div style="font-size: 8px; float: left;width:100%;" ><a style="color:#D2D2D2" href="http://www.hackingethics.com/"  title="Joomla Developer , Joomla Development , Joomla Design">Joomla Developer</a></div>';
+        $output .= '<div style="font-size: 8px; float: left;width:100%;" ><a style="color:#D2D2D2" href="http://www.hackingethics.com/"  title="Wordpress Freelancer, Wordpress Development, Wordpress Developer India, Wordpress Developer">Wordpress Developer</a></div>';
     return $output;
 }
 function igit_rpwt_posts()
