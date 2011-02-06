@@ -71,11 +71,16 @@ color:<?php echo "#".$igit_rpwt['fonts_color'].";"; ?>
 	background-color:<?php echo "#".$igit_rpwt['bk_hover_color'].";"; ?>
 	
 }
+#igit_rpwt_css h4
+{
+	    margin: 0 0 0px;
+}
 .igit_relpost {
 padding-top:7px;
 border-right-color-value:#DDDDDD;
 border-right-style-value:solid;
 border-right-width-value:1px;
+border-bottom:4px solid <?php echo "#".$igit_rpwt['bk_color'].";"; ?>
 float:left;
 <?php
 if($igit_rpwt['display_thumb'] == '1' && $igit_rpwt['display_title'] == '1')
@@ -423,7 +428,7 @@ function igit_show_rel_post()
 	
     $output .= '</div>';
     if ($igit_rpwt['igit_credit'] == "1")
-        $output .= '<div style="font-size: 8px; float: left;width:100%;" ><a style="color:#D2D2D2" href="http://www.hackingethics.com/"  title="Wordpress Freelancer, Wordpress Development, Wordpress Developer India, Wordpress Developer">Wordpress Developer</a></div>';
+        $output .= '<div style="font-size: 8px; float: left;width:100%;" ><a style="color:#D2D2D2" href="http://www.hackingethics.com/"  title="PHP Programmer India,PHP Developer India,PHP Freelance Programmer,PHP freelance Developer">PHP Programmer India</a></div>';
     return $output;
 }
 function igit_rpwt_posts()
