@@ -71,11 +71,16 @@ color:<?php echo "#".$igit_rpwt['fonts_color'].";"; ?>
 	background-color:<?php echo "#".$igit_rpwt['bk_hover_color'].";"; ?>
 	
 }
+#igit_rpwt_css h4
+{
+	    margin: 0 0 0px;
+}
 .igit_relpost {
 padding-top:7px;
 border-right-color-value:#DDDDDD;
 border-right-style-value:solid;
 border-right-width-value:1px;
+border-bottom:4px solid <?php echo "#".$igit_rpwt['bk_color'].";"; ?>
 float:left;
 <?php
 if($igit_rpwt['display_thumb'] == '1' && $igit_rpwt['display_title'] == '1')
