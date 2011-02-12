@@ -34,6 +34,8 @@ jQuery(document).ready(function ($) {
         rel_post_num = jQuery('#related_post_num').attr('value');
         dis_thumb = jQuery('#display_thumb:checked').val();
 		dis_title = jQuery('#display_title:checked').val();
+		dis_full_title = jQuery('#display_full_title:checked').val();
+		 tit_characters = jQuery('#title_characters').attr('value');
 		if(!dis_thumb && !dis_title)
 		{
 			alert("Display Thumb and Display Title both can't be unchecked to show related posts.So at least select one from both.");
@@ -71,6 +73,8 @@ jQuery(document).ready(function ($) {
             related_post_num: rel_post_num,
             display_thumb: dis_thumb,
 			display_title: dis_title,
+			display_full_title: dis_full_title,
+			title_characters: tit_characters,
             thumb_width: thu_width,
             thumb_height: thu_height,
             related_post_style: rel_post_style,
@@ -114,6 +118,8 @@ function igit_action_callback()
     $related_post_num   = ($_POST['related_post_num'] == "") ? $igit_rpwt['related_post_num'] : $_POST['related_post_num'];
     $display_thumb      = ($_POST['display_thumb'] == "") ? 2 : $_POST['display_thumb'];
 	$display_title      = ($_POST['display_title'] == "") ? 2 : $_POST['display_title'];
+	$display_full_title      = ($_POST['display_full_title'] == "") ? 2 : $_POST['display_full_title'];
+	$title_characters      = ($_POST['title_characters'] == "") ? 2 : $_POST['title_characters'];
     $thumb_width        = ($_POST['thumb_width'] == "") ? $igit_rpwt['thumb_width'] : $_POST['thumb_width'];
     $thumb_height       = ($_POST['thumb_height'] == "") ? $igit_rpwt['thumb_height'] : $_POST['thumb_height'];
     $related_post_style = ($_POST['related_post_style'] == "") ? $igit_rpwt['related_post_style'] : $_POST['related_post_style'];
@@ -131,6 +137,8 @@ function igit_action_callback()
         "related_post_num" => $related_post_num,
         "display_thumb" => $display_thumb,
 		"display_title" => $display_title,
+		"display_full_title" => $display_full_title,
+		"title_characters" => $title_characters,
         "thumb_width" => $thumb_width,
         "thumb_height" => $thumb_height,
         "related_post_style" => $related_post_style,
@@ -191,11 +199,24 @@ function igit_action_callback()
 					<td><input type="checkbox" id="display_thumb" name="display_thumb" value="1" ' . $chckd . '/></td>
 				</tr>';
     $chckdtc        = ($igit_rpwt['display_title'] == "1") ? "checked=checked" : "";
+	$chckdfulltc        = ($igit_rpwt['display_full_title'] == "1") ? "checked=checked" : "";
     //echo $text; 
     $result1      = $result1 . '<tr valign="top">
 				<th scope="row"><label for="blogname">Display Title?</label></th>
 					<td><input type="checkbox" id="display_title" name="display_title" value="1" ' . $chckdtc . '/><code>This setting will only work for Horizontal Style of related posts.</code></td>
 				</tr>
+				
+				<tr valign="top">
+				<th scope="row"><label for="blogname">Display Full Title?</label></th>
+					<td><input type="checkbox" id="display_full_title" name="display_full_title" value="1" ' . $chckdfulltc . '/></td>
+				</tr>
+				<tr valign="top">
+				<th scope="row"><label for="blogname">How Many Characters want to show for Post Title?</label></th>
+					<td><input type="text" class="code" value="' . $igit_rpwt['title_characters'] . '" id="title_characters" name="title_characters" maxlength="3" size="4"/><code>It will work If "Display Full Title" option unchecked.</code></td>
+				</tr>
+				
+				
+				
 				<th scope="row"><label for="blogname">Select Background Color </label></th>
 					<td><input class="color" value="' . $igit_rpwt['bk_color'] . '"  id="bk_color" name="bk_color" ></td>
 				</tr>
@@ -310,6 +331,8 @@ function igit_rpwt_admin_options()
             "num_posts" => $_POST['related_post_num'],
             "dis_thumb" => $_POST['display_thumb'],
 			"dis_title" => $_POST['display_title'],
+			"display_full_title" => $_POST['display_full_title'],
+			"title_characters" => $_POST['title_characters'],
             "thumb_width" => $_POST['thumb_width'],
             "thumb_height" => $_POST['thumb_height'],
             "rel_post_style" => $_POST['related_post_style'],
@@ -343,6 +366,14 @@ function igit_rpwt_admin_options()
 			$igit_rpwt_new['fonts_size'] = $igit_rpwt_default['fonts_size'];
 		
 		}
+		if (!array_key_exists('display_full_title', $igit_rpwt_new)) {
+			$igit_rpwt_new['display_full_title'] = $igit_rpwt_default['display_full_title'];
+		
+		}
+		if (!array_key_exists('title_characters', $igit_rpwt_new)) {
+			$igit_rpwt_new['title_characters'] = $igit_rpwt_default['title_characters'];
+		
+		}
 		}
 		
 		$text_show   = ($igit_rpwt_new['text_show'] == "") ? $igit_rpwt['text_show'] : $igit_rpwt_new['text_show'];
@@ -351,6 +382,8 @@ function igit_rpwt_admin_options()
         $related_post_num   = ($igit_rpwt_new['related_post_num'] == "") ? $igit_rpwt['related_post_num'] : $igit_rpwt_new['related_post_num'];
         $display_thumb      = ($igit_rpwt_new['display_thumb'] == "") ? $igit_rpwt['display_thumb'] : $igit_rpwt_new['display_thumb'];
 		$display_title      = ($igit_rpwt_new['display_title'] == "") ? $igit_rpwt['display_title'] : $igit_rpwt_new['display_title'];
+		$display_full_title      = ($igit_rpwt_new['display_full_title'] == "") ? $igit_rpwt['display_full_title'] : $igit_rpwt_new['display_full_title'];
+		$title_characters   = ($igit_rpwt_new['title_characters'] == "") ? $igit_rpwt['title_characters'] : $igit_rpwt_new['title_characters'];
         $thumb_width        = ($igit_rpwt_new['thumb_width'] == "") ? $igit_rpwt['thumb_width'] : $igit_rpwt_new['thumb_width'];
         $thumb_height       = ($igit_rpwt_new['thumb_height'] == "") ? $igit_rpwt['thumb_height'] : $igit_rpwt_new['thumb_height'];
         $related_post_style = ($igit_rpwt_new['related_post_style'] == "") ? $igit_rpwt['related_post_style'] : $igit_rpwt_new['related_post_style'];
@@ -373,6 +406,8 @@ function igit_rpwt_admin_options()
             "related_post_num" => $related_post_num,
             "display_thumb" => $display_thumb,
 			"display_title" => $display_title,
+			"display_full_title" => $display_full_title,
+			"title_characters" => $title_characters,
             "thumb_width" => $thumb_width,
             "thumb_height" => $thumb_height,
             "related_post_style" => $related_post_style,
@@ -433,11 +468,19 @@ function igit_rpwt_admin_options()
 				</tr>';
     $chckdt = ($igit_rpwt['display_title'] == "1") ? "checked=checked" : "";
     //echo $text; 
+	$chckdfullt = ($igit_rpwt['display_full_title'] == "1") ? "checked=checked" : "";
     echo $message_succ . '<tr valign="top">
 				<th scope="row"><label for="blogname">Display Title?</label></th>
 					<td><input type="checkbox" id="display_title" name="display_title" value="1" ' . $chckdt . '/><code>This setting will only work for Horizontal Style of related posts.</code></td>
 				</tr>
-				
+				<tr valign="top">
+				<th scope="row"><label for="blogname">Display Full Title?</label></th>
+					<td><input type="checkbox" id="display_full_title" name="display_full_title" value="1" ' . $chckdfullt . '/></td>
+				</tr>
+				<tr valign="top">
+				<th scope="row"><label for="blogname">How Many Characters want to show for Post Title?</label></th>
+					<td><input type="text" class="code" value="' . $igit_rpwt['title_characters'] . '" id="title_characters" name="title_characters" maxlength="2" size="4"/><code>It will work If "Display Full Title" option unchecked.</code></td>
+				</tr>
 				<tr valign="top">
 				<th scope="row"><label for="blogname">Select Background Color </label></th>
 					<td><input class="color" value="' . $igit_rpwt['bk_color'] . '"  id="bk_color" name="bk_color" ></td>
