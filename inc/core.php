@@ -372,13 +372,23 @@ function igit_show_rel_post()
 				}
 				if($igit_rpwt['display_title'] == '1')
 				{
-					if(strlen($title) > 45)
-					{
-						$newtitle = substr($title, 0, 45) .'...';
+					if($igit_rpwt['display_full_title'] == '1')
+					{	
+						$newtitle = $title;
+						
 					}
 					else
 					{	
-						$newtitle = $title;
+												
+								if(strlen($title) > $igit_rpwt['title_characters'])
+								{
+									$newtitle = substr($title, 0, $igit_rpwt['title_characters']) .'...';
+								}
+								else
+								{	
+									$newtitle = $title;
+								}
+						
 					}
 					$output .= '<div id="igit_title"><a href="' . get_permalink($result->ID) . '" target="_top">' . $newtitle . '</a></div> ';
 				}

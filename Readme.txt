@@ -4,8 +4,8 @@ Donate link: http://www.hackingethics.com/
 Plugin link: http://www.hackingethics.com/blog/wordpress-plugins/igit-related-posts-with-thumb-image-after-posts/
 Tags: Posts,Related Posts,Related Posts plugin with Thumb image, Thumb Image,SEO,Post.
 Requires at least: 2.3
-Tested up to: 3.0.1
-Stable tag: 3.9.2
+Tested up to: 3.0.5
+Stable tag: 3.9.3
 
 
 == Description ==
@@ -59,6 +59,9 @@ Installation process is a easy 4 step procedure.<br />
 
 
 == Changelog ==
+= 3.9.3 =
+- Two options added - Display full title of posts in related posts and number of characters of title to show.
+
 = 3.9.2 =
 - Solved CSS problem While hover related post.
 
