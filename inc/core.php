@@ -249,7 +249,14 @@ function igit_show_rel_post()
 			$igit_rpwt_temp['fonts_size'] = $igit_rpwt_default['fonts_size'];
 		
 		}
-			
+		if (!array_key_exists('display_full_title', $igit_rpwt_temp)) {
+			$igit_rpwt_temp['display_full_title'] = $igit_rpwt_default['display_full_title'];
+		
+		}
+		if (!array_key_exists('title_characters', $igit_rpwt_temp)) {
+			$igit_rpwt_temp['title_characters'] = $igit_rpwt_default['title_characters'];
+		
+		}
 		if(!$igit_rpwt_temp['display_title'])
 		{
 			$igit_rpwt_temp['display_title'] = $igit_rpwt['display_title'];

@@ -5,7 +5,7 @@ Plugin link: http://www.hackingethics.com/blog/wordpress-plugins/igit-related-po
 Tags: Posts,Related Posts,Related Posts plugin with Thumb image, Thumb Image,SEO,Post.
 Requires at least: 2.3
 Tested up to: 3.0.5
-Stable tag: 3.9.3
+Stable tag: 3.9.4
 
 
 == Description ==
@@ -59,6 +59,9 @@ Installation process is a easy 4 step procedure.<br />
 
 
 == Changelog ==
+= 3.9.4 =
+- Bug Fix- after upgrade title not showing by default.- Solved
+
 = 3.9.3 =
 - Two options added - Display full title of posts in related posts and number of characters of title to show.
 
