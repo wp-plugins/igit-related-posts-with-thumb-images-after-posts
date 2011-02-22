@@ -5,17 +5,22 @@ Plugin link: http://www.hackingethics.com/blog/wordpress-plugins/igit-related-po
 Tags: Posts,Related Posts,Related Posts plugin with Thumb image, Thumb Image,SEO,Post.
 Requires at least: 2.3
 Tested up to: 3.0.5
-Stable tag: 3.9.4
+Stable tag: 3.9.5
 
 
 == Description ==
 <br />
-                  [Plugin Home Page](http://www.hackingethics.com/blog/wordpress-plugins/igit-related-posts-with-thumb-image-after-posts/) | 
+[Plugin Home Page](http://www.hackingethics.com/blog/wordpress-plugins/igit-related-posts-with-thumb-image-after-posts/) | 
 [Author Site](http://www.hackingethics.com/) | 
 [Support](http://www.hackingethics.com/blog/wordpress-plugins/igit-related-posts-with-thumb-image-after-posts/)| 
 [Hire Me](http://www.hackingethics.com/blog/contact-me/)
 <br />
 <br />
+My Other Plugins :
+[IGIT Related Posts Widget](http://www.hackingethics.com/blog/wordpress-plugins/igit-related-posts-widget/)<br/>
+[IGIT Random Post Slider Widget](http://www.hackingethics.com/blog/wordpress-plugins/igit-posts-slider-widget/)<br/>
+[IGIT Follow Me Button](http://www.hackingethics.com/blog/wordpress-plugins/igit-follow-me-after-post-button-new/)<br/>
+[IGIT Twitter Tweet Button](http://www.hackingethics.com/blog/wordpress-plugins/igit-new-twitter-tweet-share-button-with-counter-wordpress-plugin/)<br/><br/>
 - The IGIT Related Posts With Thumb After Posts Plugin Automatically inserts one widget after posts having related posts.<br />
 - Related Posts showing by title and content matching, If it not show related posts by title content matching it will search related posts by matching tags and title and if still it is not showing any related posts then it will show random posts.<br />
 - This plugin also empowers the Blog administrator to place manually related posts widget, Also having options to give related posts number,Display Thumb or not,Set Thumb Width and Height and Main thing it is giving three options to select related posts style - Horizontal, Vertical, Simple Style.<br />
@@ -59,6 +64,9 @@ Installation process is a easy 4 step procedure.<br />
 
 
 == Changelog ==
+= 3.9.5 =
+- Bug Fix- Title CSS change,breaking structure of related posts.
+
 = 3.9.4 =
 - Bug Fix- after upgrade title not showing by default.- Solved
 
