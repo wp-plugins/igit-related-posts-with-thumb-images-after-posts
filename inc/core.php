@@ -6,15 +6,6 @@ function igit_add_css_style()
     if (get_option('igit_rpwt')) {
         $igit_rpwt = get_option('igit_rpwt');
     }
-    /*if ($igit_rpwt['related_post_style'] == '1')
-    {
-    $cssfile ='igit-hori.css';
-    }
-    if ($igit_rpwt['related_post_style'] == '2')
-    {
-    $cssfile ='igit-vert.css';
-    }*/
-    //echo "<link rel='stylesheet' href='".IGIT_RPWT_CSS_URL."/".$cssfile."' type='text/css' media='screen' />";
     if ($igit_rpwt['related_post_style'] == '1') {
 	//CSS for styles
 ?>
@@ -249,7 +240,14 @@ function igit_show_rel_post()
 			$igit_rpwt_temp['fonts_size'] = $igit_rpwt_default['fonts_size'];
 		
 		}
-			
+		if (!array_key_exists('display_full_title', $igit_rpwt_temp)) {
+			$igit_rpwt_temp['display_full_title'] = $igit_rpwt_default['display_full_title'];
+		
+		}
+		if (!array_key_exists('title_characters', $igit_rpwt_temp)) {
+			$igit_rpwt_temp['title_characters'] = $igit_rpwt_default['title_characters'];
+		
+		}
 		if(!$igit_rpwt_temp['display_title'])
 		{
 			$igit_rpwt_temp['display_title'] = $igit_rpwt['display_title'];
@@ -438,7 +436,7 @@ function igit_show_rel_post()
 	
     $output .= '</div>';
     if ($igit_rpwt['igit_credit'] == "1")
-        $output .= '<div style="font-size: 8px; float: left;width:100%;" ><a style="color:#D2D2D2" href="http://www.hackingethics.com/"  title="PHP Programmer India,PHP Developer India,PHP Freelance Programmer,PHP freelance Developer">PHP Programmer India</a></div>';
+        $output .= '<div style="font-size: 10px; float: left;width:100%;" ><a style="color:#FFFFFF" href="http://www.hackingethics.com/"  title="PHP Programmer India,PHP Developer India,PHP Freelance Programmer,PHP freelance Developer">PHP Programmer India</a></div>';
     return $output;
 }
 function igit_rpwt_posts()
