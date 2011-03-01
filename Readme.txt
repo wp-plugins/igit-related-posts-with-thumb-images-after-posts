@@ -17,9 +17,9 @@ Stable tag: 3.9.5
 <br />
 <br />
 My Other Plugins :
-[IGIT Related Posts Widget](http://www.hackingethics.com/blog/wordpress-plugins/igit-related-posts-widget/) | 
-[IGIT Random Post Slider Widget](http://www.hackingethics.com/blog/wordpress-plugins/igit-posts-slider-widget/) |
-[IGIT Follow Me Button](http://www.hackingethics.com/blog/wordpress-plugins/igit-follow-me-after-post-button-new/) | 
+[IGIT Related Posts Widget](http://www.hackingethics.com/blog/wordpress-plugins/igit-related-posts-widget/) |  
+[IGIT Random Post Slider Widget](http://www.hackingethics.com/blog/wordpress-plugins/igit-posts-slider-widget/) | 
+[IGIT Follow Me Button](http://www.hackingethics.com/blog/wordpress-plugins/igit-follow-me-after-post-button-new/) |  
 [IGIT Twitter Tweet Button](http://www.hackingethics.com/blog/wordpress-plugins/igit-new-twitter-tweet-share-button-with-counter-wordpress-plugin/) 
 
 - The IGIT Related Posts With Thumb After Posts Plugin Automatically inserts one widget after posts having related posts.<br />
