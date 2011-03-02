@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: IGIT Related Post With Thumb
-Version:     3.9.5
+Version:     3.9.6
 Plugin URI:  http://www.hackingethics.com/blog/wordpress-plugins/igit-related-posts-with-thumb-image-after-posts/
 Description: Show related posts with thumb image after Posts. Ajax Base Admin options.Options for dynamic height and width of Thumb.Plugin By <a href="http://www.hackingethics.com"><strong>Hacking Ethics</strong></a>.You can <a href="options-general.php?page=igit-rpwt">Configure...</a> it from <a href="options-general.php?page=igit-rpwt">Here.
 Author:      Ankur Gandhi
