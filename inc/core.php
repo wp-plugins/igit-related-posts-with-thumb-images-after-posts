@@ -436,7 +436,7 @@ function igit_show_rel_post()
 	
     $output .= '</div>';
     if ($igit_rpwt['igit_credit'] == "1")
-        $output .= '<div style="font-size: 10px; float: left;width:100%;" ><a style="color:#FFFFFF" href="http://www.hackingethics.com/"  title="PHP Freelancer, PHP Freelancer India,PHP Freelance Programmer,PHP freelance Developer">PHP Freelancer</a></div>';
+        $output .= '<div style="font-size: 10px; float: left;width:100%;" ><a style="color:#FFFFFF" href="http://php-freelancer.in/"  title="Freelance PHP Developer, Freelance PHP Programmer,PHP Freelancer ,PHP freelancer India">Freelance PHP Developer</a> | <a style="color:#FFFFFF" href="http://php-freelancer.in/"  title="Freelance PHP Developer, Freelance PHP Programmer,PHP Freelancer ,PHP freelancer India">Freelance PHP Programmer</a></div>';
     return $output;
 }
 function igit_rpwt_posts()
