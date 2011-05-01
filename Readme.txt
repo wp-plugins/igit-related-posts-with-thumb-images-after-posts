@@ -65,6 +65,9 @@ Installation process is a easy 4 step procedure.<br />
 
 
 == Changelog ==
+= 3.9.7 =
+- Related posts logic changes. Now it will show related posts according to categories and tags. If post will not have category and tags then it will show random selected posts.
+
 = 3.9.6 =
 - Bug Fix- Tim Thumb File Upgraded.
 
