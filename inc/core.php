@@ -266,48 +266,98 @@ function igit_show_rel_post()
     $pcont = preg_replace('/<img[^>]+./','', $post->post_content);
 
     $igit_search_str = addslashes($post->post_title . ' ' . $pcont);
-   // $igit_search_str = addslashes($post->post_title . ' ' . $post->post_content);
-    if (($post->ID != '') || ($igit_search_str != '')) {
-        $sql = "SELECT DISTINCT ID,post_title,post_date,post_content," . "MATCH(post_title,post_content) AGAINST ('" . $igit_search_str . "' WITH QUERY EXPANSION) AS score " . "FROM " . $wpdb->posts . " WHERE " . "MATCH (post_title,post_content) AGAINST ('" . $igit_search_str . "'  WITH QUERY EXPANSION) " . "AND post_date <= '" . $now . "' " . "AND post_status = 'publish' AND post_password = '' " . "AND id != " . $post->ID . " AND post_type = 'post' ";
-        $sql .= "ORDER BY RAND() LIMIT 0,".$limit;
+   if (($post->ID != '') || ($igit_search_str != '')) 
+	{
+        
 		
-        $result_counter = 0;
-        $results        = $wpdb->get_results($sql);
-			
-		if(!$results)
+		$cats = get_the_category($post->ID);
+		if($cats)
 		{
-			$ptags = get_the_tags($post->ID);
-			$cstr = "";
-			$i=1;
-			if($ptags)
+			foreach($cats as $cat)
+			{
+				
+				$cat_id_array[] = $cat->cat_ID;
+			//print_r(get_the_category($post->ID));
+				
+			
+			}
+		}		
+		$ptags = get_the_tags($post->ID);
+		$cstr = "";
+		$i=1;
+		if($ptags)
+		{
+		
+			foreach($ptags as $ptag)
 			{
 			
-				foreach($ptags as $ptag)
-				{
-					if($i < count($ptags))
-						$cstr .= " post_title LIKE '%".$ptag->name."%' OR ";
-					else if($i == count($ptags))
-						$cstr .= " post_title LIKE '%".$ptag->name."%'";
-						
-					$i++;
-				}
-				$tags_sql = "SELECT DISTINCT ID,post_title,post_date,post_content FROM " . $wpdb->posts . " WHERE (" .$cstr. ") AND (post_date <= '" . $now . "' " . "AND post_status = 'publish'  AND post_password = '' " . "AND ID != " . $post->ID . " AND post_type = 'post' )";
-				$tags_sql .= "ORDER BY RAND() LIMIT 0,".$limit;
-				$result_counter = 0;
-				$results        = $wpdb->get_results($tags_sql);
+				/*if($i < count($ptags))
+					$cstr .= " post_title LIKE '%".$ptag->name."%' OR ";
+				else if($i == count($ptags))
+					$cstr .= " post_title LIKE '%".$ptag->name."%'";*/
+					$tag_id_array[] = get_tag_ID(trim($ptag->name));
+				$i++;
 			}
-		
-			if(!$result)
-			{
-				$random_sql = "SELECT DISTINCT ID, post_title, post_content, post_date,comment_count FROM " . $wpdb->posts . " WHERE post_status = 'publish' AND post_type = 'post' AND post_password = '' AND ID != $post->ID ORDER BY RAND() LIMIT 0,".$limit;
-				$result_counter = 0;
-				$results        = $wpdb->get_results($random_sql);
-			}
+			
+			
+			
 			
 		}
-    } else {
-        $results = false;
-    }
+		
+		
+		if($cat_id_array && $tag_id_array)
+		{
+			$resultstag        = get_posts( array( 'tag__in' => $tag_id_array, 'post__not_in' => array($post->ID) ) );
+			$resultscat        = get_posts( array( 'category__in' => $cat_id_array , 'post__not_in' => array($post->ID) ) );
+			
+			if($resultscat && $resultstag)
+			{
+				$array1 = objectToArray( $resultstag );
+				$array2 = objectToArray( $resultscat );
+				$results = array_intersect($array1, $array2);
+				
+			}
+			else
+			{
+				$resultscat        = get_posts( array( 'category__in' => $cat_id_array , 'post__not_in' => array($post->ID) ) );
+				$results = objectToArray( $resultscat );
+				
+			}
+			
+			
+			/*echo "<pre>";
+			print_r(array_diff($resultstag, $resultscat))."<br>";
+			exit;*/
+			
+		}
+		else if($cat_id_array && !$tag_id_array)
+		{
+			$resultscat        = get_posts( array( 'category__in' => $cat_id_array , 'post__not_in' => array($post->ID) ) );
+			$results = objectToArray( $resultscat );
+		}
+		else if(!$cat_id_array && $tag_id_array)
+		{
+			$resultstag        = get_posts( array( 'tag__in' => $tag_id_array, 'post__not_in' => array($post->ID) ) );
+			$results = objectToArray( $resultstag );
+		}
+		else
+		{
+			$resultscat        = get_posts( array( 'category__in' => $cat_id_array , 'post__not_in' => array($post->ID) ) );
+			$results = objectToArray( $resultscat );
+		}
+		
+		if(!$results)
+		{
+			$resultscat        = get_posts( array('orderby' => 'rand' ) );
+			$results = objectToArray( $resultscat );
+		}
+		
+		
+        
+       
+		
+		
+
     $output = '<div id="igit_rpwt_css" style= "border: 0pt none ; margin: 0pt; padding: 0pt; clear: both;">';
     if ($results) {
         //Setting css part for Image size
@@ -328,16 +378,17 @@ function igit_show_rel_post()
             $output .= '<ul>';
         } //start of raw format tag
 		$nodatacnt=0;	
+		
         foreach ($results as $result) {
 			
-			$categories = get_the_category($result->ID);	
-				
+			
+			 
 		
 			$pstincat = false;	
-            $title = trim(stripslashes($result->post_title));
+            $title = trim(stripslashes($result['post_title']));
 			
             $image = ""; // Null Variable to verify for no impage found case
-            preg_match_all('|<img.*?src=[\'"](.*?)[\'"].*?>|i', $result->post_content, $matches);
+            preg_match_all('|<img.*?src=[\'"](.*?)[\'"].*?>|i', $result['post_content'] , $matches);
             if (isset($matches))
 			{
                 $image = $matches[1][0];
@@ -351,44 +402,28 @@ function igit_show_rel_post()
             }
             $image = parse_url($image, PHP_URL_PATH);
 			
-			foreach ($categories as $cat) {	// Loop to check if post exists in excluded category
-
-				$pstincat = (in_array($cat->cat_ID, (array) $igit_rpwt['exclude_cat_arr'])) ? true : false;
-
-				if ($pstincat) break;	// End loop if post found in category
-
-			}
-			if (!$pstincat) {
+			
+			
             // Condition for Horizontal Related Posts
             if ($igit_rpwt['related_post_style'] == '1') {
 			
                 $output .= '<div class="igit_relpost">';
 				if($igit_rpwt['display_thumb'] == '1')
 				{
-					$divlnk =  "onclick=location.href='".get_permalink($result->ID)."'; style=cursor:pointer;";
-					$output .=  '<div id="igit_rpwt_main_image" '.$divlnk.'><a href="' . get_permalink($result->ID) . '" target="_top"><img id="igit_rpwt_thumb" src="' . WP_PLUGIN_URL . '/igit-related-posts-with-thumb-images-after-posts/timthumb.php?src=' . IGIT_get_the_image(array( 'post_id' => $result->ID )) . '&w=' . $igit_rpwt['thumb_width'] . '&h=' . $igit_rpwt['thumb_height'] . '&zc=1"/></a></div>';
+					$divlnk =  "onclick=location.href='".get_permalink($result['ID'])."'; style=cursor:pointer;";
+					$output .=  '<div id="igit_rpwt_main_image" '.$divlnk.'><a href="' . get_permalink($result['ID']) . '" target="_top"><img id="igit_rpwt_thumb" src="' . WP_PLUGIN_URL . '/igit-related-posts-with-thumb-images-after-posts/timthumb.php?src=' . IGIT_get_the_image(array( 'post_id' => $result['ID'] )) . '&w=' . $igit_rpwt['thumb_width'] . '&h=' . $igit_rpwt['thumb_height'] . '&zc=1"/></a></div>';
 				}
 				if($igit_rpwt['display_title'] == '1')
 				{
-					if($igit_rpwt['display_full_title'] == '1')
-					{	
-						$newtitle = $title;
-						
+					if(strlen($title) > 45)
+					{
+						$newtitle = substr($title, 0, 45) .'...';
 					}
 					else
 					{	
-												
-								if(strlen($title) > $igit_rpwt['title_characters'])
-								{
-									$newtitle = substr($title, 0, $igit_rpwt['title_characters']) .'...';
-								}
-								else
-								{	
-									$newtitle = $title;
-								}
-						
+						$newtitle = $title;
 					}
-					$output .= '<div id="igit_title"><a href="' . get_permalink($result->ID) . '" target="_top">' . $newtitle . '</a></div> ';
+					$output .= '<div id="igit_title"><a href="' . get_permalink($result['ID']) . '" target="_top">' . $newtitle . '</a></div> ';
 				}
 				$output .= '</div>';
 				$nodatacnt = 1;
@@ -396,25 +431,25 @@ function igit_show_rel_post()
 			
             // Condition for Verticle Related Posts
             if ($igit_rpwt['related_post_style'] == '2') {
-				$divlnk =  "onclick=location.href='".get_permalink($result->ID)."'; style=cursor:pointer;";
+				$divlnk =  "onclick=location.href='".get_permalink($result['ID'])."'; style=cursor:pointer;";
                 $output .= '<li id="igit_rpwt_li" style="height:' . $height . 'px;" '.$divlnk.'>';
 				if($igit_rpwt['display_thumb'] == '1')
 				{
-					$output .= '<div id="igit_rpwt_main_image" ><a href="' . get_permalink($result->ID) . '" target="_top"><img id="igit_rpwt_thumb" src="' . WP_PLUGIN_URL . '/igit-related-posts-with-thumb-images-after-posts/timthumb.php?src=' . IGIT_get_the_image(array( 'post_id' => $result->ID )) . '&w=' . $igit_rpwt['thumb_width'] . '&h=' . $igit_rpwt['thumb_height'] . '&zc=1"/></a></div>';
+					$output .= '<div id="igit_rpwt_main_image" ><a href="' . get_permalink($result['ID']) . '" target="_top"><img id="igit_rpwt_thumb" src="' . WP_PLUGIN_URL . '/igit-related-posts-with-thumb-images-after-posts/timthumb.php?src=' . IGIT_get_the_image(array( 'post_id' => $result['ID'] )) . '&w=' . $igit_rpwt['thumb_width'] . '&h=' . $igit_rpwt['thumb_height'] . '&zc=1"/></a></div>';
 				}
-				$output .= '<div id="igit_title"><a href="' . get_permalink($result->ID) . '" target="_top">' . $title . '</a></div></li>';
+				$output .= '<div id="igit_title"><a href="' . get_permalink($result['ID']) . '" target="_top">' . $title . '</a></div></li>';
 				$nodatacnt = 1;
             }
             // Condition for simple Related Posts
             if ($igit_rpwt['related_post_style'] == '3') {
-				$divlnk =  "onclick=location.href='".get_permalink($result->ID)."'; style=cursor:pointer;";
-                $output .= '<li id="igit_rpwt_li"'.$divlnk.'><div id="igit_rpwt_main_image"><a href="' . get_permalink($result->ID) . '" rel="bookmark" target="_top"></div><div id="igit_title">' . $title . '</div></a><div id="description">' . $post_text . '</div></li>';
+				$divlnk =  "onclick=location.href='".get_permalink($result['ID'])."'; style=cursor:pointer;";
+                $output .= '<li id="igit_rpwt_li"'.$divlnk.'><div id="igit_rpwt_main_image"><a href="' . get_permalink($result['ID']) . '" rel="bookmark" target="_top"></div><div id="igit_title">' . $title . '</div></a><div id="description">' . $post_text . '</div></li>';
 				$nodatacnt = 1;
             }
             	$result_counter++;
            		 if ($result_counter == $limit)
            		     break; // End loop when related posts limit is reached
-			} // End of $pstincat if condition
+			
 			
         } //end of foreach loop
 		
@@ -429,16 +464,59 @@ function igit_show_rel_post()
         if ($igit_rpwt['related_post_style'] == '3') {
             $output .= '</ul>';
         } //end of raw format tag
+		}
+				else {
+			
+				$output = '<div id="crp_related">';
+				$output .= ($crp_settings['blank_output']) ? ' ' : '<p>' . __($igit_rpwt['no_related_post_text'], CRP_LOCAL_NAME) . '</p>';
+			}
     } else {
+	
         $output = '<div id="crp_related">';
         $output .= ($crp_settings['blank_output']) ? ' ' : '<p>' . __($igit_rpwt['no_related_post_text'], CRP_LOCAL_NAME) . '</p>';
     }
 	
     $output .= '</div>';
     if ($igit_rpwt['igit_credit'] == "1")
-         $output .= '<div style="font-size: 10px; float: left;width:100%;color:#FFFFFF;" ><a style="color:#FFFFFF" href="http://php-freelancer.in/"  title="Freelance Developer, Freelance PHP Programmer,PHP Freelancer ,PHP freelancer India">Freelance PHP Developer</a> | <a style="color:#FFFFFF" href="http://php-freelancer.in/"  title="Freelance PHP Developer, Freelance PHP Programmer,PHP Freelancer ,PHP freelancer India">Freelance PHP Programmer</a></div>';
+        $output .= '<div style="font-size: 10px; float: left;width:100%;color:#FFFFFF;" ><a style="color:#FFFFFF" href="http://www.hackingethics.com/"  title="Freelance Developer, Freelance PHP Programmer,PHP Freelancer ,PHP freelancer India">Freelance PHP Developer</a> | <a style="color:#FFFFFF" href="http://php-freelancer.in/"  title="Freelance PHP Developer, Freelance PHP Programmer,PHP Freelancer ,PHP freelancer India">Freelance PHP Programmer</a></div>';
     return $output;
 }
+/**
+ * get tag id from tag name
+ * @param <type> $tag_name
+ * @return <type>
+ */
+if (!function_exists("get_tag_ID")) {
+    function get_tag_ID($tag_name) {
+        $tag = get_term_by('name', $tag_name, 'post_tag');
+        if ($tag) {
+            return $tag->term_id;
+        } else {
+            return 0;
+        }
+    }
+}
+function objectToArray( $objecttemp )
+    {
+		
+		foreach($objecttemp as $object) 
+		{
+		
+			if( !is_object( $object ) && !is_array( $object ) )
+			{
+				return $object;
+			}
+			if( is_object( $object ) )
+			{
+				$object = get_object_vars( $object );
+				
+			}
+			$lastarray[] = $object;
+			
+			//return array_map( 'objectToArray', $object );
+		}
+		return $lastarray;
+    }
 function igit_rpwt_posts()
 {
 	$output = igit_show_rel_post();
