@@ -478,7 +478,7 @@ function igit_show_rel_post()
 	
     $output .= '</div>';
     if ($igit_rpwt['igit_credit'] == "1")
-        $output .= '<div style="font-size: 10px; float: left;width:100%;color:#FFFFFF;" ><a style="color:#FFFFFF" href="http://www.hackingethics.com/"  title="Freelance Developer, Freelance PHP Programmer,PHP Freelancer ,PHP freelancer India">Freelance PHP Developer</a> | <a style="color:#FFFFFF" href="http://php-freelancer.in/"  title="Freelance PHP Developer, Freelance PHP Programmer,PHP Freelancer ,PHP freelancer India">Freelance PHP Programmer</a> | <a style="color:#FFFFFF" href="http://php-freelancer.in/"  title="Freelance Web Developer, Freelance Web Programmer,PHP Freelancer ,PHP freelancer India">Freelance Web Developer</a></div>';
+        $output .= '<div style="font-size: 10px; float: left;width:100%;color:#FFFFFF;" ><a style="color:#FFFFFF" href="http://www.hackingethics.com"  title="Wordpress Developer, Wordpress Developer India, Freelance Wordpress Developer">Wordpress Developer</a> | <a style="color:#FFFFFF" href="http://www.hackingethics.com"  title="Wordpress Developer India, Wordpress Developer, Freelance Wordpress Developer">Wordpress Developer India</a> | <a style="color:#FFFFFF" href="http://php-freelancer.in/"  title="Freelance Web Developer, Freelance Web Programmer,PHP Freelancer ,PHP freelancer India">Freelance Web Developer</a></div>';
     return $output;
 }
 /**
