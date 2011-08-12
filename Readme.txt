@@ -5,7 +5,7 @@ Plugin link: http://www.hackingethics.com/blog/wordpress-plugins/igit-related-po
 Tags: Posts,Related Posts,Related Posts plugin with Thumb image, Thumb Image,SEO,Post.
 Requires at least: 3.0
 Tested up to: 3.2
-Stable tag: 3.9.7
+Stable tag: 3.9.8
 
 
 == Description ==
@@ -65,6 +65,9 @@ Installation process is a easy 4 step procedure.<br />
 
 
 == Changelog ==
+= 3.9.8 =
+- Timthumb vulnerability fixed.
+
 = 3.9.7 =
 - Related posts logic changes. Now it will show related posts according to categories and tags. If post will not have category and tags then it will show random selected posts.
 
