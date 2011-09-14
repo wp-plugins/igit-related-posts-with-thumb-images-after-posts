@@ -20,7 +20,7 @@
 	a new version of timthumb.
 
 */
-define ('VERSION', '2.7');										// Version of this script 
+define ('VERSION', '2.8');										// Version of this script 
 //Load a config file if it exists. Otherwise, use the values below.
 if( file_exists('timthumb-config.php')) 	require_once('timthumb-config.php');
 if(! defined( 'DEBUG_ON' ) ) 			define ('DEBUG_ON', false);				// Enable debug logging to web server error log (STDERR)
@@ -171,6 +171,7 @@ class timthumb {
 	public function __construct(){
 		global $ALLOWED_SITES;
 		$this->startTime = microtime(true);
+		date_default_timezone_set('UTC');
 		$this->debug(1, "Starting new request from " . $this->getIP() . " to " . $_SERVER['REQUEST_URI']);
 		$this->calcDocRoot();
 		//On windows systems I'm assuming fileinode returns an empty string or a number that doesn't change. Check this.
@@ -185,7 +186,9 @@ class timthumb {
 				}
 			}
 			$this->cacheDirectory = FILE_CACHE_DIRECTORY;
-			touch($this->cacheDirectory . '/index.html');
+			if (!touch($this->cacheDirectory . '/index.html')) {
+				$this->error("Could note create the index.html file.");
+			}
 		} else {
 			$this->cacheDirectory = sys_get_temp_dir();
 		}
@@ -200,6 +203,8 @@ class timthumb {
 			return false;
 		}
 		if(BLOCK_EXTERNAL_LEECHERS && array_key_exists('HTTP_REFERER', $_SERVER) && (! preg_match('/^https?:\/\/(?:www\.)?' . $this->myHost . '(?:$|\/)/i', $_SERVER['HTTP_REFERER']))){
+			// base64 encoded red image that says 'no hotlinkers'
+			// nothing to worry about! :)
 			$imgData = base64_decode("R0lGODlhUAAMAIAAAP8AAP///yH5BAAHAP8ALAAAAABQAAwAAAJpjI+py+0Po5y0OgAMjjv01YUZ\nOGplhWXfNa6JCLnWkXplrcBmW+spbwvaVr/cDyg7IoFC2KbYVC2NQ5MQ4ZNao9Ynzjl9ScNYpneb\nDULB3RP6JuPuaGfuuV4fumf8PuvqFyhYtjdoeFgAADs=");
 			header('Content-Type: image/gif');
 			header('Content-Length: ' . sizeof($imgData));
@@ -345,7 +350,7 @@ class timthumb {
 				return false;
 			} else { //Otherwise serve a 304
 				$this->debug(3, "File has not been modified since last get, so serving a 304.");
-				header ('HTTP/1.1 304 Not Modified');
+				header ($_SERVER['SERVER_PROTOCOL'] . ' 304 Not Modified');
 				$this->debug(1, "Returning 304 not modified");
 				return true;
 			}
@@ -404,7 +409,7 @@ class timthumb {
 			$html .= '<li>' . htmlentities($err) . '</li>';
 		}
 		$html .= '</ul>';
-		header ('HTTP/1.1 400 Bad Request');
+		header ($_SERVER['SERVER_PROTOCOL'] . ' 400 Bad Request');
 		echo '<h1>A TimThumb error has occured</h1>The following error(s) occured:<br />' . $html . '<br />';
 		echo '<br />Query String : ' . htmlentities ($_SERVER['QUERY_STRING']);
 		echo '<br />TimThumb version : ' . VERSION . '</pre>';
@@ -439,13 +444,17 @@ class timthumb {
 		//If this is a new timthumb installation we need to create the file
 		if(! is_file($lastCleanFile)){
 			$this->debug(1, "File tracking last clean doesn't exist. Creating $lastCleanFile");
-			touch($lastCleanFile);
+			if (!touch($lastCleanFile)) {
+				$this->error("Could note create cache clean timestamp file.");
+			}
 			return;
 		}
 		if(@filemtime($lastCleanFile) < (time() - FILE_CACHE_TIME_BETWEEN_CLEANS) ){ //Cache was last cleaned more than 1 day ago
 			$this->debug(1, "Cache was last cleaned more than " . FILE_CACHE_TIME_BETWEEN_CLEANS . " seconds ago. Cleaning now.");
 			// Very slight race condition here, but worst case we'll have 2 or 3 servers cleaning the cache simultaneously once a day.
-			touch($lastCleanFile);
+			if (!touch($lastCleanFile)) {
+				$this->error("Could note create cache clean timestamp file.");
+			}
 			$files = glob($this->cacheDirectory . '/*' . FILE_CACHE_SUFFIX);
 			$timeAgo = time() - FILE_CACHE_MAX_FILE_AGE;
 			foreach($files as $file){
@@ -698,7 +707,7 @@ class timthumb {
 
 		}
 		//Straight from Wordpress core code. Reduces filesize by up to 70% for PNG's
-		if ( (IMAGETYPE_PNG == $origType || IMAGETYPE_GIF == $origType) && function_exists('imageistruecolor') && !imageistruecolor( $image ) ){
+		if ( (IMAGETYPE_PNG == $origType || IMAGETYPE_GIF == $origType) && function_exists('imageistruecolor') && !imageistruecolor( $image ) && imagecolortransparent( $image ) > 0 ){
 			imagetruecolortopalette( $canvas, false, imagecolorstotal( $image ) );
 		}
 
@@ -783,6 +792,7 @@ class timthumb {
 		}
 		$this->debug(3, "Done image replace with security header. Cleaning up and running cleanCache()");
 		imagedestroy($canvas);
+		imagedestroy($image);
 		return true;
 	}
 	protected function calcDocRoot(){
@@ -801,7 +811,7 @@ class timthumb {
 				$this->debug(3, "Generated docRoot using PATH_TRANSLATED and PHP_SELF as: $docRoot");
 			} 
 		}
-		if($docRoot){ $docRoot = preg_replace('/\/$/', '', $docRoot); }
+		if($docRoot && $_SERVER['DOCUMENT_ROOT'] != '/'){ $docRoot = preg_replace('/\/$/', '', $docRoot); }
 		$this->debug(3, "Doc root is: " . $docRoot);
 		$this->docRoot = $docRoot;
 
@@ -988,6 +998,12 @@ class timthumb {
 		}
 	}
 	protected function sendImageHeaders($mimeType, $dataSize){
+		if(! preg_match('/^image\//i', $mimeType)){
+			$mimeType = 'image/' . $mimeType;
+		}
+		if(strtolower($mimeType) == 'image/jpg'){
+			$mimeType = 'image/jpeg';
+		}
 		$gmdate_expires = gmdate ('D, d M Y H:i:s', strtotime ('now +10 days')) . ' GMT';
 		$gmdate_modified = gmdate ('D, d M Y H:i:s') . ' GMT';
 		// send content headers then display image
@@ -1019,8 +1035,6 @@ class timthumb {
 	protected function openImage($mimeType, $src){
 		switch ($mimeType) {
 			case 'image/jpg': //This isn't a valid mime type so we should probably remove it
-				$image = imagecreatefromjpeg ($src);
-				break;
 			case 'image/jpeg':
 				$image = imagecreatefromjpeg ($src);
 				break;
@@ -1179,4 +1193,3 @@ class timthumb {
 		return $this->is404;
 	}
 }
-?>

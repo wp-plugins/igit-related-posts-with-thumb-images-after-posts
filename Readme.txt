@@ -5,7 +5,7 @@ Plugin link: http://www.hackingethics.com/blog/wordpress-plugins/igit-related-po
 Tags: Posts,Related Posts,Related Posts plugin with Thumb image, Thumb Image,SEO,Post.
 Requires at least: 3.0
 Tested up to: 3.2
-Stable tag: 3.9.8
+Stable tag: 4.0
 
 
 == Description ==
@@ -65,6 +65,9 @@ Installation process is a easy 4 step procedure.<br />
 
 
 == Changelog ==
+= 4.0 =
+- Latest Timthumb Used.
+
 = 3.9.8 =
 - Timthumb vulnerability fixed.
 
