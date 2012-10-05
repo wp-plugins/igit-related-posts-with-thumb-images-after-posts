@@ -477,8 +477,7 @@ function igit_show_rel_post()
     }
 	
     $output .= '</div>';
-    if ($igit_rpwt['igit_credit'] == "1")
-        $output .= '<div style="font-size: 10px; float: left;width:100%;" ><a href="http://php-freelancer.in/"  title="Freelance Web Developer, Freelance Web Programmer,PHP Freelancer ,PHP freelancer India">Freelance Web Developer</a></div>';
+    
     return $output;
 }
 /**
