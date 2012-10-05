@@ -291,10 +291,7 @@ function igit_action_callback()
     $chckd_credit = ($igit_rpwt['igit_credit'] == "1") ? "checked=checked" : "";
     $result1       = $result1 . '<option value="3" ' . $chk3 . '>Raw Format (<code>&lt;ul&gt; &lt;li&gt;</code>)</option></select></td>
 				</tr>
-				<tr valign="top">
-				<th scope="row"><label for="blogname">Give IGIT Plugin Credit?</label></th>
-					<td><input type="checkbox" id="igit_credit" name="igit_credit" value="1" ' . $chckd_credit . '/></td>
-				</tr>
+				
 				<tr valign="top">
 				<th scope="row"><label for="blogname">Donate Us :</label></th>
 					<td><form action="https://www.paypal.com/cgi-bin/webscr" method="post">
@@ -558,10 +555,7 @@ function igit_rpwt_admin_options()
     echo $message_succ . '<option value="3" ' . $chk3 . '>Raw Format (<code>&lt;ul&gt; &lt;li&gt;</code>)</option></select>
 		</td>
 				</tr>
-				<tr valign="top">
-				<th scope="row"><label for="blogname">Give IGIT Plugin Credit?</label></th>
-					<td><input type="checkbox" id="igit_credit" name="igit_credit" value="1" ' . $chckd_credit . '/></td>
-				</tr>
+				
 				<tr valign="top">
 				<th scope="row"><label for="blogname">Donate Us :</label></th>
 					<td><form action="https://www.paypal.com/cgi-bin/webscr" method="post">
