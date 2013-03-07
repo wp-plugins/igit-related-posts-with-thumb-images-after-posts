@@ -14,7 +14,7 @@ License URI: http://www.gnu.org/licenses/gpl-3.0.html
 IGIT Related Posts With Thumb After Posts Plugin Automatically inserts one widget after posts having related posts.
 
 == Description ==
-[Plugin Home Page](http://www.hackingethics.com/blog/wordpress-plugins/igit-related-posts-with-thumb-image-after-posts/) | [Author Site](http://www.hackingethics.com/) | [Support](http://www.hackingethics.com/blog/wordpress-plugins/igit-related-posts-with-thumb-image-after-posts/)| [Hire Me]http://www.hackingethics.com/blog/contact-me/)
+[Plugin Home Page](http://www.hackingethics.com/blog/wordpress-plugins/igit-related-posts-with-thumb-image-after-posts/) | [Author Site](http://www.hackingethics.com/) | [Support](http://www.hackingethics.com/blog/wordpress-plugins/igit-related-posts-with-thumb-image-after-posts/)| [Hire Me](http://www.hackingethics.com/blog/contact-me/)
 <br />
 My Other Plugins :
 [IGIT Related Posts Widget](http://www.hackingethics.com/blog/wordpress-plugins/igit-related-posts-widget/) | [IGIT Random Post Slider Widget](http://www.hackingethics.com/blog/wordpress-plugins/igit-posts-slider-widget/) | [IGIT Follow Me Button](http://www.hackingethics.com/blog/wordpress-plugins/igit-follow-me-after-post-button-new/) | [IGIT Twitter Tweet Button](http://www.hackingethics.com/blog/wordpress-plugins/igit-new-twitter-tweet-share-button-with-counter-wordpress-plugin/) 
