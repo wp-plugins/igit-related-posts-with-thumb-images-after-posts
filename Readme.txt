@@ -5,7 +5,7 @@ Plugin link: http://www.hackingethics.com/blog/wordpress-plugins/igit-related-po
 Tags: Posts,Related Posts,Related Posts plugin with Thumb image, Thumb Image,SEO,Post.
 Requires at least: 3.0
 Tested up to: 3.2
-Stable tag: 4.2
+Stable tag: 4.3
 
 
 License: GNU General Public License (GPL), v3 (or newer)
@@ -62,6 +62,9 @@ Installation process is a easy 4 step procedure.<br />
 
 
 == Changelog ==
+= 4.3 =
+- Timthumb latest version updates,Added facebook like button and donaters names.
+
 = 4.2 =
 - GPL3 compatible and credit link removed.
 
