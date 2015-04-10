@@ -4,8 +4,8 @@ Donate link: http://www.hackingethics.com/
 Plugin link: http://www.hackingethics.com/blog/wordpress-plugins/igit-related-posts-with-thumb-image-after-posts/
 Tags: Posts,Related Posts,Related Posts plugin with Thumb image, Thumb Image,SEO,Post.
 Requires at least: 3.0
-Tested up to: 3.2
-Stable tag: 4.3
+Tested up to: 4.1.1
+Stable tag: 4.4
 
 
 License: GNU General Public License (GPL), v3 (or newer)
@@ -62,6 +62,9 @@ Installation process is a easy 4 step procedure.<br />
 
 
 == Changelog ==
+= 4.4 =
+- Timthumb latest version update,Remove spaces from top and bottom of each file, deleted 2 unnecessary files.
+
 = 4.3 =
 - Timthumb latest version updates,Added facebook like button and donaters names.
 
