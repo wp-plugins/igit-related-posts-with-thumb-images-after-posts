@@ -1,6 +1,4 @@
 <?php
-
-
 /**
  * This is a highly intuitive function that gets images.  It first calls for custom field keys. If no 
  * custom field key is set, check for the_post_thumbnail().  If no post image, check for images 
@@ -308,5 +306,4 @@ function IGIT_get_the_image_delete_cache() {
 function IGIT_get_the_image_link( $deprecated = '', $deprecated_2 = '', $deprecated_3 = '' ) {
 	IGIT_get_the_image();
 }
-
 ?>

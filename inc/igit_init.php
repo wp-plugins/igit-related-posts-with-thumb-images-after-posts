@@ -1,5 +1,4 @@
 <?php
-
 $igit_rpwt = array( "text_show" => "<h4>Related Posts :</h4>",
 					"no_related_post_text" => "No related posts found.",
 					"auto_show" => "1",
