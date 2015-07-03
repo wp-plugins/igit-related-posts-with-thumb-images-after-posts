@@ -11,7 +11,7 @@ Stable tag: 4.5
 License: GNU General Public License (GPL), v3 (or newer)
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
-IGIT Related Posts With Thumb After Posts Plugin Automatically inserts one widget after posts having related posts.
+IGIT Related Posts With Thumb After Posts Plugin Automatically add related posts after posts content.
 
 == Description ==
 [Plugin Home Page](http://www.hackingethics.com/blog/wordpress-plugins/igit-related-posts-with-thumb-image-after-posts/) | [Author Site](http://www.hackingethics.com/) | [Support](http://www.hackingethics.com/blog/wordpress-plugins/igit-related-posts-with-thumb-image-after-posts/)| [Hire Me](http://www.hackingethics.com/blog/contact-me/)
