@@ -82,3 +82,30 @@ line-height:20px;
 margin-bottom:9px;
 padding:8px 10px;
 }
+#frm_fields{
+	display: inline-block;
+}
+#frm_fields #message.updated{
+	margin: 35px 0 0 !important;
+}
+.igit_ads_block {
+    background-color: #d0ee99;
+    border-color: #8fd401;
+    border-style: solid;
+    border-width: 2px;
+    color: #58792e;
+    font-size: 15px;
+    margin: 0;
+    padding: 2px 15px;
+	    border-radius: 5px;
+		    margin: 10px 0 0;
+			    width: 692px;
+}
+.igit_ads_block p{
+	margin: 5px 0 !important;
+}
+
+.igit_ads_block p a{
+     color: #58792e;
+    font-weight: bold;
+}

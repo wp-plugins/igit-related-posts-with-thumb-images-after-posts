@@ -4,8 +4,8 @@ Donate link: http://www.hackingethics.com/
 Plugin link: http://www.hackingethics.com/blog/wordpress-plugins/igit-related-posts-with-thumb-image-after-posts/
 Tags: Posts,Related Posts,Related Posts plugin with Thumb image, Thumb Image,SEO,Post.
 Requires at least: 3.0
-Tested up to: 4.1.1
-Stable tag: 4.4
+Tested up to: 4.2.2
+Stable tag: 4.5
 
 
 License: GNU General Public License (GPL), v3 (or newer)
@@ -19,23 +19,34 @@ IGIT Related Posts With Thumb After Posts Plugin Automatically inserts one widge
 My Other Plugins :
 [IGIT Related Posts Widget](http://www.hackingethics.com/blog/wordpress-plugins/igit-related-posts-widget/) | [IGIT Random Post Slider Widget](http://www.hackingethics.com/blog/wordpress-plugins/igit-posts-slider-widget/) | [IGIT Follow Me Button](http://www.hackingethics.com/blog/wordpress-plugins/igit-follow-me-after-post-button-new/) | [IGIT Twitter Tweet Button](http://www.hackingethics.com/blog/wordpress-plugins/igit-new-twitter-tweet-share-button-with-counter-wordpress-plugin/) 
 
-- The IGIT Related Posts With Thumb After Posts Plugin Automatically inserts one widget after posts having related posts.<br />
-- Related Posts showing by title and content matching, If it not show related posts by title content matching it will search related posts by matching tags and title and if still it is not showing any related posts then it will show random posts.<br />
-- This plugin also empowers the Blog administrator to place manually related posts widget, Also having options to give related posts number,Display Thumb or not,Set Thumb Width and Height and Main thing it is giving three options to select related posts style - Horizontal, Vertical, Simple Style.<br />
+- The IGIT Related Posts With Thumb After Posts Plugin Automatically inserts related posts after post content.<br />
+- Related posts showing by current posts tags and category posts. Remove title and content matching because it was taking too much resources of server.<br />
+- Code given Place manually related posts.<br />
+- How many related posts want to show managable from admin.<br />
+- Option to display thumb image or not.<br />
+- Option to display Title or not.<br />
+- Option to set thumb image width and height.<br />
+- Options to select Three related posts format - Horizontal, Vertical, Simple Style.<br />
+- Options to exclude Categories from Related Posts.<br />
 - By using this plugin on your blog you can attract your visitors to other related articles of your blog.<br />
 - This plugin is also SEO friendly.<br />
 - Ajax Based Admin Options.<br />
-- Exclude Categories from Related Posts.<br />
 - <b>Note : This plugin is showing thumb images which are exists in posts and also exists on same server, Images from remote server are not showing in related posts to prevent bandwidth theft.</b><br />
 
 = Major Features =
-1. Automatically inserts one widget of Related Posts after post.<br />
-2. Enter Related Posts Number to Show.<br />
-3. Option for Display Thumb or not.<br />
-4. Option to enter Thumb Width and Height.<br />
-5. Three options to select related posts style - Horizontal, Vertical, Simple Style.<br />
-6. Ajax Based Admin Options.<br />
-7. Exclude Categories from Related Posts.<br />
+1. Automatically inserts related posts after post content.<br />
+2. Related posts showing by current posts tags and category posts. Remove title and content matching because it was taking too much resources of server.<br />
+3. Code given Place manually related posts.<br />
+4. How many related posts want to show managable from admin.<br />
+5. Option to display thumb image or not.<br />
+6. Option to display Title or not.<br />
+7. Option to set thumb image width and height.<br />
+8. Options to select Three related posts format - Horizontal, Vertical, Simple Style.<br />
+9. Options to exclude Categories from Related Posts.<br />
+10. Change font size, font family, font color from admin.<br />
+11. Change background color, hover background color from admin.<br />
+
+
 
 = Included Files =
 
@@ -47,7 +58,7 @@ My Other Plugins :
 
 == Installation ==
 Installation process is a easy 4 step procedure.<br />
-1. Download the zip folder named igit-rpwt.zip<br />
+1. Download the zip folder named igit-related-posts-with-thumb-images-after-posts.zip<br />
 2. Unzip the folder and put it in the plugins directory of your wordpress installation.  (wp-content/plugins).<br />
 3. Activate the plugin through the plugin window in the admin panel.<br />
 4. Go to setting->IGIT Rel Post With Thumb to configure settings.<br />
@@ -58,10 +69,23 @@ Installation process is a easy 4 step procedure.<br />
 = How can i Change look and feel of widget? <br />
 - To Change look and feel and any customization Contact Me here http://www.hackingethics.com/blog/contact-me/.<br />
 
+= How this plugin fetch/get image from post? <br />
+- To show image in relted post, this plugin first trying to fetch featured image, if featured image not exists in post, then it scans post content and fetch first image from post content and show it, If it doesn't find image in content too, then it will show no image placeholer image.<br />
+
+= My images are not showing in related posts,What should I do? <br />
+- You should check that cache folder in plugin folder have 755 permission rights, Timthumb should have 644 permission rights. If it is still not working then you should ask to your hosting to unblock timthumb script for your server/domain.<br />
+
 *NOTE: If you have any other queries or problems regarding the plugin please contact us at: - http://www.hackingethics.com/blog/contact-me/
 
 
 == Changelog ==
+= 4.5 =
+- Removed inline CSS.
+- Exclude category was not working properly,issue solved.
+- Change in code to make plugin properly compatible with Wordpress latest version.
+- Change in default look and feel.
+- Make dynamic height for related posts on front end proportional to thumb image height.
+
 = 4.4 =
 - Timthumb latest version update,Remove spaces from top and bottom of each file, deleted 2 unnecessary files.
 
