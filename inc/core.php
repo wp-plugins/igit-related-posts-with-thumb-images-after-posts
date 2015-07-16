@@ -232,6 +232,9 @@ function igit_show_rel_post()
 		/*if(!empty($igit_rpwt_temp['exclude_cat_arr'])){
 			 $igit_rpwt_temp['exclude_cat_arr'] = $igit_rpwt_default['exclude_cat_arr'];
 		}*/
+		if (!array_key_exists('default_no_image', $igit_rpwt_temp)) {
+            $igit_rpwt_temp['default_no_image'] = $igit_rpwt_default['default_no_image'];
+        }
         if (!array_key_exists('no_related_post_text', $igit_rpwt_temp)) {
             $igit_rpwt_temp['no_related_post_text'] = $igit_rpwt_default['no_related_post_text'];
         } //!array_key_exists('no_related_post_text', $igit_rpwt_temp)
@@ -421,6 +424,7 @@ function igit_show_rel_post()
 	
 		$output = '<div id="igit_rpwt_css">';
 		if ($results) {
+			
 			//Setting css part for Image size
 			$height = $igit_rpwt['thumb_height'] + 4;
 			if ($igit_rpwt['text_show']) {
@@ -446,12 +450,20 @@ function igit_show_rel_post()
 					$image = $matches[1][0];
 					$bgurl = get_bloginfo('url');
 					if (!strstr($image, $bgurl)) {
+						if($igit_rpwt_temp['default_no_image'] == "")
 						$image = WP_PLUGIN_URL . '/'.IGIT_RPWT_PLUGIN_FOLDER_NAME.'/images/noimage.gif'; // when no image found in post 
+						else
+						$image = $igit_rpwt_temp['default_no_image']; // when no image found in post 
 					} //!strstr($image, $bgurl)
 				} //isset($matches)
 				if (strlen(trim($image)) == 0) {
+					if($igit_rpwt_temp['default_no_image'] == "")
 					$image = WP_PLUGIN_URL . '/'.IGIT_RPWT_PLUGIN_FOLDER_NAME.'/images/noimage.gif'; // when no image found in post 
+					else
+					$image = $igit_rpwt_temp['default_no_image']; // when no image found in post 
 				} //strlen(trim($image)) == 0
+				
+			
 				$image = parse_url($image, PHP_URL_PATH);
 				// Condition for Horizontal Related Posts
 				if ($igit_rpwt['related_post_style'] == '1') {

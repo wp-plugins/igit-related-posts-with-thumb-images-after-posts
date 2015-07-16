@@ -1,5 +1,6 @@
 <?php
 $igit_rpwt = array( "text_show" => "<h4>Related Posts :</h4>",
+					"default_no_image" => "",
 					"no_related_post_text" => "No related posts found.",
 					"auto_show" => "1",
 					"related_post_num" => "4",
@@ -20,6 +21,7 @@ $igit_rpwt = array( "text_show" => "<h4>Related Posts :</h4>",
 					"img_border_color" => "DDDDDD");
 
 $igit_rpwt_default = array( "text_show" => "<h4>Related Posts :</h4>",
+					"default_no_image" => "",
 					"no_related_post_text" => "No related posts found.",
 					"auto_show" => "1",
 					"related_post_num" => "4",

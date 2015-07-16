@@ -33,6 +33,9 @@ function IGIT_get_the_image( $args = array() ) {
 		'echo' => true
 	);
 
+	if (get_option('igit_rpwt')) {
+        $igit_rpwt_temp = get_option('igit_rpwt');
+	}
 	
 	/* Merge the input arguments and the defaults. */
 	$args = wp_parse_args( $args, $defaults );
@@ -69,18 +72,27 @@ function IGIT_get_the_image( $args = array() ) {
 		/* If no image found and a $default_image is set, get the default image. */
 		if ( !$image && $default_image )
 		{	
-			$image = IGIT_image_by_default( $args );
+			$image = IGIT_image_by_default( $args ,$igit_rpwt_temp);
 		}
 			$imageurl = $image['url'];
 		
             if (strlen(trim($imageurl)) == 0) {
-                $imageurl = WP_PLUGIN_URL . '/'.IGIT_RPWT_PLUGIN_FOLDER_NAME.'/images/noimage.gif'; // when no image found in post 
+                
+				
+				if($igit_rpwt_temp['default_no_image'] == "")
+				$imageurl = WP_PLUGIN_URL . '/'.IGIT_RPWT_PLUGIN_FOLDER_NAME.'/images/noimage.gif'; // when no image found in post 
+				else
+				$imageurl = $igit_rpwt_temp['default_no_image']; // when no image found in post 
             }
 			else
 			{
 				$bgurl = get_bloginfo('url');
 				if(!strstr($imageurl,$bgurl)){
+					
+					if($igit_rpwt_temp['default_no_image'] == "")
 					$imageurl = WP_PLUGIN_URL . '/'.IGIT_RPWT_PLUGIN_FOLDER_NAME.'/images/noimage.gif'; // when no image found in post 
+					else
+					$imageurl = $igit_rpwt_temp['default_no_image']; // when no image found in post 
 				}
 			}
             $imageurl = parse_url($imageurl, PHP_URL_PATH);	
@@ -222,9 +234,17 @@ function IGIT_image_by_scan( $args = array() ) {
  * @param array $args
  * @return array
  */
-function IGIT_image_by_default( $args = array() ) {
-//	return array( 'url' => $args['default_image'] );
+function IGIT_image_by_default( $args = array(),$igit_rpwt_temp ) {
+	
+	
+	
+	if($igit_rpwt_temp['default_no_image'] == "")
 	return array( 'url' => WP_PLUGIN_URL . '/'.IGIT_RPWT_PLUGIN_FOLDER_NAME.'/images/noimage.gif' );
+	else
+	return array( 'url' => $igit_rpwt_temp['default_no_image'] );
+	//$imageurl = $igit_rpwt_temp['default_no_image']; // when no image found in post 
+//	return array( 'url' => $args['default_image'] );
+	
 }
 
 /**

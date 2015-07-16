@@ -17,6 +17,17 @@ function igit_checked_post_style($value, $rel_style)
     $res_val = ($value == $rel_style) ? "selected='selected'" : "";
     return $res_val;
 }
+function igitrpwt_admin_scripts() {
+  wp_enqueue_script('media-upload');
+  wp_enqueue_script('thickbox');
+  wp_register_script('my-upload', IGIT_RPWT_JS_URL.'/my-script.js', array('jquery','media-upload','thickbox'));
+  wp_enqueue_script('my-upload');
+ }
+function igitrpwt_admin_styles() {
+  wp_enqueue_style('thickbox');
+ }
+ add_action('admin_print_scripts', 'igitrpwt_admin_scripts');
+ add_action('admin_print_styles', 'igitrpwt_admin_styles');
 function igit_action_javascript()
 {
 ?>
@@ -42,6 +53,7 @@ jQuery(document).ready(function($) {
         /*alert(val);
         return false;*/
         tex_show = jQuery('#text_show').attr('value');
+		def_no_image = jQuery('#default_no_image').attr('value');
         no_related_post_tex = jQuery('#no_related_post_text').attr('value');
         aut_show = jQuery('#auto_show:checked').val();
         rel_post_num = jQuery('#related_post_num').attr('value');
@@ -80,6 +92,7 @@ jQuery(document).ready(function($) {
         var data = {
             action: 'igit_save_ajax',
             text_show: tex_show,
+			default_no_image: def_no_image,
             no_related_post_text: no_related_post_tex,
             auto_show: aut_show,
             related_post_num: rel_post_num,
@@ -137,6 +150,7 @@ function igit_action_callback()
 	
 	
 	$text_show   = ($_POST['text_show'] == "") ? $igit_rpwt['text_show'] : $_POST['text_show'];
+	$default_no_image   = ($_POST['default_no_image'] == "") ? $igit_rpwt['default_no_image'] : $_POST['default_no_image'];
 	$no_related_post_text   = ($_POST['no_related_post_text'] == "") ? $igit_rpwt['no_related_post_text'] : $_POST['no_related_post_text'];
 	$auto_show   = ($_POST['auto_show'] == "") ? 2 : $_POST['auto_show'];
     $related_post_num   = ($_POST['related_post_num'] == "") ? $igit_rpwt['related_post_num'] : $_POST['related_post_num'];
@@ -156,6 +170,7 @@ function igit_action_callback()
 	$img_border_color = ($_POST['img_border_color'] == "") ? $igit_rpwt['img_border_color'] : $_POST['img_border_color'];
     $igit_rpwt          = array(
 		"text_show" => $text_show,
+		"default_no_image" => $default_no_image,
 		"no_related_post_text" => $no_related_post_text,
 		"auto_show" => $auto_show,
         "related_post_num" => $related_post_num,
@@ -183,7 +198,7 @@ function igit_action_callback()
 	$auto_chckd_ajax = ($igit_rpwt['auto_show'] == "1") ? "checked=checked" : "";
 	$result = $result . '<tr valign="top"><th scope="row"><label for="blogname">Automatically Show related Posts After Post :<strong>(Tick If Yes)</strong></label></th>
 	<td style="vertical-align:middle;"><input type="checkbox" id="auto_show" name="auto_show" value="1" ' . $auto_chckd_ajax . '/>&nbsp;&nbsp;<strong>(Do not tick if you want to place related posts Manually.)</strong></td></tr><tr valign="top"><th scope="row"><label for="blogname">Manually Placing of Related Posts :</label></th>
-	<td><code>&lt;?php if(function_exists(&#39;igit_rpwt_posts&#39;)) igit_rpwt_posts(); ?&gt;</code></td></tr><tr valign="top"><th scope="row"><label for="blogname">Heading Text :</label></th><td><input type="text" class="code" value="' . $igit_rpwt['text_show'] . '" id="text_show" name="text_show" maxlength="100" size="30"/></td></tr><tr valign="top"><th scope="row"><label for="blogname">No Related Posts Text :</label></th><td><input type="text" class="code" value="' . $igit_rpwt['no_related_post_text'] . '" id="no_related_post_text" name="no_related_post_text" maxlength="100" size="30"/></td></tr><tr valign="top"><th scope="row"><label for="blogname">Select Categories To Exclude From Related Postsssds :</label> </th><td><div id="categories-all" class="tabs-panel" style="overflow:auto;height:140px;width:250px;"><ul id="categorychecklist" class="list:category categorychecklist form-no-clear">';
+	<td><code>&lt;?php if(function_exists(&#39;igit_rpwt_posts&#39;)) igit_rpwt_posts(); ?&gt;</code></td></tr><tr valign="top"><th scope="row"><label for="blogname">Heading Text :</label></th><td><input type="text" class="code" value="' . $igit_rpwt['text_show'] . '" id="text_show" name="text_show" maxlength="100" size="30"/></td></tr><tr valign="top"><th scope="row"><label for="blogname">Default No Image :</label></th><td><input type="text" class="code" value="' . $igit_rpwt['default_no_image'] . '" id="default_no_image" name="default_no_image"  size="30"/><input id="upload_no_image_button" type="button" value="Upload Image"/></td></tr><tr valign="top"><th scope="row"><label for="blogname">No Related Posts Text :</label></th><td><input type="text" class="code" value="' . $igit_rpwt['no_related_post_text'] . '" id="no_related_post_text" name="no_related_post_text" maxlength="100" size="30"/></td></tr><tr valign="top"><th scope="row"><label for="blogname">Select Categories To Exclude From Related Postsssds :</label> </th><td><div id="categories-all" class="tabs-panel" style="overflow:auto;height:140px;width:250px;"><ul id="categorychecklist" class="list:category categorychecklist form-no-clear">';
 	$result1 = "";
 	$result1 = $result1 .'</ul></div></td></tr><tr valign="top"><th scope="row"><label for="blogname">How Many Related Posts Want to Show?</label></th><td><input type="text" class="code" value="' . $igit_rpwt['related_post_num'] . '" id="related_post_num" name="related_post_num" maxlength="2" size="4"/><code>Dont\'t Enter Greater Then 4 to Get Good Results.</code></td></tr>';
     $chckd = ($igit_rpwt['display_thumb'] == "1") ? "checked=checked" : "";
@@ -227,6 +242,7 @@ function igit_rpwt_admin_options()
 	{
         $igit_rpwt = array(
 			"text_show" => $_POST['text_show'],
+			"default_no_image" => $_POST['default_no_image'],
 			"no_related_post_text" => $_POST['no_related_post_text'],
 			"auto_show" => $_POST['auto_show'],
             "num_posts" => $_POST['related_post_num'],
@@ -251,6 +267,10 @@ function igit_rpwt_admin_options()
         $igit_rpwt_new      = get_option('igit_rpwt');
 		if($igit_rpwt_new)
 		{
+			if (!array_key_exists('default_no_image', $igit_rpwt_new)) {
+				$igit_rpwt_new['default_no_image'] = $igit_rpwt_default['default_no_image'];
+			
+			}
 			if (!array_key_exists('no_related_post_text', $igit_rpwt_new)) {
 				$igit_rpwt_new['no_related_post_text'] = $igit_rpwt_default['no_related_post_text'];
 			
@@ -277,6 +297,7 @@ function igit_rpwt_admin_options()
 			}
 		}
 		$text_show   = ($igit_rpwt_new['text_show'] == "") ? $igit_rpwt['text_show'] : $igit_rpwt_new['text_show'];
+		$default_no_image   = ($igit_rpwt_new['default_no_image'] == "") ? $igit_rpwt['default_no_image'] : $igit_rpwt_new['default_no_image'];
 		$no_related_post_text   = ($igit_rpwt_new['no_related_post_text'] == "") ? $igit_rpwt['no_related_post_text'] : $igit_rpwt_new['no_related_post_text'];
 		$auto_show   = ($igit_rpwt_new['auto_show'] == "") ? $igit_rpwt['auto_show'] : $igit_rpwt_new['auto_show'];
 		$related_post_num   = ($igit_rpwt_new['related_post_num'] == "") ? $igit_rpwt['related_post_num'] : $igit_rpwt_new['related_post_num'];
@@ -298,6 +319,7 @@ function igit_rpwt_admin_options()
 		$exclude_cat_arr    = $igit_rpwt_new['exclude_cat_arr'];
 		$igit_rpwt          = array(
 		"text_show" => $text_show,
+		"default_no_image" => $default_no_image,
 		"no_related_post_text" => $no_related_post_text,
 		"auto_show" => $auto_show,
 		"related_post_num" => $related_post_num,
@@ -319,7 +341,7 @@ function igit_rpwt_admin_options()
     }
     echo $message_succ . '<div class="wrap"><div id="icon-options-general" class="icon32"><br/></div><div style="width: 70%; float: left;"><form id="options_form" name="options_form" method="post" action=""><input type="hidden" id="hid_exl_cat" name="hid_exl_cat" value=""><h2 style="display:inline-block;float:left;">IGIT Related Posts With Thumb</h2><div style="padding-left: 10px;height: 22px;    padding-top: 16px;    padding-bottom: 10px;    border-bottom: 1px solid;"><iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.facebook.com%2FHackingEthics&amp;send=false&amp;layout=standard&amp;width=450&amp;show_faces=false&amp;font&amp;colorscheme=light&amp;action=like&amp;height=35&amp;appId=422733157774758" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:35px;" allowTransparency="true"></iframe></div><div id="siteads" class="igit_ads_block fade below-h2"><p><a href="http://php-freelancer.in/contact-me/" target="_blank" style="    text-decoration: none;">Want to Hire Website Developer, PHP Developer or Wordpress Developer? Hire us.</a></p></div><div id="frm_fields"><table class="form-table"><tbody>';
 	$auto_chckd = ($igit_rpwt['auto_show'] == "1") ? "checked=checked" : "";
-	echo $message_succ . '<tr valign="top"><th scope="row"><label for="blogname">Automatically Show related Posts After Post :<strong>(Tick If Yes)</strong></label></th><td style="vertical-align:middle;"><input type="checkbox" id="auto_show" name="auto_show" value="1" ' . $auto_chckd . '/>&nbsp;&nbsp;<strong>(Do not tick if you want to place related posts Manually.)</strong> </td></tr><tr valign="top"><th scope="row"><label for="blogname">Manually Placing of Related Posts :</label></th><td><code>&lt;?php if(function_exists(&#39;igit_rpwt_posts&#39;)) igit_rpwt_posts(); ?&gt;</code></td></tr><tr valign="top"><th scope="row"><label for="blogname">Heading Text :</label></th><td><input type="text" class="code" value="' . $igit_rpwt['text_show'] . '" id="text_show" name="text_show" maxlength="100" size="30"/></td></tr><tr valign="top"><th scope="row"><label for="blogname">No Related Posts Text :</label></th><td><input type="text" class="code" value="' . $igit_rpwt['no_related_post_text'] . '" id="no_related_post_text" name="no_related_post_text" maxlength="100" size="30"/></td></tr><tr valign="top"><th scope="row"><label for="blogname">Select Categories To Exclude From Related Posts :</label> </th><td><div id="categories-all" class="tabs-panel" style="overflow:auto;height:140px;width:250px;"><ul id="categorychecklist" class="list:category categorychecklist form-no-clear">';
+	echo $message_succ . '<tr valign="top"><th scope="row"><label for="blogname">Automatically Show related Posts After Post :<strong>(Tick If Yes)</strong></label></th><td style="vertical-align:middle;"><input type="checkbox" id="auto_show" name="auto_show" value="1" ' . $auto_chckd . '/>&nbsp;&nbsp;<strong>(Do not tick if you want to place related posts Manually.)</strong> </td></tr><tr valign="top"><th scope="row"><label for="blogname">Manually Placing of Related Posts :</label></th><td><code>&lt;?php if(function_exists(&#39;igit_rpwt_posts&#39;)) igit_rpwt_posts(); ?&gt;</code></td></tr><tr valign="top"><th scope="row"><label for="blogname">Heading Text :</label></th><td><input type="text" class="code" value="' . $igit_rpwt['text_show'] . '" id="text_show" name="text_show" maxlength="100" size="30"/></td></tr><tr valign="top"><th scope="row"><label for="blogname">Default No Image :</label></th><td><input type="text" class="code" value="' . $igit_rpwt['default_no_image'] . '" id="default_no_image" name="default_no_image"  size="30"/><input id="upload_no_image_button" type="button" value="Upload Image"/></td></tr><tr valign="top"><th scope="row"><label for="blogname">No Related Posts Text :</label></th><td><input type="text" class="code" value="' . $igit_rpwt['no_related_post_text'] . '" id="no_related_post_text" name="no_related_post_text" maxlength="100" size="30"/></td></tr><tr valign="top"><th scope="row"><label for="blogname">Select Categories To Exclude From Related Posts :</label> </th><td><div id="categories-all" class="tabs-panel" style="overflow:auto;height:140px;width:250px;"><ul id="categorychecklist" class="list:category categorychecklist form-no-clear">';
 	echo $message_succ. wp_category_checklist_IGIT($post_ID, false,$exclude_cat_arr);
 	echo $message_succ.'</ul></div><td></tr><tr valign="top"><th scope="row"><label for="blogname">How Many Related Posts Want to Show?</label></th><td><input type="text" class="code" value="' . $igit_rpwt['related_post_num'] . '" id="related_post_num" name="related_post_num" maxlength="2" size="4"/><code>Dont\'t Enter Greater Then 4 to Get Good Results.</code></td></tr>';
     $chckd = ($igit_rpwt['display_thumb'] == "1") ? "checked=checked" : "";
