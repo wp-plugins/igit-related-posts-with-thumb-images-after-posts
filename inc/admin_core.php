@@ -2,11 +2,22 @@
 function igit_admin_enqueue_style()
 {
     wp_enqueue_style('my-style', IGIT_RPWT_CSS_URL.'/igit_style.css');
+	if (isset($_GET['page']) && $_GET['page'] == 'igit-rpwt') {
+		wp_enqueue_style('thickbox');
+	}
+	
 }
 function igit_admin_enqueue_script()
 {
     wp_enqueue_script('jquery-form');
     wp_enqueue_script('jscolor', IGIT_RPWT_JS_URL.'/jscolor.js');
+	if (isset($_GET['page']) && $_GET['page'] == 'igit-rpwt') {
+		wp_enqueue_script('media-upload');
+		wp_enqueue_script('thickbox');
+		wp_register_script('my-upload', IGIT_RPWT_JS_URL.'/my-script.js', array('jquery','media-upload','thickbox'));
+		wp_enqueue_script('my-upload');
+	}
+	
 }
 function igit_plugin_menu()
 {
@@ -17,17 +28,7 @@ function igit_checked_post_style($value, $rel_style)
     $res_val = ($value == $rel_style) ? "selected='selected'" : "";
     return $res_val;
 }
-function igitrpwt_admin_scripts() {
-  wp_enqueue_script('media-upload');
-  wp_enqueue_script('thickbox');
-  wp_register_script('my-upload', IGIT_RPWT_JS_URL.'/my-script.js', array('jquery','media-upload','thickbox'));
-  wp_enqueue_script('my-upload');
- }
-function igitrpwt_admin_styles() {
-  wp_enqueue_style('thickbox');
- }
- add_action('admin_print_scripts', 'igitrpwt_admin_scripts');
- add_action('admin_print_styles', 'igitrpwt_admin_styles');
+
 function igit_action_javascript()
 {
 ?>
