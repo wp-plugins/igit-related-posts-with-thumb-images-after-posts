@@ -5,7 +5,7 @@ Plugin link: http://www.hackingethics.com/blog/wordpress-plugins/igit-related-po
 Tags: Posts,Related Posts,Related Posts plugin with Thumb image, Thumb Image,SEO,Post.
 Requires at least: 3.0
 Tested up to: 4.2.2
-Stable tag: 4.5.1
+Stable tag: 4.5.2
 
 
 License: GNU General Public License (GPL), v3 (or newer)
@@ -80,6 +80,9 @@ Installation process is a easy 4 step procedure.<br />
 
 
 == Changelog ==
+= 4.5.2 =
+- Fix Bug - Can't add media in post/page.
+
 = 4.5.1 =
 - Added option to upload default no imnage from settings page.
 
