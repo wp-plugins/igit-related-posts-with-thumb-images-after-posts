@@ -4,8 +4,8 @@ Donate link: http://www.hackingethics.com/
 Plugin link: http://www.hackingethics.com/blog/wordpress-plugins/igit-related-posts-with-thumb-image-after-posts/
 Tags: Posts,Related Posts,Related Posts plugin with Thumb image, Thumb Image,SEO,Post.
 Requires at least: 3.0
-Tested up to: 4.2.2
-Stable tag: 4.5.2
+Tested up to: 4.2.4
+Stable tag: 4.5.3
 
 
 License: GNU General Public License (GPL), v3 (or newer)
@@ -31,6 +31,7 @@ My Other Plugins :
 - By using this plugin on your blog you can attract your visitors to other related articles of your blog.<br />
 - This plugin is also SEO friendly.<br />
 - Ajax Based Admin Options.<br />
+- Option to disable timthumb and disable hard crop in timthumb.<br />
 - <b>Note : This plugin is showing thumb images which are exists in posts and also exists on same server, Images from remote server are not showing in related posts to prevent bandwidth theft.</b><br />
 
 = Major Features =
@@ -46,6 +47,7 @@ My Other Plugins :
 10. Change font size, font family, font color from admin.<br />
 11. Change background color, hover background color from admin.<br />
 12. Upload default image from settings page.<br />
+13. Option to disable timthumb and disable hard crop in timthumb. <br />
 
 
 
@@ -80,6 +82,9 @@ Installation process is a easy 4 step procedure.<br />
 
 
 == Changelog ==
+= 4.5.3 =
+- Add Option to disable timthumb and disable hard crop in timthumb.
+
 = 4.5.2 =
 - Fix Bug - Can't add media in post/page.
 
