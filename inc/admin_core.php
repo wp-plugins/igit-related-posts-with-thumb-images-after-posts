@@ -58,6 +58,9 @@ jQuery(document).ready(function($) {
         no_related_post_tex = jQuery('#no_related_post_text').attr('value');
         aut_show = jQuery('#auto_show:checked').val();
         rel_post_num = jQuery('#related_post_num').attr('value');
+		dis_timthumb = jQuery('#disable_timthumb:checked').val();
+		dis_hardcrop = jQuery('#disable_hardcrop:checked').val();
+		
         dis_thumb = jQuery('#display_thumb:checked').val();
         dis_title = jQuery('#display_title:checked').val();
         dis_full_title = jQuery('#display_full_title:checked').val();
@@ -97,6 +100,8 @@ jQuery(document).ready(function($) {
             no_related_post_text: no_related_post_tex,
             auto_show: aut_show,
             related_post_num: rel_post_num,
+			disable_timthumb: dis_timthumb,
+            disable_hardcrop: dis_hardcrop,			
             display_thumb: dis_thumb,
             display_title: dis_title,
             display_full_title: dis_full_title,
@@ -155,6 +160,10 @@ function igit_action_callback()
 	$no_related_post_text   = ($_POST['no_related_post_text'] == "") ? $igit_rpwt['no_related_post_text'] : $_POST['no_related_post_text'];
 	$auto_show   = ($_POST['auto_show'] == "") ? 2 : $_POST['auto_show'];
     $related_post_num   = ($_POST['related_post_num'] == "") ? $igit_rpwt['related_post_num'] : $_POST['related_post_num'];
+	
+	$disable_timthumb      = ($_POST['disable_timthumb'] == "") ? 2 : $_POST['disable_timthumb'];
+	$disable_hardcrop      = ($_POST['disable_hardcrop'] == "") ? 2 : $_POST['disable_hardcrop'];
+	
     $display_thumb      = ($_POST['display_thumb'] == "") ? 2 : $_POST['display_thumb'];
 	$display_title      = ($_POST['display_title'] == "") ? 2 : $_POST['display_title'];
 	$display_full_title      = ($_POST['display_full_title'] == "") ? 2 : $_POST['display_full_title'];
@@ -175,6 +184,8 @@ function igit_action_callback()
 		"no_related_post_text" => $no_related_post_text,
 		"auto_show" => $auto_show,
         "related_post_num" => $related_post_num,
+		"disable_timthumb" => $disable_timthumb,
+		"disable_hardcrop" => $disable_hardcrop,		
         "display_thumb" => $display_thumb,
 		"display_title" => $display_title,
 		"display_full_title" => $display_full_title,
@@ -202,7 +213,13 @@ function igit_action_callback()
 	<td><code>&lt;?php if(function_exists(&#39;igit_rpwt_posts&#39;)) igit_rpwt_posts(); ?&gt;</code></td></tr><tr valign="top"><th scope="row"><label for="blogname">Heading Text :</label></th><td><input type="text" class="code" value="' . $igit_rpwt['text_show'] . '" id="text_show" name="text_show" maxlength="100" size="30"/></td></tr><tr valign="top"><th scope="row"><label for="blogname">Default No Image :</label></th><td><input type="text" class="code" value="' . $igit_rpwt['default_no_image'] . '" id="default_no_image" name="default_no_image"  size="30"/><input id="upload_no_image_button" type="button" value="Upload Image"/></td></tr><tr valign="top"><th scope="row"><label for="blogname">No Related Posts Text :</label></th><td><input type="text" class="code" value="' . $igit_rpwt['no_related_post_text'] . '" id="no_related_post_text" name="no_related_post_text" maxlength="100" size="30"/></td></tr><tr valign="top"><th scope="row"><label for="blogname">Select Categories To Exclude From Related Postsssds :</label> </th><td><div id="categories-all" class="tabs-panel" style="overflow:auto;height:140px;width:250px;"><ul id="categorychecklist" class="list:category categorychecklist form-no-clear">';
 	$result1 = "";
 	$result1 = $result1 .'</ul></div></td></tr><tr valign="top"><th scope="row"><label for="blogname">How Many Related Posts Want to Show?</label></th><td><input type="text" class="code" value="' . $igit_rpwt['related_post_num'] . '" id="related_post_num" name="related_post_num" maxlength="2" size="4"/><code>Dont\'t Enter Greater Then 4 to Get Good Results.</code></td></tr>';
-    $chckd = ($igit_rpwt['display_thumb'] == "1") ? "checked=checked" : "";
+    $chckdtim = ($igit_rpwt['disable_timthumb'] == "1") ? "checked=checked" : "";
+	$result1 = $result1 . '<tr valign="top"><th scope="row"><label for="blogname">Disable Timthumb?</label></th><td><input type="checkbox" id="disable_timthumb" name="disable_timthumb" value="1" ' . $chckdtim . '/></td></tr>';
+	
+	$chckdcrop = ($igit_rpwt['disable_hardcrop'] == "1") ? "checked=checked" : "";
+	$result1 = $result1 . '<tr valign="top"><th scope="row"><label for="blogname">Disable Hard Crop?</label></th><td><input type="checkbox" id="disable_hardcrop" name="disable_hardcrop" value="1" ' . $chckdcrop . '/><code>This setting will not work if Timthumb disabled in above option.</code></td></tr>';
+	
+	$chckd = ($igit_rpwt['display_thumb'] == "1") ? "checked=checked" : "";
     $result1 = $result1 . '<tr valign="top"><th scope="row"><label for="blogname">Display Thumb?</label></th><td><input type="checkbox" id="display_thumb" name="display_thumb" value="1" ' . $chckd . '/></td></tr>';
     $chckdtc = ($igit_rpwt['display_title'] == "1") ? "checked=checked" : "";
 	$chckdfulltc = ($igit_rpwt['display_full_title'] == "1") ? "checked=checked" : "";
@@ -247,6 +264,8 @@ function igit_rpwt_admin_options()
 			"no_related_post_text" => $_POST['no_related_post_text'],
 			"auto_show" => $_POST['auto_show'],
             "num_posts" => $_POST['related_post_num'],
+			"dis_timthumb" => $_POST['disable_timthumb'],
+			"dis_hardcrop" => $_POST['disable_hardcrop'],			
             "dis_thumb" => $_POST['display_thumb'],
 			"dis_title" => $_POST['display_title'],
 			"display_full_title" => $_POST['display_full_title'],
@@ -276,6 +295,14 @@ function igit_rpwt_admin_options()
 				$igit_rpwt_new['no_related_post_text'] = $igit_rpwt_default['no_related_post_text'];
 			
 			}
+			if (!array_key_exists('disable_timthumb', $igit_rpwt_new)) {
+				$igit_rpwt_new['disable_timthumb'] = $igit_rpwt_default['disable_timthumb'];
+			
+			}
+			if (!array_key_exists('disable_hardcrop', $igit_rpwt_new)) {
+				$igit_rpwt_new['disable_hardcrop'] = $igit_rpwt_default['disable_hardcrop'];
+			
+			}
 			if (!array_key_exists('display_title', $igit_rpwt_new)) {
 				$igit_rpwt_new['display_title'] = $igit_rpwt_default['display_title'];
 			
@@ -302,6 +329,10 @@ function igit_rpwt_admin_options()
 		$no_related_post_text   = ($igit_rpwt_new['no_related_post_text'] == "") ? $igit_rpwt['no_related_post_text'] : $igit_rpwt_new['no_related_post_text'];
 		$auto_show   = ($igit_rpwt_new['auto_show'] == "") ? $igit_rpwt['auto_show'] : $igit_rpwt_new['auto_show'];
 		$related_post_num   = ($igit_rpwt_new['related_post_num'] == "") ? $igit_rpwt['related_post_num'] : $igit_rpwt_new['related_post_num'];
+		
+		$disable_timthumb      = ($igit_rpwt_new['disable_timthumb'] == "") ? $igit_rpwt['disable_timthumb'] : $igit_rpwt_new['disable_timthumb'];
+		$disable_hardcrop      = ($igit_rpwt_new['disable_hardcrop'] == "") ? $igit_rpwt['disable_hardcrop'] : $igit_rpwt_new['disable_hardcrop'];
+		
 		$display_thumb      = ($igit_rpwt_new['display_thumb'] == "") ? $igit_rpwt['display_thumb'] : $igit_rpwt_new['display_thumb'];
 		$display_title      = ($igit_rpwt_new['display_title'] == "") ? $igit_rpwt['display_title'] : $igit_rpwt_new['display_title'];
 		$display_full_title      = ($igit_rpwt_new['display_full_title'] == "") ? $igit_rpwt['display_full_title'] : $igit_rpwt_new['display_full_title'];
@@ -324,6 +355,8 @@ function igit_rpwt_admin_options()
 		"no_related_post_text" => $no_related_post_text,
 		"auto_show" => $auto_show,
 		"related_post_num" => $related_post_num,
+		"disable_timthumb" => $disable_timthumb,
+		"disable_hardcrop" => $disable_hardcrop,
 		"display_thumb" => $display_thumb,
 		"display_title" => $display_title,
 		"display_full_title" => $display_full_title,
@@ -345,6 +378,13 @@ function igit_rpwt_admin_options()
 	echo $message_succ . '<tr valign="top"><th scope="row"><label for="blogname">Automatically Show related Posts After Post :<strong>(Tick If Yes)</strong></label></th><td style="vertical-align:middle;"><input type="checkbox" id="auto_show" name="auto_show" value="1" ' . $auto_chckd . '/>&nbsp;&nbsp;<strong>(Do not tick if you want to place related posts Manually.)</strong> </td></tr><tr valign="top"><th scope="row"><label for="blogname">Manually Placing of Related Posts :</label></th><td><code>&lt;?php if(function_exists(&#39;igit_rpwt_posts&#39;)) igit_rpwt_posts(); ?&gt;</code></td></tr><tr valign="top"><th scope="row"><label for="blogname">Heading Text :</label></th><td><input type="text" class="code" value="' . $igit_rpwt['text_show'] . '" id="text_show" name="text_show" maxlength="100" size="30"/></td></tr><tr valign="top"><th scope="row"><label for="blogname">Default No Image :</label></th><td><input type="text" class="code" value="' . $igit_rpwt['default_no_image'] . '" id="default_no_image" name="default_no_image"  size="30"/><input id="upload_no_image_button" type="button" value="Upload Image"/></td></tr><tr valign="top"><th scope="row"><label for="blogname">No Related Posts Text :</label></th><td><input type="text" class="code" value="' . $igit_rpwt['no_related_post_text'] . '" id="no_related_post_text" name="no_related_post_text" maxlength="100" size="30"/></td></tr><tr valign="top"><th scope="row"><label for="blogname">Select Categories To Exclude From Related Posts :</label> </th><td><div id="categories-all" class="tabs-panel" style="overflow:auto;height:140px;width:250px;"><ul id="categorychecklist" class="list:category categorychecklist form-no-clear">';
 	echo $message_succ. wp_category_checklist_IGIT($post_ID, false,$exclude_cat_arr);
 	echo $message_succ.'</ul></div><td></tr><tr valign="top"><th scope="row"><label for="blogname">How Many Related Posts Want to Show?</label></th><td><input type="text" class="code" value="' . $igit_rpwt['related_post_num'] . '" id="related_post_num" name="related_post_num" maxlength="2" size="4"/><code>Dont\'t Enter Greater Then 4 to Get Good Results.</code></td></tr>';
+	
+	$chckdtim = ($igit_rpwt['disable_timthumb'] == "1") ? "checked=checked" : "";
+	echo $message_succ . '<tr valign="top"><th scope="row"><label for="blogname">Disable Timthumb?</label></th><td><input type="checkbox" id="disable_timthumb" name="disable_timthumb" value="1" ' . $chckdtim . '/></td></tr>';
+	
+	$chckdcrop = ($igit_rpwt['disable_hardcrop'] == "1") ? "checked=checked" : "";
+	echo $message_succ . '<tr valign="top"><th scope="row"><label for="blogname">Disable Hard Crop?</label></th><td><input type="checkbox" id="disable_hardcrop" name="disable_hardcrop" value="1" ' . $chckdcrop . '/><code>This setting will not work if Timthumb disabled in above option.</code></td></tr>';
+	
     $chckd = ($igit_rpwt['display_thumb'] == "1") ? "checked=checked" : "";
     echo $message_succ . '<tr valign="top"><th scope="row"><label for="blogname">Display Thumb?</label></th><td><input type="checkbox" id="display_thumb" name="display_thumb" value="1" ' . $chckd . '/></td></tr>';
     $chckdt = ($igit_rpwt['display_title'] == "1") ? "checked=checked" : "";

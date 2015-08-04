@@ -87,6 +87,10 @@ function igit_add_css_style()
    			 display: inline-block;
 			 border-bottom: none !important;
 		}
+		img#igit_rpwt_thumb{
+			 height:<?php echo ($igit_rpwt['thumb_height']) . "px"; ?>;
+			  width:<?php echo $igit_rpwt['thumb_width'] . "px"; ?>;
+		}
         </style>
 <?php
 	}
@@ -153,6 +157,10 @@ function igit_add_css_style()
         {
             background:<?php echo "#".$igit_rpwt['bk_hover_color'].";"; ?>
         }
+		img#igit_rpwt_thumb{
+			 height:<?php echo ($igit_rpwt['thumb_height']) . "px"; ?>;
+			  width:<?php echo $igit_rpwt['thumb_width'] . "px"; ?>;
+		}
         </style>
 <?php
 	}
@@ -470,9 +478,26 @@ function igit_show_rel_post()
 					$divlnk = "onclick=location.href='" . get_permalink($result['ID']) . "'; ";
 					$output .= '<div class="igit_relpost" ' . $divlnk . '>';
 					if ($igit_rpwt['display_thumb'] == '1') {
-						$output .= '<div id="igit_rpwt_main_image" ' . $divlnk . '><a href="' . get_permalink($result['ID']) . '" target="_top"><img id="igit_rpwt_thumb" src="' . WP_PLUGIN_URL . '/'.IGIT_RPWT_PLUGIN_FOLDER_NAME.'/timthumb.php?src=' . IGIT_get_the_image(array(
-							'post_id' => $result['ID']
-						)) . '&w=' . $igit_rpwt['thumb_width'] . '&h=' . $igit_rpwt['thumb_height'] . '&zc=1"/></a></div>';
+						
+						if($igit_rpwt['disable_timthumb'] != '1'){
+								if($igit_rpwt['disable_hardcrop'] != '1'){
+									$output .= '<div id="igit_rpwt_main_image" ' . $divlnk . '><a href="' . get_permalink($result['ID']) . '" target="_top"><img id="igit_rpwt_thumb" src="' . WP_PLUGIN_URL . '/'.IGIT_RPWT_PLUGIN_FOLDER_NAME.'/timthumb.php?src=' . IGIT_get_the_image(array(
+								'post_id' => $result['ID']
+							)) . '&w=' . $igit_rpwt['thumb_width'] . '&h=' . $igit_rpwt['thumb_height'] . '&zc=1"/></a></div>';
+								}else{
+									$output .= '<div id="igit_rpwt_main_image" ' . $divlnk . '><a href="' . get_permalink($result['ID']) . '" target="_top"><img id="igit_rpwt_thumb" src="' . WP_PLUGIN_URL . '/'.IGIT_RPWT_PLUGIN_FOLDER_NAME.'/timthumb.php?src=' . IGIT_get_the_image(array(
+								'post_id' => $result['ID']
+							)) . '&w=' . $igit_rpwt['thumb_width'] . '&h=' . $igit_rpwt['thumb_height'] . '&zc=0"/></a></div>';
+								}
+								
+								
+						} else {
+								$output .= '<div id="igit_rpwt_main_image" ' . $divlnk . '><a href="' . get_permalink($result['ID']) . '" target="_top"><img id="igit_rpwt_thumb" width="'.$igit_rpwt['thumb_width'].'" height="'.$igit_rpwt['thumb_height'].'" src="'.IGIT_get_the_image(array(
+								'post_id' => $result['ID']
+							)).'"/></a></div>';
+						}
+				
+						
 					} //$igit_rpwt['display_thumb'] == '1'
 					if ($igit_rpwt['display_title'] == '1') {
 						if (strlen($title) > 45) {
@@ -491,9 +516,24 @@ function igit_show_rel_post()
 					$divlnk = "onclick=location.href='" . get_permalink($result['ID']) . "'; ";
 					$output .= '<li id="igit_rpwt_li"  ' . $divlnk . '>';
 					if ($igit_rpwt['display_thumb'] == '1') {
-						$output .= '<div id="igit_rpwt_main_image" ><a href="' . get_permalink($result['ID']) . '" target="_top"><img id="igit_rpwt_thumb" src="' . WP_PLUGIN_URL . '/'.IGIT_RPWT_PLUGIN_FOLDER_NAME.'/timthumb.php?src=' . IGIT_get_the_image(array(
+						
+						if($igit_rpwt['disable_timthumb'] != '1'){
+								if($igit_rpwt['disable_hardcrop'] != '1'){
+									$output .= '<div id="igit_rpwt_main_image" ><a href="' . get_permalink($result['ID']) . '" target="_top"><img id="igit_rpwt_thumb" src="' . WP_PLUGIN_URL . '/'.IGIT_RPWT_PLUGIN_FOLDER_NAME.'/timthumb.php?src=' . IGIT_get_the_image(array(
 							'post_id' => $result['ID']
 						)) . '&w=' . $igit_rpwt['thumb_width'] . '&h=' . $igit_rpwt['thumb_height'] . '&zc=1"/></a></div>';
+								}else{
+									$output .= '<div id="igit_rpwt_main_image" ><a href="' . get_permalink($result['ID']) . '" target="_top"><img id="igit_rpwt_thumb" src="' . WP_PLUGIN_URL . '/'.IGIT_RPWT_PLUGIN_FOLDER_NAME.'/timthumb.php?src=' . IGIT_get_the_image(array(
+							'post_id' => $result['ID']
+						)) . '&w=' . $igit_rpwt['thumb_width'] . '&h=' . $igit_rpwt['thumb_height'] . '&zc=0"/></a></div>';
+								}
+								
+								
+						} else {
+								$output .= '<div id="igit_rpwt_main_image" ><a href="' . get_permalink($result['ID']) . '" target="_top"><img id="igit_rpwt_thumb" src="'.IGIT_get_the_image(array(
+							'post_id' => $result['ID']
+						)).'"/></a></div>';
+						}
 					} //$igit_rpwt['display_thumb'] == '1'
 					$output .= '<div id="igit_title"><a href="' . get_permalink($result['ID']) . '" target="_top">' . $title . '</a></div></li>';
 					$nodatacnt = 1;
